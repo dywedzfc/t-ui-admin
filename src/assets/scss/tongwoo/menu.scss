@@ -1,0 +1,185 @@
+.tw-menu {
+  height: 100%;
+  color: $tw-menu-secondaryColor;
+  &-item {
+    height: $tw-menu-itemHeight;
+    font-size: $tw-menu-fontSize_default;
+    line-height: $tw-menu-itemHeight;
+    cursor: pointer;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+    &:hover,
+    &.active {
+      color: #ffffff;
+      background-color: $tw-menu-itemBgColor_active;
+    }
+    &.active {
+      position: relative;
+      &:after {
+        width: 5px;
+        background-color: $tw-menu-itemBColor;
+      }
+    }
+  }
+  &-link {
+    padding-left: $margin;
+    padding-right: $margin;
+  }
+  &-group {
+    font-size: $tw-menu-fontSize_default;
+  }
+  &-title {
+    position: relative;
+    height: $tw-menu-itemHeight;
+    padding-left: $margin;
+    padding-right: $margin;
+    line-height: $tw-menu-itemHeight;
+    cursor: pointer;
+    &:hover {
+      color: $tw-menu-itemColor_active;
+      background-color: $tw-menu-itemBgColor_active;
+    }
+    &.open {
+      color: $tw-menu-openColor;
+      background-color: $tw-menu-itemBgColor_active;
+      .tw-suffix-icon {
+        transform: translateY(-50%) rotateZ(180deg);
+      }
+    }
+    .tw-suffix-icon {
+      position: absolute;
+      top: 50%;
+      right: $margin;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
+  }
+  &-panel {
+    display: none;
+    background-color: $tw-menu-panelBgColor;
+    transition: all 0.5s ease;
+    @mixin innerShadow_tb() {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      box-shadow: 0 0 8px $tw-menu-panelShadowColor, 0 0 6px $tw-menu-panelShadowColor;
+    }
+    &.open {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      &:before {
+        top: -1px;
+      }
+      &:after {
+        bottom: -1px;
+      }
+      .tw-menu-item.active {
+        background-color: #07bb9e;
+        &:first-child,
+        &:last-child {
+          position: relative;
+        }
+        &:last-child {
+          &:after {
+            bottom: -1px;
+          }
+        }
+      }
+    }
+    .tw-menu {
+      &-title {
+        height: $tw-menu-itemHeight;
+        padding-left: $margin * 2.5;
+      }
+      &-item {
+        padding-left: $margin * 1.5;
+      }
+      &-panel {
+        .tw-menu {
+          &-item {
+            padding-left: $margin * 3;
+          }
+        }
+      }
+    }
+  }
+  &.tw-icon-big {
+    > .tw-menu-item,
+    > .tw-menu-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      .tw-menu-link,
+      .tw-menu-title {
+        padding: 0;
+        line-height: 30px;
+        text-align: center;
+
+        .tw-icon {
+          display: block;
+          margin: 0 auto;
+          font-size: 30px !important;
+        }
+        .tw-suffix-icon {
+          display: none;
+        }
+      }
+      .tw-menu-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 80px;
+      }
+    }
+    > .tw-menu-group {
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -5px;
+        width: 5px;
+        height: calc(100% + 10px);
+      }
+      .tw-menu-panel {
+        position: absolute;
+        top: 0;
+        left: calc(100% + 5px);
+        width: 250px;
+        padding: 0;
+        opacity: 0;
+        transform: translateX(-100px);
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        z-index: 100;
+
+        &.open {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        .tw-menu-item {
+          padding-left: 0;
+          .tw-menu-link {
+            height: 40px;
+            padding-left: 20px;
+            line-height: 40px;
+
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}

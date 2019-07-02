@@ -1,0 +1,42 @@
+$layout_height: 50px;
+$layout-left_width: 300px;
+
+.tw-layout {
+  position: relative;
+  height: 100%;
+  &-header {
+    height: $layout_height;
+    & + .tw-layout-left,
+    & ~ .tw-layout-left {
+      top: $layout_height;
+      height: calc(100% - #{$layout_height});
+    }
+    & ~ .tw-layout-body {
+      height: calc(100% - #{$layout_height});
+    }
+  }
+  &-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $layout-left_width;
+    height: 100%;
+    box-sizing: border-box;
+    transition: width 0.5s ease;
+    & + .tw-layout-body {
+      width: calc(100% - #{$layout-left_width});
+      margin-left: $layout-left_width;
+    }
+  }
+  &-body {
+    height: 100%;
+    transition: width 0.5s ease, margin-left 0.5s ease;
+  }
+  &-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border-left: 1px solid $borderColor_default;
+  }
+}

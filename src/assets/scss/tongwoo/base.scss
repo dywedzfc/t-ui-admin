@@ -1,0 +1,15 @@
+.tw-template {
+  &-wrapper {
+    height: 100%;
+  }
+  &-body {
+    height: 100%;
+    transition: width 0.5s ease, margin-left 0.5s ease;
+  }
+}
+
+.tw-block {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
