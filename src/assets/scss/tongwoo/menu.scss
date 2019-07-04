@@ -1,10 +1,12 @@
+@import "./menu-variable";
+
 .tw-menu {
   height: 100%;
-  color: $tw-menu-secondaryColor;
+  color: $menu-font-color;
   &-item {
-    height: $tw-menu-itemHeight;
-    font-size: $tw-menu-fontSize_default;
-    line-height: $tw-menu-itemHeight;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
     cursor: pointer;
     &:after {
       content: "";
@@ -18,13 +20,13 @@
     &:hover,
     &.active {
       color: #ffffff;
-      background-color: $tw-menu-itemBgColor_active;
+      background-color: $menu-bg-color__active;
     }
     &.active {
       position: relative;
       &:after {
         width: 5px;
-        background-color: $tw-menu-itemBColor;
+        background-color: $menu-bg-color;
       }
     }
   }
@@ -33,22 +35,22 @@
     padding-right: $margin;
   }
   &-group {
-    font-size: $tw-menu-fontSize_default;
+    font-size: 16px;
   }
   &-title {
     position: relative;
-    height: $tw-menu-itemHeight;
+    height: 40px;
     padding-left: $margin;
     padding-right: $margin;
-    line-height: $tw-menu-itemHeight;
+    line-height: 40px;
     cursor: pointer;
     &:hover {
-      color: $tw-menu-itemColor_active;
-      background-color: $tw-menu-itemBgColor_active;
+      color: $menu-font-color__active;
+      background-color: $menu-bg-color__active;
     }
     &.open {
-      color: $tw-menu-openColor;
-      background-color: $tw-menu-itemBgColor_active;
+      color: $menu-font-color__active;
+      background-color: $menu-bg-color__active;
       .tw-suffix-icon {
         transform: translateY(-50%) rotateZ(180deg);
       }
@@ -63,7 +65,7 @@
   }
   &-panel {
     display: none;
-    background-color: $tw-menu-panelBgColor;
+    background-color: $menu-panel-bg-color;
     transition: all 0.5s ease;
     @mixin innerShadow_tb() {
       content: "";
@@ -71,7 +73,7 @@
       left: 0;
       width: 100%;
       height: 1px;
-      box-shadow: 0 0 8px $tw-menu-panelShadowColor, 0 0 6px $tw-menu-panelShadowColor;
+      box-shadow: 0 0 8px $menu-shadow-color, 0 0 6px $menu-shadow-color;
     }
     &.open {
       position: relative;
@@ -83,22 +85,25 @@
       &:after {
         bottom: -1px;
       }
-      .tw-menu-item.active {
-        background-color: #07bb9e;
-        &:first-child,
-        &:last-child {
-          position: relative;
-        }
-        &:last-child {
-          &:after {
-            bottom: -1px;
+      .tw-menu-item {
+        &:hover,
+        &.active {
+          background-color: $menu-panel-bg-color__active;
+          &:first-child,
+          &:last-child {
+            position: relative;
+          }
+          &:last-child {
+            &:after {
+              bottom: -1px;
+            }
           }
         }
       }
     }
     .tw-menu {
       &-title {
-        height: $tw-menu-itemHeight;
+        height: 40px;
         padding-left: $margin * 2.5;
       }
       &-item {
@@ -113,6 +118,68 @@
       }
     }
   }
+  &-control {
+    &-strip {
+      position: absolute;
+      top: calc(50% - 25px);
+      left: 100%;
+      height: 40px;
+      font-size: 18px;
+      color: $menu-strip-color;
+      z-index: 11;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: all 0.3s ease-in-out;
+
+      &:before {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 0.4s ease-out;
+      }
+
+      &.icon-collapse {
+        &-left,
+        &-right {
+          border-bottom: 9px solid transparent;
+          border-top: 9px solid transparent;
+          &:before {
+            left: 0;
+          }
+        }
+        &-left {
+          left: $menu-total-width_active - 18px;
+          border-left: none;
+          border-right: 18px solid #174880;
+          transition: none;
+          &:before {
+            transform: translateY(-50%);
+          }
+          &:hover {
+            left: $menu-total-width_active - 22px;
+            border-right: 22px solid #174880;
+            &:before {
+              left: 2px;
+            }
+          }
+        }
+        &-right {
+          border-left: 18px solid #174880;
+          border-right: none;
+
+          &:before {
+            transform: translate(-100%, -50%);
+          }
+          &:hover {
+            border-left: 22px solid #174880;
+            &:before {
+              left: -1px;
+            }
+          }
+        }
+      }
+    }
+  }
   &.tw-icon-big {
     > .tw-menu-item,
     > .tw-menu-group {
@@ -122,14 +189,18 @@
       height: 80px;
       .tw-menu-link,
       .tw-menu-title {
+        display: block;
+        width: 100%;
         padding: 0;
-        line-height: 30px;
+        line-height: 25px;
         text-align: center;
 
         .tw-icon {
           display: block;
           margin: 0 auto;
-          font-size: 30px !important;
+          margin-top: 10px;
+          margin-bottom: 5px;
+          font-size: 38px !important;
         }
         .tw-suffix-icon {
           display: none;
@@ -181,5 +252,336 @@
         }
       }
     }
+  }
+}
+
+.tw-multiple {
+  &-menu {
+    // position: relative;
+    height: 100%;
+
+    &-bar {
+      position: relative;
+      width: $menu-total-width;
+      height: 100%;
+      background-color: $menu-bg-color__bark;
+      z-index: 22;
+      transition: all 0.3s ease-in-out;
+
+      &.hover {
+        width: $menu-total-width_active;
+        ~ .tw-menu-control-strip.multiple-hover {
+          left: $menu-total-width_active;
+        }
+        ~ .tw-menu-control-strip.icon-collapse-left.multiple-hover {
+          left: calc(#{$menu-total-width_active} - 18px);
+          &:hover {
+            left: $menu-total-width_active - 22px;
+          }
+        }
+      }
+    }
+
+    &-item {
+      position: relative;
+      overflow: hidden;
+      height: $menu-total-width;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.6s ease;
+
+      &:hover,
+      &.active {
+        background-color: #16477f;
+      }
+
+      &.active {
+        background-color: $menu-bg-color__bark_action;
+      }
+
+      &.tw-app-menu-item {
+      }
+
+      .tw-icon,
+      .tw-suffix-icon {
+        display: inline-block;
+        width: $menu-total-width;
+        height: $menu-total-width;
+        line-height: $menu-total-width;
+        text-align: center;
+      }
+
+      .tw-title {
+        position: absolute;
+        top: 0;
+        left: $menu-total-width;
+        overflow: hidden;
+        width: calc(100% - #{$menu-total-width});
+        height: 100%;
+        font-size: 18px;
+        line-height: $menu-total-width;
+        text-indent: 5px;
+        white-space: nowrap;
+      }
+
+      .tw-suffix-icon {
+        position: absolute;
+        top: 0;
+        left: calc(#{$menu-total-width_active} - #{$menu-total-width});
+      }
+    }
+  }
+}
+
+.tw-secondary {
+  &-menu {
+    &-bar {
+      position: absolute;
+      top: 0;
+      left: $menu-total-width;
+      width: $menu-total-width_active - $menu-total-width;
+      height: 100%;
+      background-color: $menu-bg-color__bark_action;
+      z-index: 1;
+    }
+
+    &-header {
+      height: $menu-total-width;
+      border-bottom: 1px solid #174880;
+      box-sizing: border-box;
+      font-size: 28px;
+      line-height: $menu-total-width;
+      text-align: center;
+      white-space: nowrap;
+      color: #ffffff;
+    }
+
+    &-body {
+      overflow-y: auto;
+      height: calc(100% - #{$menu-total-width});
+      color: #cccccc;
+      .mf-menu {
+        &-item {
+          &:hover,
+          &.active {
+            background-color: $menu-item-bg-color__bark_active;
+          }
+        }
+        &-link {
+          padding-left: $margin;
+          padding-right: $margin;
+        }
+        &-group {
+          font-size: 16px;
+        }
+        &-title {
+          position: relative;
+          height: 40px;
+          padding-left: $margin;
+          padding-right: $margin;
+          line-height: 40px;
+          cursor: pointer;
+          &:hover {
+            color: $menu-font-color__active;
+            background-color: $menu-bg-color__active;
+          }
+          &.open {
+            color: $menu-font-color__active;
+            background-color: $menu-bg-color__active;
+            .tw-suffix-icon {
+              transform: translateY(-50%) rotateZ(180deg);
+            }
+          }
+          .tw-suffix-icon {
+            position: absolute;
+            top: 50%;
+            right: $margin;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tw-total-menu {
+  &-panel {
+    position: absolute;
+    top: 0;
+    left: -1000px;
+    width: 960px;
+    height: 100%;
+    padding: 40px 30px;
+    border-right: 1px solid #eeeeee;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    opacity: 0;
+    z-index: 21;
+    transition: all 0.3s ease-in-out;
+    &.active {
+      left: $menu-total-width_active;
+      opacity: 1;
+    }
+  }
+  &-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #595959;
+    cursor: pointer;
+    &:hover {
+      text-shadow: 1px 1px 4px #aaaaaa;
+      color: #000000;
+    }
+  }
+  &-query {
+    &-bar {
+      position: relative;
+      width: 710px;
+      .tw-prefix-icon,
+      .tw-suffix-icon {
+        position: absolute;
+        top: 15px;
+        transform: translate(-50%, -50%);
+      }
+      .tw-prefix-icon {
+        left: 15px;
+        color: #d9d9d9;
+      }
+      .tw-suffix-icon {
+        border-radius: 50%;
+        right: 15px;
+        padding: 2px;
+        color: #ffffff;
+        background-color: #d9d9d9;
+        transform: translate(50%, -50%);
+        cursor: pointer;
+        &:hover {
+          background-color: #aaaaaa;
+        }
+      }
+    }
+    &-box {
+      width: 100%;
+      height: 31px;
+      padding: 0 30px;
+      border: none;
+      border-bottom: 1px solid #666666;
+      box-sizing: border-box;
+      outline: none;
+      line-height: 31px;
+      font-size: 16px;
+      color: #999;
+      transition: all 0.4s ease;
+      &:focus {
+        border-bottom: 1px solid transparent;
+        color: #333333;
+      }
+    }
+    &-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0099ff;
+    }
+    &-prompt {
+      padding-top: 20px;
+      font-size: 12px;
+    }
+  }
+  &-box {
+    overflow-y: hidden;
+    width: 730px;
+    height: calc(100% - 31px);
+    padding-top: $margin * 2;
+
+    &.filter {
+      height: calc(100% - 67px);
+    }
+  }
+  &-group {
+    float: left;
+    width: calc(33.333333% - #{$margin});
+    margin-right: $margin;
+    &:last-child {
+      margin-right: 0;
+    }
+    &-item {
+      margin-bottom: $margin * 3;
+      &-header {
+        height: 40px;
+        padding: 0 $margin;
+        line-height: 40px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #000000;
+      }
+      &-body {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        &-item {
+          cursor: pointer;
+          &:hover {
+            background-color: #f0f0f0;
+            background-color: rgba(0, 0, 0, 0.06);
+          }
+          .tw-menu-link {
+            display: block;
+            overflow: hidden;
+            height: 40px - 10px;
+            padding: 0 10px;
+            line-height: 40px - 10px;
+            font-size: 12px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #000000;
+            opacity: 0.65;
+          }
+        }
+      }
+    }
+  }
+  &-multiple {
+    &-bar {
+      position: absolute;
+      top: 120px;
+      left: 770px;
+      border-left: 2px solid rgba(229, 229, 229, 0.03);
+      border-left: 2px solid rgba(0, 0, 0, 0.1);
+    }
+    &-item {
+      overflow: hidden;
+      max-width: 160px;
+      height: 32px;
+      padding-left: $margin;
+      line-height: 32px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: color 0.25s ease-in-out;
+      &:hover {
+        margin-left: -2px;
+        border-left: 2px solid transparent;
+        font-weight: 700;
+        color: #0099ff;
+      }
+    }
+  }
+}
+
+.control-strip-fade {
+  &-enter-active,
+  &-leave-active {
+    // transition: opacity 0.5s ease-in-out, left 0.5s ease-in-out;
+    transition: left 0.5s ease-in-out;
+  }
+  &-enter,
+  &-leave-to {
+    left: -$menu-total-width_active;
+    // opacity: 0;
   }
 }

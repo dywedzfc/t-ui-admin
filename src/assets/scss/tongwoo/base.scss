@@ -1,3 +1,5 @@
+@import "./base-variable.scss";
+
 .tw-template {
   &-wrapper {
     height: 100%;
@@ -12,4 +14,20 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
+}
+
+.tw-scrollbar {
+  height: 100%;
+  &.ps {
+    .ps {
+      &__rail-x:hover,
+      &__rail-y:hover,
+      &__rail-x:focus,
+      &__rail-y:focus,
+      &__rail-x.ps--clicking,
+      &__rail-y.ps--clicking {
+        background-color: transparent;
+      }
+    }
+  }
 }
