@@ -1,26 +1,26 @@
 <template>
   <div class="tw-menu" :class="[typeClassName]">
-    <template v-for="item in data">
-      <t-menu-group
-        :key="item.id"
-        :data="item"
-        :active="selectRouterPath"
-        :open="open || openPanel"
-        :type="type"
-        @change-open="changeOpenPanel"
-        @mousemove.native.stop="handleMenuGroupMousemove(item)"
-        @mouseleave.native="handleMenuGroupMouseleave(item)"
-        v-if="hasPathChildren(item)"
-      ></t-menu-group>
-      <t-menu-item
-        :key="item.id"
-        :data="item"
-        :active="selectRouterPath"
-        :open="openPanel"
-        @click.native="handlerMenuTitleClick"
-        v-else
-      ></t-menu-item>
-    </template>
+    <perfect-scrollbar class="tw-scrollbar">
+      <template v-for="item in data">
+        <t-menu-group
+          :key="item.id"
+          :data="item"
+          :open="open"
+          :type="type"
+          @change-open="changeOpenPanel"
+          @mousemove.native.stop="handleMenuGroupMousemove(item)"
+          @mouseleave.native="handleMenuGroupMouseleave(item)"
+          v-if="hasPathChildren(item)"
+        ></t-menu-group>
+        <t-menu-item
+          :key="item.id"
+          :data="item"
+          :open="open"
+          @click.native="handlerMenuTitleClick"
+          v-else
+        ></t-menu-item>
+      </template>
+    </perfect-scrollbar>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       // active: '',
-      open: '',
+      open: {},
       openPanel: {}
     }
   },
@@ -46,15 +46,12 @@ export default {
   mounted() {
     this.$nextTick(() => {
       setTimeout(() => {
-        const open = this.currentOpenPanel
-        if (this.type !== 'bigIcon') this.openPanel = open
+        // const open = this.currentOpenPanel
+        if (this.type !== 'bigIcon') this.open = this.currentOpenPanel
       }, 0)
     })
   },
   computed: {
-    selectRouterPath() {
-      return this.$route.path
-    },
     currentOpenPanel() {
       const menuList = this.data
       console.info('menuList:', menuList)
@@ -70,11 +67,10 @@ export default {
   },
   methods: {
     changeOpenPanel(item) {
-      // this.active = ''
-      this.openPanel = item
+      this.open = item
     },
     handlerMenuTitleClick() {
-      this.openPanel = {}
+      this.open = {}
     },
     hasPathChildren(item) {
       return item.children && item.children.length > 0
@@ -89,11 +85,6 @@ export default {
       return item.fullPath && this.currentPath.indexOf(item.fullPath) === 0
     }
   },
-  // watch: {
-  // $route(value) {
-  // this.active = value.path
-  // }
-  // },
   components: {
     TMenuGroup,
     TMenuItem

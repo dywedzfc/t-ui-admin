@@ -64,9 +64,11 @@
     }
   }
   &-panel {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
     background-color: $menu-panel-bg-color;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease-in-out;
     @mixin innerShadow_tb() {
       content: "";
       position: absolute;
@@ -77,8 +79,8 @@
     }
     &.open {
       position: relative;
-      overflow: hidden;
-      display: block;
+      max-height: 1000px;
+      opacity: 1;
       &:before {
         top: -1px;
       }
@@ -360,27 +362,32 @@
       overflow-y: auto;
       height: calc(100% - #{$menu-total-width});
       color: #cccccc;
-      .mf-menu {
+      .tw-menu {
         &-item {
           &:hover,
           &.active {
-            background-color: $menu-item-bg-color__bark_active;
+            background-color: $menu-bg-color__active;
           }
         }
         &-link {
-          padding-left: $margin;
-          padding-right: $margin;
+          .tw-icon {
+            &:first-child::before {
+              margin-right: 8px;
+            }
+          }
         }
         &-group {
-          font-size: 16px;
+        }
+        &-panel {
+          background-color: rgba(35, 111, 187, 0.2);
+          .tw-menu-item {
+            &:hover,
+            &.active {
+              background-color: rgba(64, 160, 255, 0.6);
+            }
+          }
         }
         &-title {
-          position: relative;
-          height: 40px;
-          padding-left: $margin;
-          padding-right: $margin;
-          line-height: 40px;
-          cursor: pointer;
           &:hover {
             color: $menu-font-color__active;
             background-color: $menu-bg-color__active;
@@ -393,11 +400,6 @@
             }
           }
           .tw-suffix-icon {
-            position: absolute;
-            top: 50%;
-            right: $margin;
-            transform: translateY(-50%);
-            transition: all 0.3s ease;
           }
         }
       }
@@ -576,12 +578,10 @@
 .control-strip-fade {
   &-enter-active,
   &-leave-active {
-    // transition: opacity 0.5s ease-in-out, left 0.5s ease-in-out;
     transition: left 0.5s ease-in-out;
   }
   &-enter,
   &-leave-to {
     left: -$menu-total-width_active;
-    // opacity: 0;
   }
 }

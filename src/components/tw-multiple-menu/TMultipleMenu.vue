@@ -6,26 +6,28 @@
       @mouseenter.stop="handleMultipleMenuMouseenter"
       @mouseleave.stop="handleMultipleMenuMouseleave"
     >
-      <div
-        class="tw-multiple-menu-item tw-app-menu-item"
-        @mouseenter.stop="handleMultipleMenuMouseenter"
-        @click="handleMultipleMenuClick"
-      >
-        <t-icon class="tw-icon" icon="icon-application" font-size="24px"></t-icon>
-        <span class="tw-title">所有服务</span>
-        <t-icon class="tw-suffix-icon" icon="icon-expansion-r" font-size="24px"></t-icon>
-      </div>
-      <div
-        class="tw-multiple-menu-item"
-        :class="{ active: hasMultipleMenuActive(item) }"
-        v-for="item in systemMenuList"
-        :key="item.id"
-        @mouseenter.stop="handleMultipleMenuMouseenter"
-        @click="handleMultipleMenuItemClick(item)"
-      >
-        <t-icon class="tw-icon" :icon="item.icon" font-size="24px"></t-icon>
-        <span class="tw-title" v-text="item.title"></span>
-      </div>
+      <perfect-scrollbar class="tw-scrollbar">
+        <div
+          class="tw-multiple-menu-item tw-app-menu-item"
+          @mouseenter.stop="handleMultipleMenuMouseenter"
+          @click="handleMultipleMenuClick"
+        >
+          <t-icon class="tw-icon" icon="icon-application" font-size="24px"></t-icon>
+          <span class="tw-title">所有服务</span>
+          <t-icon class="tw-suffix-icon" icon="icon-expansion-r" font-size="24px"></t-icon>
+        </div>
+        <div
+          class="tw-multiple-menu-item"
+          :class="{ active: hasMultipleMenuActive(item) }"
+          v-for="item in systemMenuList"
+          :key="item.id"
+          @mouseenter.stop="handleMultipleMenuMouseenter"
+          @click="handleMultipleMenuItemClick(item)"
+        >
+          <t-icon class="tw-icon" :icon="item.icon" font-size="24px"></t-icon>
+          <span class="tw-title" v-text="item.title"></span>
+        </div>
+      </perfect-scrollbar>
     </div>
     <transition name="control-strip-fade">
       <div class="tw-secondary-menu-bar" v-show="hasDisplaySecondaryMenu">

@@ -2,11 +2,11 @@
   <div class="tw-layout">
     <div class="tw-layout-header">测试</div>
     <div class="tw-layout-left" :class="{hover: hasSecondaryMenu}">
-      <t-menu :data="getMenuList"></t-menu>
-      <!-- <t-multiple-menu
+      <!-- <t-menu :data="getMenuList"></t-menu> -->
+      <t-multiple-menu
         :data="{systemMenu: systemMenuList, secondaryMenu: menuLists}"
         @display-state="handleSecondaryDisplayState"
-      ></t-multiple-menu>-->
+      ></t-multiple-menu>
     </div>
     <div class="tw-layout-body">
       <router-view></router-view>
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import TMenu from 'components/tw-menu/TMenu'
-// import TMultipleMenu from 'components/tw-multiple-menu/TMultipleMenu'
+// import TMenu from 'components/tw-menu/TMenu'
+import TMultipleMenu from 'components/tw-multiple-menu/TMultipleMenu'
 import { getMenuList } from 'assets/js/menu'
 
 export default {
@@ -516,7 +516,7 @@ export default {
     getMenuList
   },
   components: {
-    TMenu
+    TMultipleMenu
   },
   methods: {
     handleSecondaryDisplayState(state) {
