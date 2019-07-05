@@ -83,7 +83,6 @@ export default {
       this.openPanelItem = {}
     },
     handlerMenuTitleClick(item) {
-      // const path = this.currentPath
       const { fullPath } = this.open
       if (fullPath === item.fullPath) this.$emit('change-open', {})
       else this.$emit('change-open', this.resetMenuItem(item))
