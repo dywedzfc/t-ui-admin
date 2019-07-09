@@ -1,0 +1,12 @@
+.tw-panel {
+  border-radius: 20px;
+  background-color: #0d192998;
+  &-header {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  &-body {
+    padding: 15px;
+    padding-top: 0;
+  }
+}

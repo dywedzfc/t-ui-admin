@@ -10,9 +10,6 @@
         margin-bottom: $margin;
       }
     }
-    & + .tw-template-body {
-      height: calc(100% - #{$height});
-    }
   }
   &-box {
     .el-form-item {
@@ -27,4 +24,7 @@
     padding: $margin;
     box-sizing: border-box;
   }
+}
+
+.tw-form {
 }

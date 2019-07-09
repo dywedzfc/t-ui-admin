@@ -6,7 +6,7 @@
       @mouseenter.stop="handleMultipleMenuMouseenter"
       @mouseleave.stop="handleMultipleMenuMouseleave"
     >
-      <perfect-scrollbar class="tw-scrollbar">
+      <div class="tw-scrollbar" ref="totalMenuScrollbar" v-scrollbar>
         <div
           class="tw-multiple-menu-item tw-app-menu-item"
           @mouseenter.stop="handleMultipleMenuMouseenter"
@@ -27,7 +27,7 @@
           <t-icon class="tw-icon" :icon="item.icon" font-size="24px"></t-icon>
           <span class="tw-title" v-text="item.title"></span>
         </div>
-      </perfect-scrollbar>
+      </div>
     </div>
     <transition name="control-strip-fade">
       <div class="tw-secondary-menu-bar" v-show="hasDisplaySecondaryMenu">
@@ -114,11 +114,21 @@ export default {
       return this.data.systemMenu || []
     },
     secondaryMenuList() {
-      return this.data.secondaryMenu || {}
+      const menuIdList = _.pluck(this.systemMenuList, 'id')
+      const secondaryMenu = JSON.parse(JSON.stringify(this.data.secondaryMenu))
+      _.each(menuIdList, item => {
+        if (!secondaryMenu[item]) secondaryMenu[item] = []
+      })
+      return secondaryMenu
     },
     hasDisplaySecondaryMenu() {
       const { id } = this.multipleMenuActive
       if (!id) return false
+      console.info(
+        'menu-s:',
+        this.secondaryMenuList,
+        this.secondaryMenuList[id]
+      )
       const flag = !!this.secondaryMenuList[id] && this.hasSecondaryMenu
       if (this.$listeners['display-state']) this.$emit('display-state', flag)
       return flag

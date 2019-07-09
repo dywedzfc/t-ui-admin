@@ -496,7 +496,7 @@
   }
   &-box {
     overflow-y: hidden;
-    width: 730px;
+    width: 735px;
     height: calc(100% - 31px);
     padding-top: $margin * 2;
 
@@ -513,6 +513,9 @@
     }
     &-item {
       margin-bottom: $margin * 3;
+      &:last-child {
+        margin-bottom: 0;
+      }
       &-header {
         height: 40px;
         padding: 0 $margin;

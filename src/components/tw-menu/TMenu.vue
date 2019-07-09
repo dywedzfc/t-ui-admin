@@ -1,26 +1,24 @@
 <template>
-  <div class="tw-menu" :class="[typeClassName]">
-    <perfect-scrollbar class="tw-scrollbar">
-      <template v-for="item in data">
-        <t-menu-group
-          :key="item.id"
-          :data="item"
-          :open="open"
-          :type="type"
-          @change-open="changeOpenPanel"
-          @mousemove.native.stop="handleMenuGroupMousemove(item)"
-          @mouseleave.native="handleMenuGroupMouseleave(item)"
-          v-if="hasPathChildren(item)"
-        ></t-menu-group>
-        <t-menu-item
-          :key="item.id"
-          :data="item"
-          :open="open"
-          @click.native="handlerMenuTitleClick"
-          v-else
-        ></t-menu-item>
-      </template>
-    </perfect-scrollbar>
+  <div class="tw-menu tw-scrollbar" :class="[typeClassName]" ref="totalMenuScrollbar" v-scrollbar>
+    <template v-for="item in data">
+      <t-menu-group
+        :key="item.id"
+        :data="item"
+        :open="open"
+        :type="type"
+        @change-open="changeOpenPanel"
+        @mousemove.native.stop="handleMenuGroupMousemove(item)"
+        @mouseleave.native="handleMenuGroupMouseleave(item)"
+        v-if="hasPathChildren(item)"
+      ></t-menu-group>
+      <t-menu-item
+        :key="item.id"
+        :data="item"
+        :open="open"
+        @click.native="handlerMenuTitleClick"
+        v-else
+      ></t-menu-item>
+    </template>
   </div>
 </template>
 

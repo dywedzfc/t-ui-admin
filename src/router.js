@@ -15,11 +15,63 @@ export default new Router({
           path: '/home',
           name: 'Home',
           component: () => import('./views/Home.vue')
+        }
+        // {
+        //   path: '/zdfx/zjgz',
+        //   name: 'helloworld',
+        //   component: HelloWorld
+        // },
+        // {
+        //   path: '/pbgl/pbcx',
+        //   name: 'helloworld',
+        //   component: HelloWorld
+        // },
+        // {
+        //   path: '/tjgl/cxtj',
+        //   name: 'About',
+        //   component: () => import('./views/About.vue')
+        // }
+      ]
+    },
+    {
+      path: '/backstage',
+      name: 'home',
+      component: () => import('./views/backstage/Index.vue'),
+      children: [
+        {
+          path: '/home',
+          name: 'Home',
+          component: () => import('./views/Home.vue')
         },
         {
           path: '/zdfx/zjgz',
           name: 'helloworld',
           component: HelloWorld
+        },
+        {
+          path: '/zdfx/form',
+          name: 'form',
+          component: () => import('./views/backstage/form/VehicleInquiry.vue')
+        },
+        {
+          path: '/zdfx/map',
+          name: 'map',
+          component: () => import('./views/backstage/map/map.vue')
+        },
+        {
+          path: '/zdfx/tabs/card',
+          name: 'mCardTabsap',
+          component: () => import('./views/backstage/tabs/CardTabs.vue')
+        },
+        {
+          path: '/zdfx/tabs/card2',
+          name: 'CardTabs2',
+          component: () => import('./views/backstage/tabs/CardTabs2.vue')
+        },
+        {
+          path: '/zdfx/tabs/customize',
+          name: 'CustomizeTabs',
+          component: () => import('./views/backstage/tabs/CustomizeTabs.vue')
         },
         {
           path: '/pbgl/pbcx',

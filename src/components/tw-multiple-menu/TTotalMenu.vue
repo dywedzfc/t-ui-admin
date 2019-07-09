@@ -27,81 +27,84 @@
         {{ totalMenuTextPromptAfter }}
       </div>
     </div>
-    <div class="tw-total-menu-box" :class="{ filter: query.length > 0 }">
-      <perfect-scrollbar class="tw-scrollbar" ref="totalMenuScrollbar">
-        <div class="tw-total-menu-group">
-          <div
-            class="tw-total-menu-group-item"
-            v-for="(item, index) in filterSystemMenuColumnOne"
-            :key="'tw-total-menu-group-1_' + index"
-            :index="item.id"
-          >
-            <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
-            <ul class="tw-total-menu-group-item-body">
-              <li
-                class="tw-total-menu-group-item-body-item"
-                v-for="secondaryItem in filterSecondaryMenu(item.id)"
-                :key="secondaryItem.id"
-              >
-                <router-link
-                  tag="div"
-                  class="tw-menu-link"
-                  :to="secondaryItem.href || ''"
-                  @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
-                >{{ secondaryItem.title }}</router-link>
-              </li>
-            </ul>
-          </div>
+    <div
+      class="tw-total-menu-box tw-scrollbar"
+      :class="{ filter: query.length > 0 }"
+      ref="totalMenuScrollbar"
+      v-scrollbar
+    >
+      <div class="tw-total-menu-group">
+        <div
+          class="tw-total-menu-group-item"
+          v-for="(item, index) in filterSystemMenuColumnOne"
+          :key="'tw-total-menu-group-1_' + index"
+          :index="item.id"
+        >
+          <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
+          <ul class="tw-total-menu-group-item-body">
+            <li
+              class="tw-total-menu-group-item-body-item"
+              v-for="secondaryItem in filterSecondaryMenu(item.id)"
+              :key="secondaryItem.id"
+            >
+              <router-link
+                tag="div"
+                class="tw-menu-link"
+                :to="secondaryItem.href || ''"
+                @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
+              >{{ secondaryItem.title }}</router-link>
+            </li>
+          </ul>
         </div>
-        <div class="tw-total-menu-group">
-          <div
-            class="tw-total-menu-group-item"
-            v-for="(item, index) in filterSystemMenuColumnTwo"
-            :key="'tw-total-menu-group-2_' + index"
-            :index="item.id"
-          >
-            <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
-            <ul class="tw-total-menu-group-item-body">
-              <li
-                class="tw-total-menu-group-item-body-item"
-                v-for="secondaryItem in filterSecondaryMenu(item.id)"
-                :key="secondaryItem.id"
-              >
-                <router-link
-                  tag="div"
-                  class="tw-menu-link"
-                  :to="secondaryItem.href || ''"
-                  @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
-                >{{ secondaryItem.title }}</router-link>
-              </li>
-            </ul>
-          </div>
+      </div>
+      <div class="tw-total-menu-group">
+        <div
+          class="tw-total-menu-group-item"
+          v-for="(item, index) in filterSystemMenuColumnTwo"
+          :key="'tw-total-menu-group-2_' + index"
+          :index="item.id"
+        >
+          <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
+          <ul class="tw-total-menu-group-item-body">
+            <li
+              class="tw-total-menu-group-item-body-item"
+              v-for="secondaryItem in filterSecondaryMenu(item.id)"
+              :key="secondaryItem.id"
+            >
+              <router-link
+                tag="div"
+                class="tw-menu-link"
+                :to="secondaryItem.href || ''"
+                @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
+              >{{ secondaryItem.title }}</router-link>
+            </li>
+          </ul>
         </div>
-        <div class="tw-total-menu-group">
-          <div
-            class="tw-total-menu-group-item"
-            v-for="(item, index) in filterSystemMenuColumnThree"
-            :key="'tw-total-menu-group-3_' + index"
-            :index="item.id"
-          >
-            <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
-            <ul class="tw-total-menu-group-item-body">
-              <li
-                class="tw-total-menu-group-item-body-item"
-                v-for="secondaryItem in filterSecondaryMenu(item.id)"
-                :key="secondaryItem.id"
-              >
-                <router-link
-                  tag="div"
-                  class="tw-menu-link"
-                  :to="secondaryItem.href || ''"
-                  @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
-                >{{ secondaryItem.title }}</router-link>
-              </li>
-            </ul>
-          </div>
+      </div>
+      <div class="tw-total-menu-group">
+        <div
+          class="tw-total-menu-group-item"
+          v-for="(item, index) in filterSystemMenuColumnThree"
+          :key="'tw-total-menu-group-3_' + index"
+          :index="item.id"
+        >
+          <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
+          <ul class="tw-total-menu-group-item-body">
+            <li
+              class="tw-total-menu-group-item-body-item"
+              v-for="secondaryItem in filterSecondaryMenu(item.id)"
+              :key="secondaryItem.id"
+            >
+              <router-link
+                tag="div"
+                class="tw-menu-link"
+                :to="secondaryItem.href || ''"
+                @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
+              >{{ secondaryItem.title }}</router-link>
+            </li>
+          </ul>
         </div>
-      </perfect-scrollbar>
+      </div>
     </div>
     <div class="tw-total-menu-multiple-bar">
       <div
@@ -143,13 +146,6 @@ export default {
         menuList,
         item => this.filterSecondaryMenu(item.id).length > 0
       )
-      // this.filterMenuList(menuList)
-      /*return _.filter(menuList, item => {
-					let list = this.filterSecondaryMenu(item.id);
-					if (list)
-					console.info('filterSystemMenu:', list)
-					return list.length > 0
-				});*/
     },
     filterSystemMenuColumnOne() {
       return _.filter(this.filterSystemMenu, (item, index) => index % 3 === 0)
@@ -222,5 +218,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import '../../assets/css/tw-menu-variable';
 </style>
