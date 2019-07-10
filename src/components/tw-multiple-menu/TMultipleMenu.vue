@@ -123,12 +123,6 @@ export default {
     },
     hasDisplaySecondaryMenu() {
       const { id } = this.multipleMenuActive
-      if (!id) return false
-      console.info(
-        'menu-s:',
-        this.secondaryMenuList,
-        this.secondaryMenuList[id]
-      )
       const flag = !!this.secondaryMenuList[id] && this.hasSecondaryMenu
       if (this.$listeners['display-state']) this.$emit('display-state', flag)
       return flag

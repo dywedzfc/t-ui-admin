@@ -16,6 +16,13 @@
     }
   }
 }
+@mixin el-tabs--card {
+  .el-tabs {
+    &__content {
+      height: calc(100% - 41px);
+    }
+  }
+}
 @mixin el-tabs--border-card {
   .el-tab {
     &-pane {

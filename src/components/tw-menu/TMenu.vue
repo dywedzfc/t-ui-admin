@@ -52,7 +52,6 @@ export default {
   computed: {
     currentOpenPanel() {
       const menuList = this.data
-      console.info('menuList:', menuList)
       return _.filter(menuList.children, this.filterMenuChildren)[0] || {}
     },
     typeClassName() {

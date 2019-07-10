@@ -6,3 +6,21 @@ $borderRadius: 4px;
   border-radius: $borderRadius;
   box-shadow: 2px 2px 12px #000000;
 }
+
+@mixin border-color {
+  &--primary {
+    border-color: #409eff;
+  }
+  &--success {
+    border-color: #85ce61;
+  }
+  &--info {
+    border-color: #dcdfe6;
+  }
+  &--warning {
+    border-color: #e6a23c;
+  }
+  &--danger {
+    border-color: #f56c6c;
+  }
+}

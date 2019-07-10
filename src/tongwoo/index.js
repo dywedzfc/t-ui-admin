@@ -1,6 +1,7 @@
 import Icon from './packages/icon'
+import Tabs from './packages/tabs'
 
-const components = [Icon]
+const components = [Icon, Tabs]
 
 const install = function(Vue) {
   components.forEach(component => {
