@@ -9,7 +9,15 @@
         <slot name="toolbar"></slot>
       </div>
     </transition>
-    <el-tabs class="tw-tabs" v-model="activeName" @tab-click="handleTabsClick" ref="tabs">
+    <el-tabs
+      class="tw-tabs"
+      v-model="activeName"
+      :closable="tabClosable"
+      :addable="tabAddable"
+      @tab-click="handleTabClick"
+      @tab-remove="handleTabRemove"
+      ref="tabs"
+    >
       <template v-if="$slots.default">
         <slot></slot>
       </template>
@@ -30,18 +38,26 @@ export default {
     active: {
       type: String,
       default: ''
+    },
+    tabClosable: {
+      type: Boolean,
+      default: false
+    },
+    tabAddable: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
     const tabPanels = this.$slots.default
     if (tabPanels && tabPanels.length) this.activeName = tabPanels[0].child.name
     this.$nextTick(() => {
-      console.info('123:', this.toolbar)
       if (this.toolbar) {
         const toolbarWidth = this.toolbarHtml.offsetWidth
         const tabPanelList = this.tabsPanel.$children
         if (tabPanelList.length > 1) {
           setTimeout(() => {
+            console.info('init:', tabPanelList)
             if (!hasClass(tabPanelList[0].$el, 'is-scrollable')) return
             const tabHeaderLis = tabPanelList[0].$el.children
             if (hasClass(tabPanelList[0].$el.children[1], 'el-tabs__nav-next'))
@@ -65,8 +81,11 @@ export default {
     }
   },
   methods: {
-    handleTabsClick(item) {
+    handleTabClick(item) {
       if (this.$listeners['tab-click']) this.$emit('tab-click', item)
+    },
+    handleTabRemove(name) {
+      if (this.$listeners['tab-remove']) this.$emit('tab-remove', name)
     }
   },
   watch: {

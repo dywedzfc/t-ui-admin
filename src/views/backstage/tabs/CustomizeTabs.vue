@@ -1,6 +1,6 @@
 <template>
   <div class="tw-template-wrapper">
-    <t-tabs :active.sync="active">
+    <t-tabs :active.sync="active" tab-closable tab-addable @tab-remove="handleTabRemove">
       <template v-slot:toolbar>
         <el-select v-model="value" placeholder="请选择">
           <el-option
@@ -14,7 +14,7 @@
         <el-button type="primary">搜索</el-button>
       </template>
       <el-tab-pane label="用户管理1" name="first">用户管理</el-tab-pane>
-      <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+      <!-- <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
       <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth2">定时任务补偿</el-tab-pane>
@@ -34,7 +34,7 @@
       <el-tab-pane label="定时任务补偿" name="fourth16">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth17">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth18">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth19">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="定时任务补偿" name="fourth19">定时任务补偿</el-tab-pane>-->
     </t-tabs>
   </div>
 </template>
@@ -70,6 +70,11 @@ export default {
           label: '北京烤鸭'
         }
       ]
+    }
+  },
+  methods: {
+    handleTabRemove(item) {
+      console.info('hhh:', item)
     }
   },
   components: {
