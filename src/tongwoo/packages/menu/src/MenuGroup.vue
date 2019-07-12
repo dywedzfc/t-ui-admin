@@ -18,11 +18,8 @@
 </template>
 
 <script>
-import TMenuItem from './MenuItem'
-
 export default {
   name: 'TMenuGroup',
-  components: { TMenuItem },
   data() {
     return {
       display: this.show
