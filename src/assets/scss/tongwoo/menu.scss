@@ -5,9 +5,14 @@
   color: $menu-font-color;
   &-item {
     height: 40px;
+    padding-left: $margin;
+    padding-right: $margin;
     font-size: 16px;
     line-height: 40px;
     cursor: pointer;
+    .tw-icon {
+      margin-right: 5px;
+    }
     &:after {
       content: "";
       position: absolute;
@@ -30,10 +35,10 @@
       }
     }
   }
-  &-link {
-    padding-left: $margin;
-    padding-right: $margin;
-  }
+  // &-link {
+  //   padding-left: $margin;
+  //   padding-right: $margin;
+  // }
   &-group {
     font-size: 16px;
   }
@@ -66,9 +71,9 @@
   &-panel {
     max-height: 0;
     overflow: hidden;
-    opacity: 0;
+    opacity: 0.5;
     background-color: $menu-panel-bg-color;
-    transition: all 0.3s ease-in-out;
+    transition: max-height 0.3s ease-in-out, opacity 0.5s ease-in-out;
     @mixin innerShadow_tb() {
       content: "";
       position: absolute;
@@ -189,7 +194,7 @@
       align-items: center;
       justify-content: center;
       height: 80px;
-      .tw-menu-link,
+      // .tw-menu-link,
       .tw-menu-title {
         display: block;
         width: 100%;
@@ -244,13 +249,27 @@
         }
         .tw-menu-item {
           padding-left: 0;
-          .tw-menu-link {
-            height: 40px;
-            padding-left: 20px;
-            line-height: 40px;
+          // .tw-menu-link {
+          // height: 40px;
+          padding-left: 20px;
+          // line-height: 40px;
 
-            text-align: left;
-          }
+          text-align: left;
+          // }
+        }
+      }
+    }
+  }
+}
+.tw-menu {
+  &-group {
+    &__title {
+      .tw-icon {
+        &__prefix {
+          margin-right: 5px;
+        }
+        &__suffix {
+          float: right;
         }
       }
     }
@@ -368,14 +387,19 @@
           &.active {
             background-color: $menu-bg-color__active;
           }
-        }
-        &-link {
           .tw-icon {
             &:first-child::before {
               margin-right: 8px;
             }
           }
         }
+        // &-link {
+        //   .tw-icon {
+        //     &:first-child::before {
+        //       margin-right: 8px;
+        //     }
+        //   }
+        // }
         &-group {
         }
         &-panel {
@@ -534,18 +558,18 @@
             background-color: #f0f0f0;
             background-color: rgba(0, 0, 0, 0.06);
           }
-          .tw-menu-link {
-            display: block;
-            overflow: hidden;
-            height: 40px - 10px;
-            padding: 0 10px;
-            line-height: 40px - 10px;
-            font-size: 12px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            color: #000000;
-            opacity: 0.65;
-          }
+          // .tw-menu-link {
+          //   display: block;
+          //   overflow: hidden;
+          //   height: 40px - 10px;
+          //   padding: 0 10px;
+          //   line-height: 40px - 10px;
+          //   font-size: 12px;
+          //   text-overflow: ellipsis;
+          //   white-space: nowrap;
+          //   color: #000000;
+          //   opacity: 0.65;
+          // }
         }
       }
     }

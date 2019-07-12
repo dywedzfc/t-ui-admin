@@ -1,6 +1,11 @@
 <template>
-  <div class="tw-template-wrapper">
-    <t-tabs :active.sync="active" tab-closable tab-addable @tab-remove="handleTabRemove">
+  <div class="tw-template-wrapper tw-dark">
+    <t-tabs
+      :active.sync="active"
+      @tab-add="handleTabAdd"
+      @tab-edit="handleTabEdit"
+      @tab-remove="handleTabRemove"
+    >
       <template v-slot:toolbar>
         <el-select v-model="value" placeholder="请选择">
           <el-option
@@ -13,8 +18,24 @@
         <el-date-picker v-model="value" placeholder="选择时间"></el-date-picker>
         <el-button type="primary">搜索</el-button>
       </template>
-      <el-tab-pane label="用户管理1" name="first">用户管理</el-tab-pane>
-      <!-- <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+      <el-tab-pane label="用户管理" name="first">
+        <t-panel title="用户管理" size="small">
+          <template v-slot:toolbar>
+            <el-button type="text">操作按钮</el-button>
+            <el-button class="el-icon-close" type="text"></el-button>
+          </template>
+          <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div>
+        </t-panel>
+        <t-menu :data="getMenuList">
+          <t-menu-group icon="icon-kefu" title="张三" :visible.sync="display">
+            <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
+            <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
+            <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
+            <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
+          </t-menu-group>
+        </t-menu>
+      </el-tab-pane>
+      <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
       <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth2">定时任务补偿</el-tab-pane>
@@ -25,27 +46,19 @@
       <el-tab-pane label="定时任务补偿" name="fourth7">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth8">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth9">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth10">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth11">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth12">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth13">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth14">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth15">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth16">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth17">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth18">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth19">定时任务补偿</el-tab-pane>-->
     </t-tabs>
   </div>
 </template>
 
 <script>
 // import TTabs from 'components/tw-tabs/TTabs'
+import { getMenuList } from 'assets/js/menu'
 
 export default {
   name: 'CustomizeTabs',
   data() {
     return {
+      display: false,
       active: '',
       value: '',
       options: [
@@ -72,9 +85,18 @@ export default {
       ]
     }
   },
+  computed: {
+    getMenuList
+  },
   methods: {
+    handleTabAdd() {
+      console.info('add:')
+    },
+    handleTabEdit(targetName, action) {
+      console.info('edit', targetName, action)
+    },
     handleTabRemove(item) {
-      console.info('hhh:', item)
+      console.info('remove:', item)
     }
   },
   components: {

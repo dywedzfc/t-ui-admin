@@ -1,5 +1,5 @@
 const menuList = [
-  { id: 'wdsy', title: '首页', icon: 'icon-home', href: '/home' },
+  { id: 'wdsy', title: '首页', icon: 'icon-kefu', href: '/home' },
   {
     id: 'pbgl',
     title: '排班管理',
