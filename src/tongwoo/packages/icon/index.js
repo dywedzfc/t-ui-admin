@@ -1,4 +1,4 @@
-import TWIcon from './src/Icon.vue'
+import TWIcon from './src/icon.vue'
 
 TWIcon.install = function(Vue) {
   Vue.component(TWIcon.name, TWIcon)

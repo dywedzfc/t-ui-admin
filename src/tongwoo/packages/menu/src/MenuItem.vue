@@ -29,8 +29,6 @@ export default {
       const item = this.menuItemData
       if (this.$listeners['menu-item-click'])
         this.$emit('menu-item-click', item)
-      console.info('111:')
-      if (this.url) this.$router.push(this.url)
     }
   },
   render() {

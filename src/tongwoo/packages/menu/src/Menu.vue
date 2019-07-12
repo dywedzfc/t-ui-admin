@@ -13,13 +13,6 @@ export default {
   props: {
     type: String
   },
-  mounted() {
-    this.$nextTick(() => {
-      setTimeout(() => {
-        if (this.type !== 'bigIcon') this.open = this.currentOpenPanel
-      }, 0)
-    })
-  },
   computed: {
     typeClassName() {
       const type = this.type
