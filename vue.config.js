@@ -17,6 +17,7 @@ module.exports = {
         api: resolve('src/api'),
         assets: resolve('src/assets'),
         mixins: resolve('src/mixins'),
+        tongwoo: resolve('src/tongwoo'),
         components: resolve('src/components')
       }
     }

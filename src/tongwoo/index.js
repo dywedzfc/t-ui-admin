@@ -1,12 +1,24 @@
+import Layout from './packages/layout'
 import Icon from './packages/icon'
-import Menu from './packages/menu'
+// import Menu from './packages/menu'
 import MenuGroup from './packages/menu-group'
 import MenuItem from './packages/menu-item'
 import Tabs from './packages/tabs'
 import Panel from './packages/panel'
+import PanelQuery from './packages/panel-query'
 import Group from './packages/group'
 
-const components = [Icon, Menu, MenuGroup, MenuItem, Tabs, Panel, Group]
+// const components = [Layout, Icon, Menu, MenuGroup, MenuItem, Tabs, Panel, PanelQuery, Group]
+const components = [
+  Layout,
+  Icon,
+  MenuGroup,
+  MenuItem,
+  Tabs,
+  Panel,
+  PanelQuery,
+  Group
+]
 
 const install = function(Vue) {
   components.forEach(component => {

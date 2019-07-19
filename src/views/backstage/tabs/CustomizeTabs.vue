@@ -19,23 +19,31 @@
         <el-button type="primary">搜索</el-button>
       </template>
       <el-tab-pane label="用户管理" name="first">
-        <t-panel title="用户管理" size="small">
+        <t-layout :size="{header:'150px', left: '200px', right: '100px', bottom: '150px'}">
+          <template v-slot:header>用户管理</template>
+          <template v-slot:left>left</template>
+          <template>body</template>
+          <template v-slot:right>right</template>
+          <template v-slot:bottom>bottom</template>
+        </t-layout>
+      </el-tab-pane>
+      <el-tab-pane label="配置管理" name="second">
+        <t-panel title="配置管理" size="small">
           <template v-slot:toolbar>
             <el-button type="text">操作按钮</el-button>
             <el-button class="el-icon-close" type="text"></el-button>
           </template>
           <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div>
         </t-panel>
-        <t-menu :data="getMenuList">
+        <!-- <t-menu :data="getMenuList">
           <t-menu-group icon="icon-kefu" title="张三" :visible.sync="display">
             <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
             <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
             <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
             <t-menu-item icon="icon-key" title="密钥"></t-menu-item>
           </t-menu-group>
-        </t-menu>
+        </t-menu>-->
       </el-tab-pane>
-      <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
       <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth2">定时任务补偿</el-tab-pane>

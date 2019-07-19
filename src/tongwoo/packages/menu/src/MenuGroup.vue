@@ -2,6 +2,7 @@
   <div class="tw-menu-group">
     <t-menu-item
       class="tw-menu-group__title"
+      :class="[titleClassName,{active: display}]"
       :title="title"
       :prefixIcon="icon"
       suffixIcon="icon-expansion-r"
@@ -11,9 +12,11 @@
         <slot name="title"></slot>
       </template>
     </t-menu-item>
-    <ul class="tw-menu-group__panel" v-if="display">
-      <slot></slot>
-    </ul>
+    <transition name="menu-panel">
+      <ul class="tw-menu-group__panel" :class="[panelClassName]" v-if="display">
+        <slot></slot>
+      </ul>
+    </transition>
   </div>
 </template>
 
@@ -26,17 +29,33 @@ export default {
     }
   },
   props: {
+    id: String,
     title: String,
     icon: String,
     visible: {
       type: Boolean,
       default: false
+    },
+    tpClass: String,
+    tilteClass: String,
+    panelClass: String
+  },
+  computed: {
+    titleClassName() {
+      if (this.tilteClass) return this.tilteClass
+      if (this.tpClass) return this.tpClass + '__title'
+      return ''
+    },
+    panelClassName() {
+      if (this.panelClass) return this.panelClass
+      if (this.tpClass) return this.tpClass + '__panel'
+      return ''
     }
   },
-  computed: {},
   methods: {
     handleMenuGroupTitleClick() {
       this.display = !this.display
+      if (this.$listeners['title-click']) this.$emit('title-click', this.id)
     }
   },
   watch: {
