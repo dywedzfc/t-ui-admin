@@ -1,19 +1,18 @@
 <template>
-  <div class="tw-layout">
-    <div class="tw-layout-header">
+  <t-layout header="50" left="200" right="600" footer="30">
+    <template v-slot:header>
       <div class="tw-title">后台管理系统</div>
-    </div>
-    <div class="tw-layout-left" :class="{hover: hasSecondaryMenu}">
-      <!-- <t-menu :data="getMenuList"></t-menu> -->
+    </template>
+    <template v-slot:left>
       <t-multiple-menu
         :data="{systemMenu: getSystemMenuList, secondaryMenu: getSecondaryMenuList}"
         @display-state="handleSecondaryDisplayState"
       ></t-multiple-menu>
-    </div>
-    <div class="tw-layout-body">
+    </template>
+    <template>
       <router-view></router-view>
-    </div>
-  </div>
+    </template>
+  </t-layout>
 </template>
 
 <script>

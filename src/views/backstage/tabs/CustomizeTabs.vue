@@ -19,12 +19,12 @@
         <el-button type="primary">搜索</el-button>
       </template>
       <el-tab-pane label="用户管理" name="first">
-        <t-layout :size="{header:'150px', left: '200px', right: '100px', bottom: '150px'}">
+        <t-layout left="200" left-strip right-strip footer-strip>
           <template v-slot:header>用户管理</template>
           <template v-slot:left>left</template>
           <template>body</template>
           <template v-slot:right>right</template>
-          <template v-slot:bottom>bottom</template>
+          <template v-slot:footer>footer</template>
         </t-layout>
       </el-tab-pane>
       <el-tab-pane label="配置管理" name="second">
@@ -69,6 +69,12 @@ export default {
       display: false,
       active: '',
       value: '',
+      layoutSize: {
+        header: '150px',
+        left: '200px',
+        right: '100px',
+        bottom: '150px'
+      },
       options: [
         {
           value: '选项1',
