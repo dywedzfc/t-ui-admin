@@ -1,6 +1,15 @@
 <template>
-  <div class="tw-layout" @mouseup="handleLayoutMouseup" @mousemove="handleLayoutMousemove">
-    <div class="tw-layout-header" v-if="$slots.header" :style="layoutHeaderHeigth">
+  <div
+    class="tw-layout"
+    :class="{ 'tw-drag': footerOption.mousedown }"
+    @mouseup="handleLayoutMouseup"
+    @mousemove="handleLayoutMousemove"
+  >
+    <div
+      class="tw-layout-header"
+      v-if="$slots.header"
+      :style="layoutHeaderHeigth"
+    >
       <slot name="header"></slot>
     </div>
     <div class="tw-layout-left" v-if="$slots.left" :style="layoutLeftWidth">
@@ -16,12 +25,19 @@
     </div>
     <div
       class="tw-layout-footer"
-      :class="{'tw-control': footerStrip, 'tw-selected': footerOption.mousedown}"
+      :class="{
+        'tw-control': footerStrip,
+        'tw-selected': footerOption.mousedown
+      }"
       v-if="$slots.footer"
       :style="layoutFooterHeigth"
     >
       <slot name="footer"></slot>
-      <div class="tw-control-strip" v-if="footerStrip" @mousedown="handleFooterStripMousedown"></div>
+      <div
+        class="tw-control-strip"
+        v-if="footerStrip"
+        @mousedown="handleFooterStripMousedown"
+      ></div>
     </div>
   </div>
 </template>
@@ -100,9 +116,10 @@ export default {
     layoutFooterHeigth() {
       const style = {}
       const height = this.layoutPanelSize('footer')
+      const intFooter = this.styleValueToInt(height)
       const offset = this.footerOption.offset
       if (this.$slots.footer)
-        style.height = offset > 0 ? height + offset : height
+        style.height = offset !== 0 ? intFooter + offset + 'px' : height
       return style
     },
     layoutBodyStyle() {
@@ -145,11 +162,14 @@ export default {
     layoutLeftOfRightPanelHeight(style = {}) {
       const header = this.layoutPanelSize('header')
       const footer = this.layoutPanelSize('footer')
+      const intFooter = this.styleValueToInt(footer)
+      const offset = this.footerOption.offset
+      const footerStrip = offset !== 0 ? intFooter + offset + 'px' : footer
       if (this.$slots.header && this.$slots.footer)
-        style.height = `calc(100% - (${(style.top = header)} + ${footer}))`
+        style.height = `calc(100% - (${(style.top = header)} + ${footerStrip}))`
       else if (this.$slots.header)
         style.height = `calc(100% - ${(style.top = header)})`
-      else if (this.$slots.footer) style.height = `calc(100% - ${footer})`
+      else if (this.$slots.footer) style.height = `calc(100% - ${footerStrip})`
       return style
     },
     layoutBodyWidth(style = {}) {
