@@ -2,6 +2,7 @@
   <div class="tw-template-wrapper tw-dark">
     <t-tabs
       :active.sync="active"
+      specified-display="first"
       @tab-add="handleTabAdd"
       @tab-edit="handleTabEdit"
       @tab-remove="handleTabRemove"
@@ -52,8 +53,8 @@
       <el-tab-pane label="定时任务补偿" name="fourth5">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth6">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth7">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth8">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth9">定时任务补偿</el-tab-pane>
+      <!-- <el-tab-pane label="定时任务补偿" name="fourth8">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="定时任务补偿" name="fourth9">定时任务补偿</el-tab-pane>-->
     </t-tabs>
   </div>
 </template>

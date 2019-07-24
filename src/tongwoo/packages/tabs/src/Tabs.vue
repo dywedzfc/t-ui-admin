@@ -1,7 +1,12 @@
 <template>
-  <div class="tw-tabs-panel" :class="{'tw-tabs-panel__toolbar': toolbar}">
+  <div class="tw-tabs-panel" :class="{'tw-tabs-panel__toolbar': hasShowToolbar}">
     <transition name="fade" appear>
-      <t-group class="tw-tabs-toolbar" v-if="toolbar && hasHorizontal" ref="toolbar">
+      <t-group
+        class="tw-tabs-toolbar"
+        v-if="toolbar && hasHorizontal"
+        v-show="hasShowToolbar"
+        ref="toolbar"
+      >
         <slot name="toolbar"></slot>
       </t-group>
     </transition>
@@ -27,7 +32,7 @@
 </template>
 
 <script>
-import { hasClass } from 'assets/js/util'
+import { hasClass, hasString, hasArray } from 'assets/js/util'
 export default {
   name: 'TTabs',
   data() {
@@ -40,6 +45,8 @@ export default {
       type: String,
       default: ''
     },
+    /** 指定显示: 等于active的时候显示toolbar */
+    specifiedDisplay: String,
     tabType: {
       type: String,
       default: ''
@@ -65,7 +72,9 @@ export default {
     const tabPanels = this.$slots.default
     if (tabPanels && tabPanels.length) this.activeName = tabPanels[0].child.name
     this.$nextTick(() => {
-      this.setToolbar()
+      setTimeout(() => {
+        this.setToolbar()
+      }, 300)
     })
   },
   computed: {
@@ -74,6 +83,13 @@ export default {
     },
     toolbarHtml() {
       return this.$refs.toolbar
+    },
+    hasShowToolbar() {
+      if (hasArray(this.specifiedDisplay))
+        return this.toolbar && this.specifiedDisplay.indexOf(this.active) >= 0
+      else if (hasString(this.specifiedDisplay) && this.specifiedDisplay !== '')
+        return this.toolbar && this.active === this.specifiedDisplay
+      else return this.toolbar && !this.specifiedDisplay
     },
     tabsPanel() {
       return this.$refs.tabs
@@ -112,8 +128,8 @@ export default {
         const toolbarWidth = this.toolbarHtml.$el.offsetWidth
         const tabPanelList = this.tabsPanel.$children
         if (tabPanelList.length > 1) {
-          setTimeout(() => this.resizeTabs(toolbarWidth, tabPanelList), 100)
           tabPanelList[0].$el.style.paddingRight = `${toolbarWidth}px`
+          setTimeout(() => this.resizeTabs(toolbarWidth, tabPanelList), 100)
         }
       }
     },
@@ -137,6 +153,9 @@ export default {
     },
     activeName(value) {
       if (this.$listeners['update:active']) this.$emit('update:active', value)
+      setTimeout(() => {
+        this.setToolbar()
+      }, 540)
     },
     tabAddable() {
       this.setToolbar()
