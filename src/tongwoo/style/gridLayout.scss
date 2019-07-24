@@ -1,0 +1,7 @@
+.tw-grid-layout {
+  height: 100%;
+  > .tw-panel {
+    float: left;
+    box-sizing: border-box;
+  }
+}

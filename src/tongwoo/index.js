@@ -1,4 +1,5 @@
 import Layout from './packages/layout'
+import GridLayout from './packages/grid-layout'
 import Icon from './packages/icon'
 // import Menu from './packages/menu'
 import MenuGroup from './packages/menu-group'
@@ -8,9 +9,10 @@ import Panel from './packages/panel'
 import PanelQuery from './packages/panel-query'
 import Group from './packages/group'
 
-// const components = [Layout, Icon, Menu, MenuGroup, MenuItem, Tabs, Panel, PanelQuery, Group]
+// const components = [Layout, GridLayout, Icon, Menu, MenuGroup, MenuItem, Tabs, Panel, PanelQuery, Group]
 const components = [
   Layout,
+  GridLayout,
   Icon,
   MenuGroup,
   MenuItem,

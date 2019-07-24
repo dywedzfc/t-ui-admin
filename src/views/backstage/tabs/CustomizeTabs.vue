@@ -28,6 +28,12 @@
           <template v-slot:footer>footer</template>
         </t-layout>
       </el-tab-pane>
+      <el-tab-pane label="角色管理" name="third">
+        <t-grid-layout :margin="size">
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+        </t-grid-layout>
+      </el-tab-pane>
       <el-tab-pane label="配置管理" name="second">
         <t-panel title="配置管理" size="small">
           <template v-slot:toolbar>
@@ -45,7 +51,6 @@
           </t-menu-group>
         </t-menu>-->
       </el-tab-pane>
-      <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth2">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth3">定时任务补偿</el-tab-pane>
@@ -68,6 +73,7 @@ export default {
   data() {
     return {
       display: false,
+      size: 10,
       active: '',
       value: '',
       layoutSize: {
