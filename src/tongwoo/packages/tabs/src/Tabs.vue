@@ -70,12 +70,16 @@ export default {
   },
   mounted() {
     const tabPanels = this.$slots.default
-    if (tabPanels && tabPanels.length) this.activeName = tabPanels[0].child.name
+    if (tabPanels && tabPanels.length && !this.active)
+      this.activeName = tabPanels[0].child.name
     this.$nextTick(() => {
       setTimeout(() => {
         this.setToolbar()
       }, 300)
     })
+    window.onresize = () => {
+      this.setToolbar()
+    }
   },
   computed: {
     toolbar() {
@@ -112,6 +116,9 @@ export default {
   methods: {
     handleTabClick(item) {
       if (this.$listeners['tab-click']) this.$emit('tab-click', item)
+      setTimeout(() => {
+        this.setToolbar()
+      }, 0)
     },
     handleTabAdd() {
       if (this.$listeners['tab-add']) this.$emit('tab-add')

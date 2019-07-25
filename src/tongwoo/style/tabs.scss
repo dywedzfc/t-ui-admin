@@ -27,6 +27,13 @@
 
     &__toolbar {
       position: relative;
+      .el-tabs__header {
+        .el-tabs__nav-wrap.is-scrollable {
+          .el-tabs__nav-next::after {
+            border-right: 1px solid #dcdfe6;
+          }
+        }
+      }
     }
   }
   &-toolbar {

@@ -5,11 +5,7 @@
     @mouseup="handleLayoutMouseup"
     @mousemove="handleLayoutMousemove"
   >
-    <div
-      class="tw-layout-header"
-      v-if="$slots.header"
-      :style="layoutHeaderHeigth"
-    >
+    <div class="tw-layout-header" v-if="headerCenter" ref="header" :style="layoutHeaderHeigth">
       <slot name="header"></slot>
     </div>
     <div class="tw-layout-left" v-if="$slots.left" :style="layoutLeftWidth">
@@ -33,11 +29,7 @@
       :style="layoutFooterHeigth"
     >
       <slot name="footer"></slot>
-      <div
-        class="tw-control-strip"
-        v-if="footerStrip"
-        @mousedown="handleFooterStripMousedown"
-      ></div>
+      <div class="tw-control-strip" v-if="footerStrip" @mousedown="handleFooterStripMousedown"></div>
     </div>
   </div>
 </template>
@@ -48,6 +40,7 @@ export default {
   name: 'TLayout',
   data() {
     return {
+      headerHeight: 0,
       layoutSize: {
         left: JSON.parse(this.left),
         right: JSON.parse(this.right),
@@ -65,6 +58,10 @@ export default {
     header: {
       type: [String, Number],
       default: 50
+    },
+    headerAuto: {
+      type: Boolean,
+      default: false
     },
     left: {
       type: [String, Number],
@@ -93,8 +90,23 @@ export default {
   },
   mounted() {
     // console.info('header:', this.header, this.layoutSize.header, this.leftStrip)
+    this.$nextTick(() => {
+      if (this.headerAuto) {
+        this.headerHeight = this.$refs.header.offsetHeight || 0
+        window.onresize = () => {
+          this.headerHeight = this.$refs.header.offsetHeight || 0
+        }
+      }
+    })
   },
   computed: {
+    headerCenter() {
+      // this.$nextTick(() => {
+      //   if (this.headerAuto)
+      //     this.headerHeight = this.$refs.header.offsetHeight || 0
+      // })
+      return this.$slots.header
+    },
     layoutLeftWidth() {
       const style = this.layoutLeftOfRightPanelHeight()
       const width = this.layoutPanelSize('left')
@@ -109,6 +121,7 @@ export default {
     },
     layoutHeaderHeigth() {
       const style = {}
+      if (this.headerAuto) return style
       const height = this.layoutPanelSize('header')
       if (this.$slots.header) style.height = height
       return style
@@ -160,7 +173,8 @@ export default {
       return this.layoutSize[type]
     },
     layoutLeftOfRightPanelHeight(style = {}) {
-      const header = this.layoutPanelSize('header')
+      let header = this.layoutPanelSize('header')
+      if (this.headerAuto) header = `${this.headerHeight}px`
       const footer = this.layoutPanelSize('footer')
       const intFooter = this.styleValueToInt(footer)
       const offset = this.footerOption.offset
@@ -192,7 +206,8 @@ export default {
       return style
     },
     layoutBodyHeight(style = {}) {
-      const header = this.layoutPanelSize('header')
+      let header = this.layoutPanelSize('header')
+      if (this.headerAuto) header = `${this.headerHeight}px`
       const footer = this.layoutPanelSize('footer')
       const intHeader = this.styleValueToInt(header)
       const intFooter = this.styleValueToInt(footer)

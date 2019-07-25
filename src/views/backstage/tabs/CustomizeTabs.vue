@@ -20,8 +20,10 @@
         <el-button type="primary">搜索</el-button>
       </template>
       <el-tab-pane label="用户管理" name="first">
-        <t-layout left="200" left-strip right-strip footer-strip>
-          <template v-slot:header>用户管理</template>
+        <t-layout left="200" header-auto left-strip right-strip footer-strip>
+          <template v-slot:header>
+            <div class="header-panel" v-for="(item, index) in list" :key="index">{{item}}</div>
+          </template>
           <template v-slot:left>left</template>
           <template>body</template>
           <template v-slot:right>right</template>
@@ -30,6 +32,29 @@
       </el-tab-pane>
       <el-tab-pane label="角色管理" name="third">
         <t-grid-layout :margin="size">
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
           <t-panel>角色管理</t-panel>
           <t-panel>角色管理</t-panel>
         </t-grid-layout>
@@ -74,8 +99,9 @@ export default {
     return {
       display: false,
       size: 10,
-      active: '',
+      active: 'third',
       value: '',
+      list: ['用户管理'],
       layoutSize: {
         header: '150px',
         left: '200px',

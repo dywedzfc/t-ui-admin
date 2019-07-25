@@ -14,8 +14,15 @@
       height: calc(100% - 40px);
       box-sizing: border-box;
     }
-    &__nav-scroll {
-      padding-left: 10px;
+    &__nav {
+      &-prev {
+        & ~ .el-tabs__nav-scroll {
+          padding-left: 0;
+        }
+      }
+      &-scroll {
+        padding-left: 10px;
+      }
     }
   }
 }
@@ -69,7 +76,6 @@
               top: calc(50% - 2px);
               right: -2px;
               height: 50%;
-              border-right: 1px solid #dcdfe6;
               transform: translateY(-50%);
             }
           }

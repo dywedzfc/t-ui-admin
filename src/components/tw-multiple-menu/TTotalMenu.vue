@@ -136,7 +136,7 @@ export default {
   mounted() {
     this.filterSystemMenuColumnOne
     this.$nextTick(() => {
-      console.info('init:', this.systemMenu)
+      // console.info('init:', this.systemMenu)
     })
   },
   computed: {
