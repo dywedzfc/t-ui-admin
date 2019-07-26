@@ -102,7 +102,7 @@ export default {
   computed: {
     headerCenter() {
       this.$nextTick(() => {
-        /* eslint-disable*/
+        /* eslint-disable */
         if (this.headerAuto)
           this.headerHeight = this.$refs.header.offsetHeight || 0
       })
