@@ -101,10 +101,11 @@ export default {
   },
   computed: {
     headerCenter() {
-      // this.$nextTick(() => {
-      //   if (this.headerAuto)
-      //     this.headerHeight = this.$refs.header.offsetHeight || 0
-      // })
+      this.$nextTick(() => {
+        /* eslint-disable*/
+        if (this.headerAuto)
+          this.headerHeight = this.$refs.header.offsetHeight || 0
+      })
       return this.$slots.header
     },
     layoutLeftWidth() {

@@ -57,6 +57,7 @@
           <t-panel>角色管理</t-panel>
           <t-panel>角色管理</t-panel>
           <t-panel>角色管理</t-panel>
+          <t-panel>角色管理</t-panel>
         </t-grid-layout>
       </el-tab-pane>
       <el-tab-pane label="配置管理" name="second">

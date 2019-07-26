@@ -44,7 +44,7 @@ export default {
             item.elm.style.width = `100%`
             const flag = hasNumber(this.margin)
             const size = (flag && this.margin) || parseInt(this.margin) || 0
-            if (size > 0 && panel.length === index + 1)
+            if (size > 0 && panel.length > index + 1)
               item.elm.style.marginBottom = `${size}px`
           })
         } else {
