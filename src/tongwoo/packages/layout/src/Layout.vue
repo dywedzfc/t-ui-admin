@@ -5,7 +5,13 @@
     @mouseup="handleLayoutMouseup"
     @mousemove="handleLayoutMousemove"
   >
-    <div class="tw-layout-header" v-if="headerCenter" ref="header" :style="layoutHeaderHeigth">
+    <div
+      class="tw-layout-header"
+      :class="headerClass"
+      v-if="headerCenter"
+      ref="header"
+      :style="layoutHeaderHeigth"
+    >
       <slot name="header"></slot>
     </div>
     <div class="tw-layout-left" v-if="$slots.left" :style="layoutLeftWidth">
@@ -58,6 +64,10 @@ export default {
     header: {
       type: [String, Number],
       default: 50
+    },
+    headerClass: {
+      type: String,
+      default: ''
     },
     headerAuto: {
       type: Boolean,

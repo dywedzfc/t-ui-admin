@@ -100,7 +100,7 @@ export default {
     return {
       display: false,
       size: 10,
-      active: 'third',
+      active: 'first',
       value: '',
       list: ['用户管理'],
       layoutSize: {
