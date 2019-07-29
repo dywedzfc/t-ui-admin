@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-template-wrapper tw-dark">
+  <!-- <div class="tw-template-wrapper tw-dark"> -->
     <t-tabs
       :active.sync="active"
       specified-display="first"
@@ -87,7 +87,7 @@
       <!-- <el-tab-pane label="定时任务补偿" name="fourth8">定时任务补偿</el-tab-pane>
       <el-tab-pane label="定时任务补偿" name="fourth9">定时任务补偿</el-tab-pane>-->
     </t-tabs>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>

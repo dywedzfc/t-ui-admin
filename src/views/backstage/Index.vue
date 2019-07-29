@@ -1,5 +1,5 @@
 <template>
-  <t-layout header="50" left="200" right="600" footer="30">
+  <t-layout border header="50" left="200" right="600" footer="30">
     <template v-slot:header>
       <div class="tw-title">后台管理系统</div>
     </template>

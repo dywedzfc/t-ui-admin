@@ -64,6 +64,24 @@ $layout-left_width__hover: 300px;
     transition: width 0.5s ease-in-out, height 0.5s ease-in-out, margin-left 0.5s ease-in-out,
       margin-right 0.5s ease-in-out;
   }
+  &.tw-border {
+    $color: #d7dae2;
+    // border: 1px solid $color;
+    & > .tw-layout {
+      &-header {
+        border-bottom: 1px solid $color;
+      }
+      &-left {
+        border-right: 1px solid $color;
+      }
+      &-right {
+        border-left: 1px solid $color;
+      }
+      &-footer {
+        border-top: 1px solid $color;
+      }
+    }
+  }
   &.tw-drag {
     .tw-layout {
       &-header,

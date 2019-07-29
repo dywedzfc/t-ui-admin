@@ -1,7 +1,7 @@
 <template>
   <div
     class="tw-layout"
-    :class="{ 'tw-drag': footerOption.mousedown }"
+    :class="{ 'tw-drag': footerOption.mousedown, 'tw-border': border }"
     @mouseup="handleLayoutMouseup"
     @mousemove="handleLayoutMousemove"
   >
@@ -61,6 +61,10 @@ export default {
     }
   },
   props: {
+    border: {
+      type: Boolean,
+      default: false
+    },
     header: {
       type: [String, Number],
       default: 50
@@ -101,6 +105,7 @@ export default {
   mounted() {
     // console.info('header:', this.header, this.layoutSize.header, this.leftStrip)
     this.$nextTick(() => {
+      console.info('mounted----:', this.$slots.default[0])
       if (this.headerAuto) {
         this.headerHeight = this.$refs.header.offsetHeight || 0
         window.onresize = () => {
@@ -233,6 +238,15 @@ export default {
         style.height = `calc(100% - ${footerStrip})`
       return style
     },
+    layoutSlotBody() {
+      const bodyer = this.$slots.default
+      const bodyType = ['tw-layout', 'tw-tabs-panel']
+      if (
+        bodyer.length === 1 &&
+        bodyType.indexOf(bodyer[0].elm.className) === 0
+      ) {
+      }
+    },
     regStyleValue(value) {
       const regString = /^[0-9]+px$/
       const regNumber = /^[0-9]+$/
@@ -249,6 +263,70 @@ export default {
     cloneData(data) {
       return JSON.parse(JSON.stringify(data))
     }
+  },
+  render(h) {
+    const header = (
+      <div
+        class={['tw-layout-header', this.headerClass]}
+        style={this.layoutHeaderHeigth}
+        ref="header"
+      >
+        {this.$slots.header}
+      </div>
+    )
+    const left = (
+      <div class={['tw-layout-left']} style={this.layoutLeftWidth}>
+        {this.$slots.left}
+        {this.leftStrip && <div class="tw-control-strip"></div>}
+      </div>
+    )
+    const right = (
+      <div class={['tw-layout-right']} style={this.layoutLeftWidth}>
+        {this.$slots.right}
+        {this.rightStrip && <div class="tw-control-strip"></div>}
+      </div>
+    )
+    const footer = (
+      <div
+        class={{
+          'tw-layout-footer': true,
+          'tw-control': this.footerStrip,
+          'tw-selected': this.footerOption.mousedown
+        }}
+        style={this.layoutFooterHeigth}
+      >
+        {this.$slots.footer}
+        {this.footerStrip && (
+          <div
+            class="tw-control-strip"
+            on-mousedown={this.handleFooterStripMousedown}
+          ></div>
+        )}
+      </div>
+    )
+    const bodyer = (
+      <div class={['tw-layout-body']} style={layoutBodyStyle}>
+        {this.$slots.default}
+      </div>
+    )
+
+    reutrn(
+      <div
+        class={{
+          'tw-layout': true,
+          'tw-border': this.border,
+          'tw-drag': this.footerOption.mousedown
+        }}
+        on-mouseup={this.handleLayoutMouseup}
+        on-mousemove={this.handleLayoutMousemove}
+      >
+        {this.headerCenter && header}
+        {this.$slots.left && left}
+        {this.$slots.default && bodyer}
+        {this.$slots.right && right}
+        {this.$slots.footer && footer}
+      </div>
+    )
   },
   watch: {
     left(value) {
