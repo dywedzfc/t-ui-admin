@@ -48,6 +48,7 @@ const secondaryMenuList = {
   zdfx: [
     { id: 'zjgz', title: '主机故障', icon: 'icon-gzxx', href: '/zdfx/zjgz' },
     { id: 'zdyc', title: '车辆查询', icon: 'icon-zdxx', href: '/zdfx/form' },
+    { id: 'cxmb', title: '查询面板', icon: 'icon-zdxx', href: '/zdfx/cxmb' },
     { id: 'whltj', title: '地图查询', icon: 'icon-tjxx', href: '/zdfx/map' },
     {
       id: 'clgl',

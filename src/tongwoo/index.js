@@ -6,7 +6,9 @@ import MenuGroup from './packages/menu-group'
 import MenuItem from './packages/menu-item'
 import Tabs from './packages/tabs'
 import Panel from './packages/panel'
-import PanelQuery from './packages/panel-query'
+import CardQuery from './packages/card-query'
+import QueryPanel from './packages/query-panel'
+import QueryBar from './packages/query-bar'
 import Group from './packages/group'
 
 // const components = [Layout, GridLayout, Icon, Menu, MenuGroup, MenuItem, Tabs, Panel, PanelQuery, Group]
@@ -18,7 +20,9 @@ const components = [
   MenuItem,
   Tabs,
   Panel,
-  PanelQuery,
+  CardQuery,
+  QueryPanel,
+  QueryBar,
   Group
 ]
 

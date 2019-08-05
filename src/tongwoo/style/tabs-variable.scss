@@ -58,6 +58,14 @@
       padding-left: 0;
     }
   }
+  & > .el-tabs__content {
+    padding: 0;
+  }
+  &.tw-full > .el-tabs__content {
+    .el-tab-pane {
+      padding: 0;
+    }
+  }
 }
 
 @mixin tw-tabs-panel {

@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'TPanelQuery',
+  name: 'TCardQuery',
   props: {
     height: [String, Number],
     queryPlaceholder: String,

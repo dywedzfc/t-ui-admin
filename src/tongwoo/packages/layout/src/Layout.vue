@@ -105,7 +105,6 @@ export default {
   mounted() {
     // console.info('header:', this.header, this.layoutSize.header, this.leftStrip)
     this.$nextTick(() => {
-      console.info('mounted----:', this.$slots.default[0])
       if (this.headerAuto) {
         this.headerHeight = this.$refs.header.offsetHeight || 0
         window.onresize = () => {

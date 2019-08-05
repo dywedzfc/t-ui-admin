@@ -34,7 +34,7 @@ $layout-left_width__hover: 300px;
   }
   &-footer {
     &.tw-control {
-      padding-top: 5px;
+      // padding-top: 5px;
     }
     .tw-control {
       &-strip {
@@ -47,6 +47,7 @@ $layout-left_width__hover: 300px;
         opacity: 0;
         &:hover {
           opacity: 1;
+          z-index: 50;
         }
         &::after {
           content: "";
@@ -65,7 +66,8 @@ $layout-left_width__hover: 300px;
       margin-right 0.5s ease-in-out;
   }
   &.tw-border {
-    $color: #d7dae2;
+    // $color: #d7dae2;
+    $color: #eeeeee;
     // border: 1px solid $color;
     & > .tw-layout {
       &-header {

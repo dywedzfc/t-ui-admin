@@ -54,6 +54,11 @@ export default new Router({
           component: () => import('./views/backstage/form/VehicleInquiry.vue')
         },
         {
+          path: '/zdfx/cxmb',
+          name: 'QueryPanelInfo',
+          component: () => import('./views/backstage/form/QueryPanelInfo.vue')
+        },
+        {
           path: '/zdfx/map',
           name: 'map',
           component: () => import('./views/backstage/map/map.vue')
