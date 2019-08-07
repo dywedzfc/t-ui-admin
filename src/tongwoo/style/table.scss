@@ -7,7 +7,7 @@
     &.ps--active {
       &-x,
       &-y {
-        overflow-x: hidden;
+        overflow: hidden;
         &:hover {
           .ps__rail {
             &-x,
@@ -100,5 +100,9 @@
         }
       }
     }
+  }
+  &-panel {
+    height: 100%;
+    box-sizing: border-box;
   }
 }

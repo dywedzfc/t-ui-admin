@@ -4,6 +4,7 @@ import Icon from './packages/icon'
 // import Menu from './packages/menu'
 import MenuGroup from './packages/menu-group'
 import MenuItem from './packages/menu-item'
+import TablePage from './packages/table-page'
 import Tabs from './packages/tabs'
 import Panel from './packages/panel'
 import CardQuery from './packages/card-query'
@@ -18,6 +19,7 @@ const components = [
   Icon,
   MenuGroup,
   MenuItem,
+  TablePage,
   Tabs,
   Panel,
   CardQuery,
