@@ -152,10 +152,12 @@ export default {
     nextText: String
   },
   computed: {
+    /**计算表格高度 */
     tableHeight() {
       if (this.pageSize > this.data.length) return '100%'
       else return 'calc(100% - 42px)'
     },
+    /**表格数据展示 */
     filterTableList() {
       const data = this.data
       if (!this.pageTotal && data.length >= this.pageStandard) {
@@ -168,6 +170,7 @@ export default {
       } else if (this.hasFreeze && data.length > 100) return Object.freeze(data)
       else return data
     },
+    /**总页数 */
     getPageTotal() {
       return this.pageTotal || this.data.length
     }
@@ -255,6 +258,10 @@ export default {
       if (this.$listeners['header-dragend'])
         this.$emit('header-dragend', newWidth, oldWidth, column, event)
     },
+    /**
+     * currentPage 改变时会触发
+     * @param index 当前页
+     */
     handlePaginationCurrentChange(index) {
       this.currentPage = index
       if (this.pageTotal && this.$listeners['current-change'])
