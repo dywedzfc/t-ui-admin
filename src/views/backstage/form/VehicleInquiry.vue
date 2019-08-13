@@ -16,6 +16,7 @@
       :page-standard="10"
       :page-total="table.total"
       :loading="table.display"
+      :real-time-page.sync="table.currentPage"
       @current-change="handleTablePageCurrentChange"
     >
       <el-table-column type="index" label="编号" width="60" align="center"></el-table-column>
@@ -55,7 +56,8 @@ export default {
       table: {
         display: false,
         data: [],
-        total: null
+        total: null,
+        currentPage: 1
       }
     }
   },
@@ -92,7 +94,10 @@ export default {
       console.info('current:', currentPage, pageSize)
       this.getDataList(currentPage, pageSize)
     },
-    handleQueryClick() {}
+    handleQueryClick() {
+      this.table.currentPage = 1
+      this.getDataList()
+    }
   }
 }
 </script>

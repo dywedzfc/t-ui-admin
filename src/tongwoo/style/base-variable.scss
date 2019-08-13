@@ -4,7 +4,7 @@ $borderRadius: 4px;
 @mixin borderShadow() {
   border: 1px solid $borderColor_default;
   border-radius: $borderRadius;
-  box-shadow: 2px 2px 12px #000000;
+  box-shadow: 2px 2px 12px rgba(102, 102, 102, 0.5);
 }
 
 @mixin border-color {

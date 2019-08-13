@@ -37,6 +37,7 @@
       background
       layout="prev, pager, next, jumper, ->, total"
       :total="getPageTotal"
+      :page-size="pageSize"
       :current-page="currentPage"
       :prev-text="prevText"
       :next-text="nextText"
@@ -146,6 +147,10 @@ export default {
     pageDisabled: {
       type: Boolean,
       default: false
+    },
+    realTimePage: {
+      type: Number,
+      default: 1
     },
     pageTotal: Number,
     prevText: String,
@@ -274,6 +279,13 @@ export default {
   watch: {
     loading(value) {
       if (!value && this.pageTotal === undefined) this.currentPage = 1
+    },
+    currentPage(value) {
+      if (this.$listeners['update:real-time-page'])
+        this.$emit('update:real-time-page', value)
+    },
+    realTimePage(value) {
+      this.currentPage = value
     }
   }
 }
