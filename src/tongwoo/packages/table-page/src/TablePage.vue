@@ -178,8 +178,8 @@ export default {
       return this.pageTotal || this.data.length
     },
     getPageSize() {
-      if (!this.pageTotal || !this.pageSize) return 10
-      return this.pageSize || this.pageStandard
+      if (!this.pageTotal && !this.pageSize) return this.pageStandard
+      return this.pageSize || 10
     }
   },
   methods: {
@@ -274,7 +274,7 @@ export default {
       if (this.pageTotal && this.$listeners['current-change'])
         this.$emit('current-change', {
           currentPage: index,
-          pageSize: this.pageSize
+          pageSize: this.getPageSize
         })
     }
   },

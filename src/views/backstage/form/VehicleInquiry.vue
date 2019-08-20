@@ -13,7 +13,6 @@
     </template>
     <t-table-page
       :data="table.data"
-      :page-standard="10"
       :page-total="table.total"
       :loading="table.display"
       :real-time-page.sync="table.currentPage"
@@ -66,7 +65,7 @@ export default {
   },
   computed: {},
   methods: {
-    getDataList(currentPage = 1, pageSize = 500) {
+    getDataList(currentPage = 1, pageSize = 20) {
       this.table.display = true
       axios
         .get(
