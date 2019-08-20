@@ -37,7 +37,7 @@
       background
       layout="prev, pager, next, jumper, ->, total"
       :total="getPageTotal"
-      :page-size="pageSize"
+      :page-size="getPageSize"
       :current-page="currentPage"
       :prev-text="prevText"
       :next-text="nextText"
@@ -140,10 +140,7 @@ export default {
       type: Boolean,
       default: true
     },
-    pageSize: {
-      type: Number,
-      default: 10
-    },
+    pageSize: Number,
     pageDisabled: {
       type: Boolean,
       default: false
@@ -159,14 +156,15 @@ export default {
   computed: {
     /**计算表格高度 */
     tableHeight() {
-      if (this.pageSize > this.data.length) return '100%'
+      if (this.getPageSize > this.data.length) return '100%'
       else return 'calc(100% - 42px)'
     },
     /**表格数据展示 */
     filterTableList() {
       const data = this.data
-      if (!this.pageTotal && data.length >= this.pageStandard) {
-        const pageSize = this.pageSize
+      const flag = !this.pageTotal && data.length >= this.pageStandard
+      if (flag || this.pageSize) {
+        const pageSize = this.getPageSize
         const currentPage = this.currentPage
         const pageIndex = currentPage - 1
         return _.filter(data, (item, index) => {
@@ -178,6 +176,10 @@ export default {
     /**总页数 */
     getPageTotal() {
       return this.pageTotal || this.data.length
+    },
+    getPageSize() {
+      if (!this.pageTotal || !this.pageSize) return 10
+      return this.pageSize || this.pageStandard
     }
   },
   methods: {

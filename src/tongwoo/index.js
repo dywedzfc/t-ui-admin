@@ -12,7 +12,6 @@ import QueryPanel from './packages/query-panel'
 import QueryBar from './packages/query-bar'
 import Group from './packages/group'
 
-// const components = [Layout, GridLayout, Icon, Menu, MenuGroup, MenuItem, Tabs, Panel, PanelQuery, Group]
 const components = [
   Layout,
   GridLayout,

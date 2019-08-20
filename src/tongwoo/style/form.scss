@@ -40,8 +40,14 @@
   &:first-child {
     padding-top: 10px;
   }
+  &:last-child {
+    margin-bottom: 0;
+  }
   .el-form {
     &-item {
+      &:last-child {
+        margin-bottom: 0;
+      }
       &,
       &.el-form-item--mini,
       &.el-form-item--small {
