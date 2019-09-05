@@ -156,12 +156,13 @@ export default {
   computed: {
     /**计算表格高度 */
     tableHeight() {
-      if (this.getPageSize > this.data.length) return '100%'
+      const data = this.data || []
+      if (this.getPageSize > data.length) return '100%'
       else return 'calc(100% - 42px)'
     },
     /**表格数据展示 */
     filterTableList() {
-      const data = this.data
+      const data = this.data || []
       const flag = !this.pageTotal && data.length >= this.pageStandard
       if (flag || this.pageSize) {
         const pageSize = this.getPageSize
@@ -175,7 +176,8 @@ export default {
     },
     /**总页数 */
     getPageTotal() {
-      return this.pageTotal || this.data.length
+      var data = this.data || []
+      return this.pageTotal || data.length
     },
     getPageSize() {
       if (!this.pageTotal && !this.pageSize) return this.pageStandard
