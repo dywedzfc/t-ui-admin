@@ -165,8 +165,8 @@ export default {
     /**计算表格高度 */
     tableHeight() {
       const data = this.data || []
-      if (this.getPageSize > data.length) return '100%'
-      else return 'calc(100% - 42px)'
+      if (this.getPageTotal / this.getPageSize > 1) return 'calc(100% - 42px)'
+      else return '100%'
     },
     /**表格数据展示 */
     filterTableList() {
