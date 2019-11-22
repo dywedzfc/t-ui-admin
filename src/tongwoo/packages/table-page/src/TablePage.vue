@@ -140,6 +140,10 @@ export default {
       type: Boolean,
       default: true
     },
+    /**
+     * 每页数量
+     * 如果有pageSize时，必然是前端分页，则后端分页
+     */
     pageSize: Number,
     pageDisabled: {
       type: Boolean,
@@ -149,6 +153,11 @@ export default {
       type: Number,
       default: 1
     },
+    /**
+     * 总页数
+     * 如果是前端分页无需传入，插件会自动生成
+     * 后端分页必填
+     */
     pageTotal: Number,
     prevText: String,
     nextText: String
@@ -180,7 +189,7 @@ export default {
       return this.pageTotal || data.length
     },
     getPageSize() {
-      if (!this.pageTotal && !this.pageSize) return this.pageStandard
+      if (!this.pageSize) return this.pageStandard
       return this.pageSize || 10
     }
   },
