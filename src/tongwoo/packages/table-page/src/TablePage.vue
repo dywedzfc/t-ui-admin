@@ -142,7 +142,6 @@ export default {
     },
     /**
      * 每页数量
-     * 如果有pageSize时，必然是前端分页，则后端分页
      */
     pageSize: Number,
     pageDisabled: {
@@ -171,10 +170,11 @@ export default {
     },
     /**表格数据展示 */
     filterTableList() {
+      const { pageStandard } = this
       const data = this.data || []
-      const flag = !this.pageTotal && data.length >= this.pageStandard
-      if (flag || this.pageSize) {
-        const pageSize = this.getPageSize
+      const flag = !pageSize && data.length >= pageStandard
+      const pageSize = this.getPageSize
+      if (flag || pageSize) {
         const currentPage = this.currentPage
         const pageIndex = currentPage - 1
         return _.filter(data, (item, index) => {
@@ -189,8 +189,9 @@ export default {
       return this.pageTotal || data.length
     },
     getPageSize() {
-      if (!this.pageSize) return this.pageStandard
-      return this.pageSize || 10
+      const { pageTotal, pageSize, pageStandard } = this
+      if (pageTotal && !pageSize) return pageStandard
+      return pageSize || 10
     }
   },
   methods: {
