@@ -170,11 +170,11 @@ export default {
     },
     /**表格数据展示 */
     filterTableList() {
-      const { pageStandard } = this
+      const { pageTotal, pageStandard } = this
       const data = this.data || []
       const flag = !pageSize && data.length >= pageStandard
       const pageSize = this.getPageSize
-      if (flag || pageSize) {
+      if (flag || (pageSize && !pageTotal)) {
         const currentPage = this.currentPage
         const pageIndex = currentPage - 1
         return _.filter(data, (item, index) => {
@@ -185,7 +185,7 @@ export default {
     },
     /**总页数 */
     getPageTotal() {
-      var data = this.data || []
+      const data = this.data || []
       return this.pageTotal || data.length
     },
     getPageSize() {
