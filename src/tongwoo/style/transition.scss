@@ -9,15 +9,56 @@
   }
 }
 
-.drawer-right {
-  &-enter-active,
-  &-leave-active {
-    left: 0;
-    transition: left 0.5s ease-in-out;
+.drawer {
+  &-top {
+    &-enter-active,
+    &-leave-active {
+      top: 0;
+      transition: top 0.5s ease-in-out;
+    }
+
+    &-enter,
+    &-leave-to {
+      top: -100%;
+    }
   }
 
-  &-enter,
-  &-leave-to {
-    left: 100%;
+  &-left {
+    &-enter-active,
+    &-leave-active {
+      left: 0;
+      transition: left 0.5s ease-in-out;
+    }
+
+    &-enter,
+    &-leave-to {
+      left: -100%;
+    }
+  }
+
+  &-right {
+    &-enter-active,
+    &-leave-active {
+      left: 0;
+      transition: left 0.5s ease-in-out;
+    }
+
+    &-enter,
+    &-leave-to {
+      left: 100%;
+    }
+  }
+
+  &-bottom {
+    &-enter-active,
+    &-leave-active {
+      top: 0;
+      transition: top 0.5s ease-in-out;
+    }
+
+    &-enter,
+    &-leave-to {
+      top: 100%;
+    }
   }
 }

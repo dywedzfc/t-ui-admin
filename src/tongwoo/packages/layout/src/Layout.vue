@@ -1,7 +1,7 @@
 <template>
   <div
     class="tw-layout"
-    :class="{ 'tw-drag': footerOption.mousedown, 'tw-border': border }"
+    :class="{'tw-drag': footerOption.mousedown, 'tw-border': border, 'tw-overflow': lockSize }"
     @mouseup="handleLayoutMouseup"
     @mousemove="handleLayoutMousemove"
   >
@@ -46,6 +46,7 @@ export default {
   name: 'TLayout',
   data() {
     return {
+      hasLockSize: false,
       headerHeight: 0,
       layoutSize: {
         left: JSON.parse(this.left),
@@ -61,14 +62,22 @@ export default {
     }
   },
   props: {
+    /** 是否显示边框线 */
     border: {
       type: Boolean,
       default: false
     },
+    /** 是否锁定内部面板大小 */
+    lockSize: {
+      type: Boolean,
+      default: false
+    },
+    /** 头部高度 */
     header: {
       type: [String, Number],
       default: 50
     },
+    /** 头部class name */
     headerClass: {
       type: String,
       default: ''
@@ -77,6 +86,7 @@ export default {
       type: Boolean,
       default: false
     },
+    /** 左侧面板宽度 */
     left: {
       type: [String, Number],
       default: 300
@@ -85,6 +95,7 @@ export default {
       type: Boolean,
       default: false
     },
+    /** 右侧面板宽度 */
     right: {
       type: [String, Number],
       default: 300
@@ -93,10 +104,12 @@ export default {
       type: Boolean,
       default: false
     },
+    /** 底部面板高度 */
     footer: {
       type: [String, Number],
       default: 40
     },
+    /** 是否开启底部面板拖拽条 */
     footerStrip: {
       type: Boolean,
       default: false
@@ -122,18 +135,21 @@ export default {
       })
       return this.$slots.header
     },
+    /** 左侧面板宽度 */
     layoutLeftWidth() {
       const style = this.layoutLeftOfRightPanelHeight()
       const width = this.layoutPanelSize('left')
       if (this.$slots.left) style.width = width
       return style
     },
+    /** 右侧面板宽度 */
     layoutRightWidth() {
       const style = this.layoutLeftOfRightPanelHeight()
       const width = this.layoutPanelSize('right')
       if (this.$slots.right) style.width = width
       return style
     },
+    /** 头部面板高度 */
     layoutHeaderHeigth() {
       const style = {}
       if (this.headerAuto) return style
@@ -141,6 +157,7 @@ export default {
       if (this.$slots.header) style.height = height
       return style
     },
+    /** 底部面板高度 */
     layoutFooterHeigth() {
       const style = {}
       const height = this.layoutPanelSize('footer')
@@ -150,12 +167,14 @@ export default {
         style.height = offset !== 0 ? intFooter + offset + 'px' : height
       return style
     },
+    /** 主体面板样式 */
     layoutBodyStyle() {
       const style = this.layoutBodyWidth()
       return this.layoutBodyHeight(style)
     }
   },
   methods: {
+    /** 鼠标移动事件-鼠标移动的位置 */
     handleLayoutMousemove() {
       const { y } = event
       if (this.$slots.footer) {
@@ -165,6 +184,7 @@ export default {
         }
       }
     },
+    /** 鼠标抬起事件-鼠标最后的位置 */
     handleLayoutMouseup() {
       if (this.$slots.footer) {
         if (this.footerOption.mousedown) {
@@ -179,14 +199,17 @@ export default {
         }
       }
     },
+    /** 鼠标按下事件-记录鼠标位置 */
     handleFooterStripMousedown() {
       this.footerOption.mousedown = true
       this.footerOption.mousePoint = event.y
     },
+    /** 判断是否带单位 */
     layoutPanelSize(type) {
       if (hasNumber(this.layoutSize[type])) return this.layoutSize[type] + 'px'
       return this.layoutSize[type]
     },
+    /** 左侧或者右侧面板高度 */
     layoutLeftOfRightPanelHeight(style = {}) {
       let header = this.layoutPanelSize('header')
       if (this.headerAuto) header = `${this.headerHeight}px`
@@ -201,6 +224,7 @@ export default {
       else if (this.$slots.footer) style.height = `calc(100% - ${footerStrip})`
       return style
     },
+    /** 底部面板宽度 */
     layoutBodyWidth(style = {}) {
       const left = this.layoutPanelSize('left')
       const right = this.layoutPanelSize('right')
@@ -220,6 +244,7 @@ export default {
       }
       return style
     },
+    /** 主体面板高度 */
     layoutBodyHeight(style = {}) {
       let header = this.layoutPanelSize('header')
       if (this.headerAuto) header = `${this.headerHeight}px`
@@ -246,6 +271,7 @@ export default {
       ) {
       }
     },
+    /** 验证样式的值 */
     regStyleValue(value) {
       const regString = /^[0-9]+px$/
       const regNumber = /^[0-9]+$/
@@ -253,12 +279,15 @@ export default {
       if (regString.test(value)) return value
       return ''
     },
+    /** 样式的值转数字类型 */
     styleValueToInt(value) {
       return parseInt(value && value.match(/^[0-9]+/)[0])
     },
+    /** 获取样式的单位 */
     getStyleValueUnit(value) {
       return value && value.match(/px|em|rem|%$/)[0]
     },
+    /** 克隆数据 */
     cloneData(data) {
       return JSON.parse(JSON.stringify(data))
     }
@@ -328,6 +357,19 @@ export default {
     )
   },
   watch: {
+    /** 锁定内部面板-传出数据 */
+    hasLockSize(value) {
+      if (value === true) {
+        setTimeout(() => {
+          if (this.$listeners['update:lock-size'])
+            this.$emit('update:lock-size', false)
+        }, 1000)
+      }
+    },
+    /** 锁定内部面板-传入数据 */
+    lockSize(value) {
+      this.hasLockSize = value
+    },
     left(value) {
       this.layoutSize.left = JSON.parse(value)
     },
