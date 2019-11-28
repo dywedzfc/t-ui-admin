@@ -13,19 +13,23 @@
     padding: $margin $margin 0 $margin;
     border-bottom: 1px solid $borderColor_default;
     box-sizing: border-box;
+
     .el-form-item {
       margin-bottom: $margin;
+
       &.el-form-item--mini,
       &.el-form-item--small {
         margin-bottom: $margin;
       }
     }
   }
+
   &-wrapper {
     height: calc(100% - #{$height});
     padding: $margin;
     box-sizing: border-box;
   }
+
   &-footer {
     padding: $margin;
     border-top: 1px solid #eeeeee;
@@ -37,17 +41,21 @@
   margin-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+
   &:first-child {
     padding-top: 10px;
   }
+
   &:last-child {
     margin-bottom: 0;
   }
+
   .el-form {
     &-item {
       &:last-child {
         margin-bottom: 0;
       }
+
       &,
       &.el-form-item--mini,
       &.el-form-item--small {
@@ -56,11 +64,44 @@
           margin-bottom: 0;
         }
       }
+
       &__content {
         & > .el-input,
-        & > .el-select,
-        & > .el-button {
+        & > .el-select {
           width: 100%;
+        }
+      }
+
+      &[unit] {
+        position: relative;
+
+        &::after {
+          content: attr(unit);
+          display: flex;
+          align-items: center;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 50px;
+          height: 100%;
+          padding-left: 10px;
+          box-sizing: border-box;
+        }
+
+        .el-form-item__content {
+          margin-right: 50px;
+        }
+
+        &[unit-width="80px"] {
+          $width: 90px;
+
+          &::after {
+            width: $width;
+          }
+
+          .el-form-item__content {
+            margin-right: $width;
+          }
         }
       }
     }

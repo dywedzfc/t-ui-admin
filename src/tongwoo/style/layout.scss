@@ -27,22 +27,27 @@ $layout-left_width__hover: 300px;
       }
     }
   }
+
   &-left,
   &-right {
     position: absolute;
     top: 0;
     height: 100%;
   }
+
   &-left {
     left: 0;
   }
+
   &-right {
     right: 0;
   }
+
   &-footer {
     &.tw-control {
       // padding-top: 5px;
     }
+
     .tw-control {
       &-strip {
         position: absolute;
@@ -52,10 +57,12 @@ $layout-left_width__hover: 300px;
         height: 10px;
         background-color: #cccccc;
         opacity: 0;
+
         &:hover {
           opacity: 1;
           z-index: 50;
         }
+
         &::after {
           content: "";
           position: absolute;
@@ -67,30 +74,37 @@ $layout-left_width__hover: 300px;
       }
     }
   }
+
   &-body {
     height: 100%;
     transition: width 0.5s ease-in-out, height 0.5s ease-in-out, margin-left 0.5s ease-in-out,
       margin-right 0.5s ease-in-out;
   }
+
   &.tw-border {
     // $color: #d7dae2;
     $color: #eeeeee;
     // border: 1px solid $color;
+
     & > .tw-layout {
       &-header {
         border-bottom: 1px solid $color;
       }
+
       &-left {
         border-right: 1px solid $color;
       }
+
       &-right {
         border-left: 1px solid $color;
       }
+
       &-footer {
         border-top: 1px solid $color;
       }
     }
   }
+
   &.tw-drag {
     .tw-layout {
       &-header,
@@ -99,6 +113,18 @@ $layout-left_width__hover: 300px;
       &-right,
       &-body {
         transition: none;
+      }
+    }
+  }
+
+  &.tw-overflow {
+    .tw-layout {
+      &-header,
+      &-footer,
+      &-body,
+      &-left,
+      &-right {
+        overflow: hidden;
       }
     }
   }

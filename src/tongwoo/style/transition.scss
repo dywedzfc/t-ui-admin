@@ -8,3 +8,16 @@
     opacity: 0;
   }
 }
+
+.drawer-right {
+  &-enter-active,
+  &-leave-active {
+    left: 0;
+    transition: left 0.5s ease-in-out;
+  }
+
+  &-enter,
+  &-leave-to {
+    left: 100%;
+  }
+}

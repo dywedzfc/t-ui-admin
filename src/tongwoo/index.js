@@ -11,6 +11,7 @@ import CardQuery from './packages/card-query'
 import QueryPanel from './packages/query-panel'
 import QueryBar from './packages/query-bar'
 import Group from './packages/group'
+import Drawer from './packages/drawer'
 
 const components = [
   Layout,
@@ -24,7 +25,8 @@ const components = [
   CardQuery,
   QueryPanel,
   QueryBar,
-  Group
+  Group,
+  Drawer
 ]
 
 const install = function(Vue) {
@@ -34,7 +36,7 @@ const install = function(Vue) {
 }
 
 export default {
-  version: '1.0.0',
+  version: '1.0.3',
   install,
   ...components
 }

@@ -19,6 +19,17 @@
   box-sizing: border-box;
 }
 
+.tw-center {
+  text-align: center;
+
+  &.el-form-item {
+    text-align: inherit;
+    .el-form-item__content {
+      text-align: center;
+    }
+  }
+}
+
 .tw-icon {
   &-rotate {
     transform: rotate(180deg);
