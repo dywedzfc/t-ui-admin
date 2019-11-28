@@ -5,6 +5,13 @@ $layout-left_width__hover: 300px;
   position: relative;
   height: 100%;
   box-sizing: border-box;
+
+  &-header,
+  &-footer,
+  &-body {
+    position: relative;
+  }
+
   &-header,
   &-footer,
   &-left,
