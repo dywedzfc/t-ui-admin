@@ -1,7 +1,7 @@
 import Layout from './packages/layout'
 import GridLayout from './packages/grid-layout'
 import Icon from './packages/icon'
-// import Menu from './packages/menu'
+import Menu from './packages/menu'
 import MenuGroup from './packages/menu-group'
 import MenuItem from './packages/menu-item'
 import TablePage from './packages/table-page'
@@ -17,6 +17,7 @@ const components = [
   Layout,
   GridLayout,
   Icon,
+  Menu,
   MenuGroup,
   MenuItem,
   TablePage,

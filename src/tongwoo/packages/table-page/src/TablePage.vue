@@ -3,7 +3,6 @@
     <el-table
       class="tw-table"
       :data="filterTableList"
-      :height="tableHeight"
       :max-height="maxHeigh"
       :stripe="stripe"
       :border="border"
@@ -30,6 +29,7 @@
       @header-dragend="handleHeaderDragend"
       v-loading="loading"
       v-scrollbar:table
+      :style="{ height: tableHeight }"
     >
       <slot></slot>
     </el-table>
@@ -164,7 +164,6 @@ export default {
   computed: {
     /**计算表格高度 */
     tableHeight() {
-      const data = this.data || []
       if (this.getPageTotal / this.getPageSize > 1) return 'calc(100% - 42px)'
       else return '100%'
     },
