@@ -26,7 +26,32 @@
   }
 
   &-group {
+    position: relative;
     font-size: 16px;
+
+    .tw-icon {
+      &__suffix {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%) rotateZ(0);
+        transition: transform 0.3s linear;
+      }
+    }
+
+    .active {
+      .tw-icon {
+        &__suffix {
+          transform: translateY(-50%) rotateZ(180deg);
+        }
+      }
+    }
+
+    .tw-menu-group__panel {
+      .tw-menu-item {
+        text-indent: 1em;
+      }
+    }
   }
 
   &-nav {

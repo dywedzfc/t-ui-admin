@@ -5,7 +5,7 @@
       :class="[titleClassName,{active: display}]"
       :title="title"
       :prefixIcon="icon"
-      suffixIcon="icon-expansion-r"
+      suffixIcon="el-icon-caret-bottom"
       @menu-item-click="handleMenuGroupTitleClick"
     >
       <template v-if="$slots.title">
