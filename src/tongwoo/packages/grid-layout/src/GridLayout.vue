@@ -31,7 +31,6 @@ export default {
   methods: {
     initPanelInfo() {
       const panel = this.$slots.default
-      // console.info('init-each:', panel)
       if (panel && panel.length > 0) {
         if (this.equalType.indexOf(panel.length) >= 0) {
           this.$slots.default.forEach((item, index) => {

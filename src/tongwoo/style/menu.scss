@@ -2,6 +2,7 @@
   height: 100%;
 
   &-item {
+    position: relative;
     height: 40px;
     padding-left: $margin;
     padding-right: $margin;

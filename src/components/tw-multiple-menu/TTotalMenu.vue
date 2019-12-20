@@ -7,7 +7,11 @@
       @click.native="handleTotalMenuCloseClick"
     ></t-icon>
     <div class="tw-total-menu-query-bar">
-      <t-icon class="tw-prefix-icon" icon="icon-search" font-size="18px"></t-icon>
+      <t-icon
+        class="tw-prefix-icon"
+        icon="icon-search"
+        font-size="18px"
+      ></t-icon>
       <input type="text" class="tw-total-menu-query-box" v-model="query" />
       <t-icon
         class="tw-suffix-icon"
@@ -19,10 +23,7 @@
       <div class="tw-total-menu-query-prompt" v-if="query.length > 0">
         {{ totalMenuTextPromptBefore }}
         "
-        <span
-          class="tw-total-menu-query-text"
-          v-text="query"
-        ></span>
+        <span class="tw-total-menu-query-text" v-text="query"></span>
         "
         {{ totalMenuTextPromptAfter }}
       </div>
@@ -40,7 +41,10 @@
           :key="'tw-total-menu-group-1_' + index"
           :index="item.id"
         >
-          <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
+          <div
+            class="tw-total-menu-group-item-header"
+            v-text="item.title"
+          ></div>
           <ul class="tw-total-menu-group-item-body">
             <li
               class="tw-total-menu-group-item-body-item"
@@ -52,7 +56,8 @@
                 class="tw-menu-link"
                 :to="secondaryItem.href || ''"
                 @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
-              >{{ secondaryItem.title }}</router-link>
+                >{{ secondaryItem.title }}</router-link
+              >
             </li>
           </ul>
         </div>
@@ -64,7 +69,10 @@
           :key="'tw-total-menu-group-2_' + index"
           :index="item.id"
         >
-          <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
+          <div
+            class="tw-total-menu-group-item-header"
+            v-text="item.title"
+          ></div>
           <ul class="tw-total-menu-group-item-body">
             <li
               class="tw-total-menu-group-item-body-item"
@@ -76,7 +84,8 @@
                 class="tw-menu-link"
                 :to="secondaryItem.href || ''"
                 @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
-              >{{ secondaryItem.title }}</router-link>
+                >{{ secondaryItem.title }}</router-link
+              >
             </li>
           </ul>
         </div>
@@ -88,7 +97,10 @@
           :key="'tw-total-menu-group-3_' + index"
           :index="item.id"
         >
-          <div class="tw-total-menu-group-item-header" v-text="item.title"></div>
+          <div
+            class="tw-total-menu-group-item-header"
+            v-text="item.title"
+          ></div>
           <ul class="tw-total-menu-group-item-body">
             <li
               class="tw-total-menu-group-item-body-item"
@@ -100,7 +112,8 @@
                 class="tw-menu-link"
                 :to="secondaryItem.href || ''"
                 @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
-              >{{ secondaryItem.title }}</router-link>
+                >{{ secondaryItem.title }}</router-link
+              >
             </li>
           </ul>
         </div>
@@ -135,9 +148,7 @@ export default {
   },
   mounted() {
     this.filterSystemMenuColumnOne
-    this.$nextTick(() => {
-      // console.info('init:', this.systemMenu)
-    })
+    this.$nextTick(() => {})
   },
   computed: {
     filterSystemMenu() {
@@ -217,5 +228,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

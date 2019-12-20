@@ -1,6 +1,12 @@
 <template>
   <div class="tw-query-panel" v-scrollbar>
-    <t-query-bar class="tw-query-box" v-if="$slots.querybar" :model="model" ref="querybar">
+    <t-query-bar
+      class="tw-query-box"
+      v-if="$slots.querybar"
+      :model="model"
+      :type="type"
+      ref="querybar"
+    >
       <slot name="querybar"></slot>
     </t-query-bar>
     <div class="tw-query-wrapper" v-if="$slots.default" ref="wrapper">
@@ -19,9 +25,8 @@ export default {
     return {}
   },
   props: {
-    model: {
-      type: Object
-    },
+    type: String,
+    model: Object,
     footer: {
       type: [String, Number]
     },

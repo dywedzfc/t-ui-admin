@@ -33,13 +33,7 @@
       <el-table-column prop="CHECK_END_DATE" label="车辆颜色" width="140" align="center"></el-table-column>
       <el-table-column prop="COMPANY_LICENSE_NUMBER" label="车辆颜色" width="140" align="center"></el-table-column>
       <el-table-column prop="COMPANY_NAME" label="车辆颜色" width="140" align="center"></el-table-column>
-      <el-table-column
-        prop="HANDLE_PLACE"
-        label="车牌颜色"
-        min-width="140"
-        :resizable="false"
-        align="center"
-      ></el-table-column>
+      <el-table-column prop="HANDLE_PLACE" label="车牌颜色" min-width="140" :resizable="false" align="center"></el-table-column>
     </t-table-page>
   </t-query-panel>
 </template>
@@ -83,14 +77,12 @@ export default {
           }
         )
         .then(res => {
-          console.info('data:', res.data)
           this.table.data = res.data.datas
           this.table.total = res.data.count
           this.table.display = false
         })
     },
     handleTablePageCurrentChange({ currentPage, pageSize }) {
-      console.info('current:', currentPage, pageSize)
       this.getDataList(currentPage, pageSize)
     },
     handleQueryClick() {

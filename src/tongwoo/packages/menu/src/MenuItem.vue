@@ -2,6 +2,7 @@
 export default {
   name: 'TMenuItem',
   props: {
+    id: String,
     url: String,
     title: String,
     fullPath: String,
@@ -17,6 +18,7 @@ export default {
     },
     menuItemData() {
       const item = {}
+      item.id = this.id || ''
       item.href = this.url || ''
       item.title = this.title || ''
       if (this.prefixIcon) item.icon = this.prefixIcon

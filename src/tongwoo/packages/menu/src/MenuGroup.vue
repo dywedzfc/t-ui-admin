@@ -2,7 +2,8 @@
   <div class="tw-menu-group">
     <t-menu-item
       class="tw-menu-group__title"
-      :class="[titleClassName,{active: display}]"
+      :class="[titleClassName, { active: display }]"
+      :id="id"
       :title="title"
       :prefixIcon="icon"
       suffixIcon="el-icon-caret-bottom"
@@ -67,7 +68,6 @@ export default {
     }
   }
   // render(h) {
-  //   console.info('r-h:', this.data.fullPath)
   //   return (
   //     <div class="tw-menu-group">
   //       <t-menu-item

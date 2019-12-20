@@ -1,5 +1,5 @@
 <template>
-  <el-form class="tw-query-bar" :model="model" :size="size" inline>
+  <el-form class="tw-query-bar" :model="model" :size="size" :inline="hasInline">
     <slot></slot>
   </el-form>
 </template>
@@ -8,10 +8,16 @@
 export default {
   name: 'TQueryBar',
   props: {
+    type: String,
     model: Object,
     size: {
       type: String,
       default: 'small'
+    }
+  },
+  computed: {
+    hasInline() {
+      return this.type === 'search' ? false : true
     }
   }
 }

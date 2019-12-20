@@ -1,7 +1,11 @@
 <template>
   <div
     class="tw-layout"
-    :class="{'tw-drag': footerOption.mousedown, 'tw-border': border, 'tw-overflow': lockSize }"
+    :class="{
+      'tw-drag': footerOption.mousedown,
+      'tw-border': border,
+      'tw-overflow': lockSize
+    }"
     @mouseup="handleLayoutMouseup"
     @mousemove="handleLayoutMousemove"
   >
@@ -35,7 +39,11 @@
       :style="layoutFooterHeigth"
     >
       <slot name="footer"></slot>
-      <div class="tw-control-strip" v-if="footerStrip" @mousedown="handleFooterStripMousedown"></div>
+      <div
+        class="tw-control-strip"
+        v-if="footerStrip"
+        @mousedown="handleFooterStripMousedown"
+      ></div>
     </div>
   </div>
 </template>
@@ -116,7 +124,6 @@ export default {
     }
   },
   mounted() {
-    // console.info('header:', this.header, this.layoutSize.header, this.leftStrip)
     this.$nextTick(() => {
       if (this.headerAuto) {
         this.headerHeight = this.$refs.header.offsetHeight || 0
