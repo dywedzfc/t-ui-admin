@@ -41,8 +41,15 @@
         &--mini.is-round {
           padding: 5px 2px;
         }
+
         + .el-button {
           margin-left: 5px;
+        }
+
+        &--text {
+          margin-top: -12px;
+          margin-bottom: -12px;
+          margin-right: 5px;
         }
       }
     }
@@ -51,6 +58,16 @@
     &.el-table {
       &--border {
         border-radius: 4px;
+      }
+    }
+  }
+  &.tw-scrollbar {
+    .el-table {
+      &__fixed {
+        &,
+        &-right {
+          height: 100% !important;
+        }
       }
     }
   }

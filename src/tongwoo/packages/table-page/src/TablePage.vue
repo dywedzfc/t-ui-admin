@@ -1,7 +1,8 @@
 <template>
   <div class="tw-table-panel">
     <el-table
-      class="tw-table"
+      class="tw-table "
+      :class="{ 'tw-scrollbar': scrollbar }"
       :data="filterTableList"
       :max-height="maxHeigh"
       :stripe="stripe"
@@ -28,7 +29,7 @@
       @header-contextmenu="handleHeaderContextmenu"
       @header-dragend="handleHeaderDragend"
       v-loading="loading"
-      v-scrollbar:table
+      v-scrollbar:table="scrollbar"
       :style="{ height: tableHeight }"
     >
       <slot></slot>
@@ -63,6 +64,11 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    /**判断是否使用 perfect-scrollbar */
+    scrollbar: {
+      type: Boolean,
+      default: true
     },
     /**显示的数据 */
     data: Array,

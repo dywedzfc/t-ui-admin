@@ -14,7 +14,8 @@ const el_scrollBar = el => {
 
 Vue.directive('scrollbar', {
   inserted(el, binding) {
-    const { arg } = binding
+    const { arg, value } = binding
+    if (value === false) return
     if (arg === 'table') {
       el = el.querySelector('.el-table__body-wrapper')
       if (!el)
@@ -28,7 +29,8 @@ Vue.directive('scrollbar', {
     el_scrollBar(el)
   },
   componentUpdated(el, binding, vnode) {
-    const { arg } = binding
+    const { arg, value } = binding
+    if (value === false) return
     if (arg === 'table') {
       el = el.querySelector('.el-table__body-wrapper')
       if (!el)
