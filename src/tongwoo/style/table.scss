@@ -54,6 +54,13 @@
       }
     }
   }
+  &__twolink {
+    .el-table.el-table--small .el-table {
+      &__body-wrapper {
+        height: calc(100% - 74px);
+      }
+    }
+  }
   &__radius {
     &.el-table {
       &--border {

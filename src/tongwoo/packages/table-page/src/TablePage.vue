@@ -297,7 +297,8 @@ export default {
   },
   watch: {
     loading(value) {
-      if (!value && this.pageTotal === undefined) this.currentPage = 1
+      const flag = value === true || value === false
+      if (flag && this.pageTotal === undefined) this.currentPage = 1
     },
     currentPage(value) {
       if (this.$listeners['update:real-time-page'])
