@@ -18,6 +18,9 @@
           </el-select>
         </el-form-item>
         <el-form-item>
+          <t-year-picker start-year="2020" end-year="2022"></t-year-picker>
+        </el-form-item>
+        <el-form-item>
           <el-button type="primary">查询</el-button>
         </el-form-item>
       </template>

@@ -1,22 +1,51 @@
 .tw-year-picker {
   display: inline-block;
-  border: 1px solid #c0c4cc;
+  border: 1px solid #dcdfe6;
   border-radius: 4px;
+  line-height: 1;
+  font-size: 0;
+  background-color: #ffffff;
+
+  &:hover {
+    border-color: #c0c4cc;
+  }
+
+  &.focus {
+    border-color: #409eff;
+  }
+
+  .picker-split {
+    margin-right: 10px;
+    font-size: 12px;
+  }
 
   .el-input {
     &__inner {
       border: none;
       text-align: center;
+      background-color: transparent;
     }
   }
-  .tw-date-picker ~ .tw-date-picker {
-    .el-input {
-      &__inner {
-        padding-left: 0;
-      }
+  .tw-date-picker {
+    margin-top: -1px;
+    margin-bottom: -1px;
 
-      &__prefix {
-        display: none;
+    ~ .tw-date-picker {
+      .el-input {
+        &__inner {
+          padding-left: 0;
+        }
+
+        &__prefix {
+          display: none;
+        }
+      }
+    }
+
+    &.date-year {
+      width: 120px;
+      ~ .date-year {
+        width: 100px;
       }
     }
   }

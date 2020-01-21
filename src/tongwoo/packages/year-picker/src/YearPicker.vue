@@ -1,23 +1,29 @@
 <!-- 年份控件 -->
 <template>
-  <div class="tw-year-picker">
+  <div class="tw-year-picker" :class="{ focus }">
     <el-date-picker
       :class="pickerClassName"
       v-model="startDate"
       :type="pickerType"
-      :editable="false"
-      :clearable="false"
+      :editable="editable"
+      :clearable="clearable"
+      :size="size"
       :placeholder="startPlaceholder"
       @change="handlePickerChange"
+      @focus="handlePickerFocus"
+      @blur="handlePickerBlur"
     ></el-date-picker>
-    <span class="picker-split">-</span>
+    <span class="picker-split">{{ rangeSeparator }}</span>
     <el-date-picker
       :class="pickerClassName"
       v-model="endDate"
       :type="pickerType"
-      :editable="false"
-      :clearable="false"
+      :editable="editable"
+      :clearable="clearable"
+      :size="size"
       :placeholder="endPlaceholder"
+      @focus="handlePickerFocus"
+      @blur="handlePickerBlur"
       ref="endYear"
     ></el-date-picker>
   </div>
@@ -28,6 +34,7 @@ export default {
   name: 'TYearPicker',
   data() {
     return {
+      focus: false,
       startDate: '',
       endDate: ''
     }
@@ -35,8 +42,14 @@ export default {
   props: {
     startYear: { type: [Date, String], default: '' },
     endYear: { type: [Date, String], default: '' },
+    editable: { type: Boolean, default: false },
+    clearable: { type: Boolean, default: false },
+    /* size: large, small, mini */
+    size: { type: String, default: '' },
     startPlaceholder: { type: String, default: '开始年份' },
-    endPlaceholder: { type: String, default: '结束年份' }
+    endPlaceholder: { type: String, default: '结束年份' },
+    rangeSeparator: { type: String, default: '-' },
+    unlinkPanels: { type: Boolean, default: true }
   },
   mounted() {
     this.startDate = this.startYear
@@ -52,7 +65,17 @@ export default {
   },
   methods: {
     handlePickerChange() {
-      this.$refs.endYear.focus()
+      if (this.unlinkPanels) {
+        this.$refs.endYear.focus()
+        setTimeout(() => (this.focus = true), 0)
+      }
+    },
+    handlePickerFocus() {
+      if (this.focus) setTimeout(() => (this.focus = true), 140)
+      else this.focus = true
+    },
+    handlePickerBlur() {
+      this.focus = false
     }
   },
   watch: {
@@ -74,16 +97,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.tw-date-picker {
-  &.date-year {
-    width: 120px;
-    ~ .date-year {
-      width: 100px;
-    }
-  }
-}
-.picker-split {
-  margin-right: 10px;
-}
-</style>
+<style lang="scss" scoped></style>
