@@ -1,0 +1,88 @@
+@mixin clearfix {
+  zoom: 1;
+  &:after {
+    display: block;
+    clear: both;
+    height: 0;
+    content: "";
+    visibility: hidden;
+  }
+}
+
+@mixin radius__inherit {
+  border-radius: inherit;
+}
+@mixin radius-top__inherit {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+@mixin radius-left__inherit {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+@mixin radius-right__inherit {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+@mixin radius-bottom__inherit {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+@mixin radius($type) {
+  @if $type == "top" {
+    @include radius-top__inherit;
+  } @else {
+    @if $type == "left" {
+      @include radius-left__inherit;
+    } @else {
+      @if $type == "right" {
+        @include radius-right__inherit;
+      } @else {
+        @if $type == "bottom" {
+          @include radius-bottom__inherit;
+        } @else {
+          @include radius__inherit;
+        }
+      }
+    }
+  }
+}
+
+@mixin border-shadow() {
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px #888888;
+}
+
+@mixin list-radius($type: "") {
+  &:first-child {
+    @if ($type == "v") {
+      @include radius("top");
+    } @else {
+      @include radius("left");
+    }
+  }
+
+  &:last-child {
+    @if ($type == "v") {
+      @include radius("bottom");
+    } @else {
+      @include radius("right");
+    }
+  }
+}
+
+@mixin row-spacing($value: 10px) {
+  margin-bottom: $value;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin col-spacing($value: 10px) {
+  margin-right: $value;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

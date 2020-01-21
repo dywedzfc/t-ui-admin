@@ -1,3 +1,4 @@
+<!-- 卡片式查询框 -->
 <template>
   <div class="tw-panel__query" :style="queryStyle">
     <t-group class="tw-panel__query-bar">
@@ -5,7 +6,10 @@
         <slot name="query"></slot>
       </template>
       <template v-else>
-        <el-input class="tw-panel__query-input" :placeholder="queryPlaceholder"></el-input>
+        <el-input
+          class="tw-panel__query-input"
+          :placeholder="queryPlaceholder"
+        ></el-input>
         <el-button :type="queryButtonType" icon="el-icon-search"></el-button>
       </template>
     </t-group>

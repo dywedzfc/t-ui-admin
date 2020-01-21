@@ -1,3 +1,4 @@
+<!-- 选项卡 -->
 <template>
   <div class="tw-tabs-panel" :class="{'tw-tabs-panel__toolbar': hasShowToolbar}">
     <transition name="fade" appear>

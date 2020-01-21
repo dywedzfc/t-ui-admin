@@ -1,3 +1,4 @@
+<!-- 抽屉式面板 -->
 <template>
   <transition :name="transitionClassName">
     <div class="tw-drawer-panel" :class="[directionClassName]" v-if="display">

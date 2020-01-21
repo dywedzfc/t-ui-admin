@@ -1,3 +1,4 @@
+<!-- 面板框 -->
 <template>
   <el-card
     class="tw-panel"
@@ -6,7 +7,7 @@
     :shadow="shadowStatus"
   >
     <template slot="header" v-if="hasTitle">
-      <span class="tw-title">{{title}}</span>
+      <span class="tw-title">{{ title }}</span>
       <div class="tw-toolbar" v-if="toolbar">
         <slot name="toolbar"></slot>
       </div>

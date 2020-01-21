@@ -1,0 +1,23 @@
+.tw-year-picker {
+  display: inline-block;
+  border: 1px solid #c0c4cc;
+  border-radius: 4px;
+
+  .el-input {
+    &__inner {
+      border: none;
+      text-align: center;
+    }
+  }
+  .tw-date-picker ~ .tw-date-picker {
+    .el-input {
+      &__inner {
+        padding-left: 0;
+      }
+
+      &__prefix {
+        display: none;
+      }
+    }
+  }
+}
