@@ -1,6 +1,6 @@
 @import "./tabs-variable";
 
-.tw-tabs {
+.t-tabs {
   height: 100%;
   @include el-tab__default;
   &.el-tabs {
@@ -23,7 +23,7 @@
   }
   &-panel {
     height: 100%;
-    @include tw-tabs-panel;
+    @include t-tabs-panel;
 
     &__toolbar {
       position: relative;

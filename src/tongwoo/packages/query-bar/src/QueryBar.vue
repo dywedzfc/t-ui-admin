@@ -1,6 +1,6 @@
 <!-- 查询框 -->
 <template>
-  <el-form class="tw-query-bar" :model="model" :size="size" :inline="hasInline">
+  <el-form class="t-query-bar" :model="model" :size="size" :inline="hasInline">
     <slot></slot>
   </el-form>
 </template>

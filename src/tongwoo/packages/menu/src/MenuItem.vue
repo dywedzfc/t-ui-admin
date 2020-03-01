@@ -35,18 +35,18 @@ export default {
     }
   },
   render() {
-    const tchildern = [<span class="tw-title">{this.title}</span>]
+    const tchildern = [<span class="t-title">{this.title}</span>]
     if (this.prefixIcon)
       tchildern.unshift(
-        <t-icon class="tw-icon__prefix" name={this.prefixIcon}></t-icon>
+        <t-icon class="t-icon__prefix" name={this.prefixIcon}></t-icon>
       )
     if (this.suffixIcon)
       tchildern.push(
-        <t-icon class="tw-icon__suffix" name={this.suffixIcon}></t-icon>
+        <t-icon class="t-icon__suffix" name={this.suffixIcon}></t-icon>
       )
     return (
       <div
-        class={{ 'tw-menu-item': true, active: this.hasActive }}
+        class={{ 't-menu-item': true, active: this.hasActive }}
         on={{
           click: this.handleMenuHrefClick
         }}

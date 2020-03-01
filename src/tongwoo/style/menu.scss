@@ -1,4 +1,4 @@
-.tw-menu {
+.t-menu {
   height: 100%;
   user-select: none;
 
@@ -7,17 +7,24 @@
     height: 40px;
     padding-left: $margin;
     padding-right: $margin;
+    border-bottom: 1px solid #eeeeee;
     font-size: 16px;
     line-height: 40px;
     cursor: pointer;
-    .tw-icon {
+
+    .t-icon {
       margin-right: 5px;
     }
-    &:hover,
+
+    &:hover {
+      background-color: #eeeeee;
+    }
     &.active {
       color: #ffffff;
       // background-color: $menu-bg-color__active;
+      background-color: #4381e6;
     }
+
     &.active {
       position: relative;
       &:after {
@@ -30,8 +37,60 @@
   &-group {
     position: relative;
     font-size: 16px;
+    border-bottom: 1px solid #eeeeee;
 
-    .tw-icon {
+    .t-menu {
+      &-title {
+        height: 40px;
+        padding-left: $margin + 5;
+        padding-right: $margin + 5;
+        line-height: 40px;
+
+        &:hover {
+        }
+        &.open,
+        &.active {
+          color: #ffffff;
+          background-color: #4381e6;
+        }
+      }
+
+      &-panel {
+        padding: 10px;
+        display: none;
+        border-top: 1px solid #eeeeee;
+
+        &.open {
+          display: block;
+        }
+      }
+
+      &-item {
+        height: 35px;
+        margin-bottom: 10px;
+        border-radius: 50px;
+        line-height: 35px;
+        border-bottom: none;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          box-sizing: border-box;
+          border-bottom: 1px solid #aaaaaa;
+          color: #2c3e50;
+          background-color: #f7f7f7;
+
+          &.active {
+            color: #ffffff;
+            background-color: #4381e6;
+          }
+        }
+      }
+    }
+
+    .t-icon {
       &__suffix {
         position: absolute;
         top: 50%;
@@ -42,15 +101,15 @@
     }
 
     .active {
-      .tw-icon {
+      .t-icon {
         &__suffix {
           transform: translateY(-50%) rotateZ(180deg);
         }
       }
     }
 
-    .tw-menu-group__panel {
-      .tw-menu-item {
+    .t-menu-group__panel {
+      .t-menu-item {
         text-indent: 1em;
       }
     }
@@ -93,7 +152,7 @@
       background-size: 81px 81px;
       z-index: 10;
 
-      .tw-menu {
+      .t-menu {
         &-item {
           position: relative;
           min-width: 190px;
@@ -117,14 +176,14 @@
             color: #58b9e0;
             background-color: #deedf5;
           }
-          .tw-icon-img {
+          .t-icon-img {
             position: absolute;
             top: 50%;
             display: inline-block;
             width: 44px;
             height: 44px;
             transform: translateY(-50%);
-            + .tw-title {
+            + .t-title {
               margin-left: 54px;
             }
           }

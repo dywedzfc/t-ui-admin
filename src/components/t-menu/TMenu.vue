@@ -1,5 +1,10 @@
 <template>
-  <div class="tw-menu tw-scrollbar" :class="[typeClassName]" ref="totalMenuScrollbar" v-scrollbar>
+  <div
+    class="t-menu t-scrollbar"
+    :class="[typeClassName]"
+    ref="totalMenuScrollbar"
+    v-scrollbar
+  >
     <template v-for="item in data">
       <t-menu-group
         :key="item.id"
@@ -57,7 +62,7 @@ export default {
     typeClassName() {
       const type = this.type
       if (type) {
-        if (type === 'bigIcon') return 'tw-icon-big'
+        if (type === 'bigIcon') return 't-icon-big'
       }
       return ''
     }
@@ -89,5 +94,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

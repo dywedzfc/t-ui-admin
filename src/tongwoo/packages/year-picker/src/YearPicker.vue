@@ -1,6 +1,6 @@
 <!-- 年份控件 -->
 <template>
-  <div class="tw-year-picker" :class="{ focus }">
+  <div class="t-year-picker" :class="{ focus }" @click="handlePickerBoxClick">
     <el-date-picker
       :class="pickerClassName"
       v-model="startDate"
@@ -12,6 +12,7 @@
       @change="handlePickerChange"
       @focus="handlePickerFocus"
       @blur="handlePickerBlur"
+      ref="startYear"
     ></el-date-picker>
     <span class="picker-split">{{ rangeSeparator }}</span>
     <el-date-picker
@@ -21,6 +22,7 @@
       :editable="editable"
       :clearable="clearable"
       :size="size"
+      :readonly="autoTwoYears"
       :placeholder="endPlaceholder"
       @focus="handlePickerFocus"
       @blur="handlePickerBlur"
@@ -36,7 +38,8 @@ export default {
     return {
       focus: false,
       startDate: '',
-      endDate: ''
+      endDate: '',
+      autoTwoYears: false
     }
   },
   props: {
@@ -49,25 +52,33 @@ export default {
     startPlaceholder: { type: String, default: '开始年份' },
     endPlaceholder: { type: String, default: '结束年份' },
     rangeSeparator: { type: String, default: '-' },
-    unlinkPanels: { type: Boolean, default: true }
+    unlinkPanels: { type: Boolean, default: true },
+    autoTwoYear: { type: Boolean, default: false },
+    addYear: { type: Number, default: 0 }
   },
   mounted() {
+    this.verificationAddYear()
     this.startDate = this.startYear
     this.endDate = this.endYear
+    if (this.addYear === 0) this.autoTwoYears = this.autoTwoYear
   },
   computed: {
     pickerClassName() {
-      return 'tw-date-picker date-year'
+      return 't-date-picker date-year'
     },
     pickerType() {
       return 'year'
     }
   },
   methods: {
-    handlePickerChange() {
-      if (this.unlinkPanels) {
+    handlePickerChange(date) {
+      if (this.unlinkPanels && !this.autoTwoYears) {
         this.$refs.endYear.focus()
         setTimeout(() => (this.focus = true), 0)
+      } else if (this.autoTwoYears) {
+        const year = date.getFullYear() + this.addYear
+        this.endDate = new Date(year, date.getMonth(), date.getDate())
+        this.$emit('change', { year1: date, year2: this.endDate, type: true })
       }
     },
     handlePickerFocus() {
@@ -76,6 +87,13 @@ export default {
     },
     handlePickerBlur() {
       this.focus = false
+    },
+    handlePickerBoxClick() {
+      console.info('info:')
+      if (this.autoTwoYears) this.$refs.startYear.focus()
+    },
+    verificationAddYear() {
+      if (this.addYear !== 0) this.autoTwoYears = true
     }
   },
   watch: {
@@ -92,6 +110,16 @@ export default {
     endDate(value) {
       const name = 'update:endYear'
       if (this.$listeners[name]) this.$emit(name, value)
+    },
+    autoTwoYear() {
+      this.autoTwoYears = this.autoTwoYear
+    },
+    autoTwoYears(value) {
+      const name = 'update:autoTwoYear'
+      if (this.$listeners[name]) this.$emit(name, value)
+    },
+    addYear() {
+      this.verificationAddYear()
     }
   }
 }

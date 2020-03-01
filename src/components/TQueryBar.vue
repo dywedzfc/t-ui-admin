@@ -1,5 +1,5 @@
 <template>
-  <el-form class="tw-query-bar" :model="model" :size="size" inline>
+  <el-form class="t-query-bar" :model="model" :size="size" inline>
     <slot></slot>
   </el-form>
 </template>

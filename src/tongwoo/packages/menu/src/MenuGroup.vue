@@ -1,7 +1,7 @@
 <template>
-  <div class="tw-menu-group">
+  <div class="t-menu-group">
     <t-menu-item
-      class="tw-menu-group__title"
+      class="t-menu-group__title"
       :class="[titleClassName, { active: display }]"
       :id="id"
       :title="title"
@@ -14,7 +14,7 @@
       </template>
     </t-menu-item>
     <transition name="menu-panel">
-      <ul class="tw-menu-group__panel" :class="[panelClassName]" v-if="display">
+      <ul class="t-menu-group__panel" :class="[panelClassName]" v-if="display">
         <slot></slot>
       </ul>
     </transition>
@@ -69,10 +69,10 @@ export default {
   }
   // render(h) {
   //   return (
-  //     <div class="tw-menu-group">
+  //     <div class="t-menu-group">
   //       <t-menu-item
   //         class={{
-  //           'tw-menu-title': true,
+  //           't-menu-title': true,
   //           active: this.hasActiveMenuPanel,
   //           open: this.hasOpenMenuPanel
   //         }}
@@ -85,7 +85,7 @@ export default {
   //           click: this.handlerMenuTitleClick(this.data)
   //         }}
   //       ></t-menu-item>
-  //       <div class={{ 'tw-menu-panel': true, open: this.hasOpenMenuPanel }}>
+  //       <div class={{ 't-menu-panel': true, open: this.hasOpenMenuPanel }}>
   //         {this.data.children.map(item =>
   //           item.children
   //             ? h('t-menu-group', {

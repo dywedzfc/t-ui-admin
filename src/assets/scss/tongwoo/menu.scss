@@ -1,6 +1,6 @@
 @import "./menu-variable";
 
-.tw-menu {
+.t-menu {
   height: 100%;
   color: $menu-font-color;
   &-item {
@@ -10,7 +10,7 @@
     font-size: 16px;
     line-height: 40px;
     cursor: pointer;
-    .tw-icon {
+    .t-icon {
       margin-right: 5px;
     }
     &:after {
@@ -56,11 +56,11 @@
     &.open {
       color: $menu-font-color__active;
       background-color: $menu-bg-color__active;
-      .tw-suffix-icon {
+      .t-suffix-icon {
         transform: translateY(-50%) rotateZ(180deg);
       }
     }
-    .tw-suffix-icon {
+    .t-suffix-icon {
       position: absolute;
       top: 50%;
       right: $margin;
@@ -92,7 +92,7 @@
       &:after {
         bottom: -1px;
       }
-      .tw-menu-item {
+      .t-menu-item {
         &:hover,
         &.active {
           background-color: $menu-panel-bg-color__active;
@@ -108,7 +108,7 @@
         }
       }
     }
-    .tw-menu {
+    .t-menu {
       &-title {
         height: 40px;
         padding-left: $margin * 2.5;
@@ -117,7 +117,7 @@
         padding-left: $margin * 1.5;
       }
       &-panel {
-        .tw-menu {
+        .t-menu {
           &-item {
             padding-left: $margin * 3;
           }
@@ -187,33 +187,33 @@
       }
     }
   }
-  &.tw-icon-big {
-    > .tw-menu-item,
-    > .tw-menu-group {
+  &.t-icon-big {
+    > .t-menu-item,
+    > .t-menu-group {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 80px;
-      // .tw-menu-link,
-      .tw-menu-title {
+      // .t-menu-link,
+      .t-menu-title {
         display: block;
         width: 100%;
         padding: 0;
         line-height: 25px;
         text-align: center;
 
-        .tw-icon {
+        .t-icon {
           display: block;
           margin: 0 auto;
           margin-top: 10px;
           margin-bottom: 5px;
           font-size: 38px !important;
         }
-        .tw-suffix-icon {
+        .t-suffix-icon {
           display: none;
         }
       }
-      .tw-menu-title {
+      .t-menu-title {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -222,7 +222,7 @@
         height: 80px;
       }
     }
-    > .tw-menu-group {
+    > .t-menu-group {
       position: relative;
       &::before {
         content: "";
@@ -232,7 +232,7 @@
         width: 5px;
         height: calc(100% + 10px);
       }
-      .tw-menu-panel {
+      .t-menu-panel {
         position: absolute;
         top: 0;
         left: calc(100% + 5px);
@@ -247,9 +247,9 @@
           opacity: 1;
           transform: translateX(0);
         }
-        .tw-menu-item {
+        .t-menu-item {
           padding-left: 0;
-          // .tw-menu-link {
+          // .t-menu-link {
           // height: 40px;
           padding-left: 20px;
           // line-height: 40px;
@@ -261,10 +261,10 @@
     }
   }
 }
-.tw-menu {
+.t-menu {
   &-group {
     &__title {
-      .tw-icon {
+      .t-icon {
         &__prefix {
           margin-right: 5px;
         }
@@ -276,7 +276,7 @@
   }
 }
 
-.tw-multiple {
+.t-multiple {
   &-menu {
     // position: relative;
     height: 100%;
@@ -291,10 +291,10 @@
 
       &.hover {
         width: $menu-total-width_active;
-        ~ .tw-menu-control-strip.multiple-hover {
+        ~ .t-menu-control-strip.multiple-hover {
           left: $menu-total-width_active;
         }
-        ~ .tw-menu-control-strip.icon-collapse-left.multiple-hover {
+        ~ .t-menu-control-strip.icon-collapse-left.multiple-hover {
           left: calc(#{$menu-total-width_active} - 18px);
           &:hover {
             left: $menu-total-width_active - 22px;
@@ -320,11 +320,11 @@
         background-color: $menu-bg-color__bark_action;
       }
 
-      &.tw-app-menu-item {
+      &.t-app-menu-item {
       }
 
-      .tw-icon,
-      .tw-suffix-icon {
+      .t-icon,
+      .t-suffix-icon {
         display: inline-block;
         width: $menu-total-width;
         height: $menu-total-width;
@@ -332,7 +332,7 @@
         text-align: center;
       }
 
-      .tw-title {
+      .t-title {
         position: absolute;
         top: 0;
         left: $menu-total-width;
@@ -345,7 +345,7 @@
         white-space: nowrap;
       }
 
-      .tw-suffix-icon {
+      .t-suffix-icon {
         position: absolute;
         top: 0;
         left: calc(#{$menu-total-width_active} - #{$menu-total-width});
@@ -354,7 +354,7 @@
   }
 }
 
-.tw-secondary {
+.t-secondary {
   &-menu {
     &-bar {
       position: absolute;
@@ -381,20 +381,20 @@
       overflow-y: auto;
       height: calc(100% - #{$menu-total-width});
       color: #cccccc;
-      .tw-menu {
+      .t-menu {
         &-item {
           &:hover,
           &.active {
             background-color: $menu-bg-color__active;
           }
-          .tw-icon {
+          .t-icon {
             &:first-child::before {
               margin-right: 8px;
             }
           }
         }
         // &-link {
-        //   .tw-icon {
+        //   .t-icon {
         //     &:first-child::before {
         //       margin-right: 8px;
         //     }
@@ -404,7 +404,7 @@
         }
         &-panel {
           background-color: rgba(35, 111, 187, 0.2);
-          .tw-menu-item {
+          .t-menu-item {
             &:hover,
             &.active {
               background-color: rgba(64, 160, 255, 0.6);
@@ -419,11 +419,11 @@
           &.open {
             color: $menu-font-color__active;
             background-color: $menu-bg-color__active;
-            .tw-suffix-icon {
+            .t-suffix-icon {
               transform: translateY(-50%) rotateZ(180deg);
             }
           }
-          .tw-suffix-icon {
+          .t-suffix-icon {
           }
         }
       }
@@ -431,7 +431,7 @@
   }
 }
 
-.tw-total-menu {
+.t-total-menu {
   &-panel {
     position: absolute;
     top: 0;
@@ -468,17 +468,17 @@
     &-bar {
       position: relative;
       width: 710px;
-      .tw-prefix-icon,
-      .tw-suffix-icon {
+      .t-prefix-icon,
+      .t-suffix-icon {
         position: absolute;
         top: 15px;
         transform: translate(-50%, -50%);
       }
-      .tw-prefix-icon {
+      .t-prefix-icon {
         left: 15px;
         color: #d9d9d9;
       }
-      .tw-suffix-icon {
+      .t-suffix-icon {
         border-radius: 50%;
         right: 15px;
         padding: 2px;
@@ -558,7 +558,7 @@
             background-color: #f0f0f0;
             background-color: rgba(0, 0, 0, 0.06);
           }
-          // .tw-menu-link {
+          // .t-menu-link {
           //   display: block;
           //   overflow: hidden;
           //   height: 40px - 10px;

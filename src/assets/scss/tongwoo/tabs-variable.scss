@@ -28,7 +28,7 @@
 @mixin el-tabs--border-card {
   .el-tab {
     &-pane {
-      .tw-map-panel {
+      .t-map-panel {
         position: absolute;
         top: 0;
         left: 0;
@@ -44,7 +44,7 @@
   }
 }
 
-@mixin tw-tabs-panel {
+@mixin t-tabs-panel {
   .el-tabs {
     &__header {
       margin-bottom: 1px;

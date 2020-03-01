@@ -1,5 +1,5 @@
 <template>
-  <!-- <div class="tw-template-wrapper tw-dark"> -->
+  <!-- <div class="t-template-wrapper t-dark"> -->
   <t-tabs
     :active.sync="active"
     specified-display="first"
@@ -22,7 +22,9 @@
     <el-tab-pane label="用户管理" name="first">
       <t-layout left="200" header-auto left-strip right-strip footer-strip>
         <template v-slot:header>
-          <div class="header-panel" v-for="(item, index) in list" :key="index">{{item}}</div>
+          <div class="header-panel" v-for="(item, index) in list" :key="index">
+            {{ item }}
+          </div>
         </template>
         <template v-slot:left>left</template>
         <template>body</template>
@@ -66,7 +68,9 @@
           <el-button type="text">操作按钮</el-button>
           <el-button class="el-icon-close" type="text"></el-button>
         </template>
-        <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div>
+        <div v-for="o in 4" :key="o" class="text item">
+          {{ '列表内容 ' + o }}
+        </div>
       </t-panel>
       <!-- <t-menu :data="getMenuList">
           <t-menu-group icon="icon-kefu" title="张三" :visible.sync="display">
@@ -91,7 +95,7 @@
 </template>
 
 <script>
-// import TTabs from 'components/tw-tabs/TTabs'
+// import TTabs from 'components/t-tabs/TTabs'
 import { getMenuList } from 'assets/js/menu'
 
 export default {

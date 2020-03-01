@@ -1,14 +1,14 @@
-.tw-panel {
+.t-panel {
   .el-card {
     &__header {
       min-height: 59px;
 
-      .tw-title {
+      .t-title {
         display: inline-block;
         font-size: 18px;
         line-height: 22px;
       }
-      .tw-toolbar {
+      .t-toolbar {
         float: right;
         .el-button {
           &--text {
@@ -52,7 +52,7 @@
     width: 100%;
     height: 100%;
 
-    .tw-image {
+    .t-image {
       position: relative;
       top: 0;
       left: 0;
@@ -68,12 +68,12 @@
   }
 }
 
-.tw-dark {
-  .tw-panel {
+.t-dark {
+  .t-panel {
     .el-card {
       &__header {
         border-bottom-color: #174880;
-        .tw-toolbar {
+        .t-toolbar {
           .el-button {
             &--text {
               color: #66b1ff;

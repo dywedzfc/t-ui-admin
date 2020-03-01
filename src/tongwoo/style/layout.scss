@@ -1,7 +1,7 @@
 $layout-header_height: 40px;
 $layout-left_width: 300px;
 $layout-left_width__hover: 300px;
-.tw-layout {
+.t-layout {
   position: relative;
   height: 100%;
   box-sizing: border-box;
@@ -18,10 +18,10 @@ $layout-left_width__hover: 300px;
   &-right {
     box-sizing: border-box;
     transition: width 0.5s ease-in-out, height 0.5s ease-in-out, top 0.5s ease-in-out;
-    &.tw-control {
+    &.t-control {
       position: relative;
-      &.tw-selected {
-        .tw-control-strip {
+      &.t-selected {
+        .t-control-strip {
           opacity: 1;
         }
       }
@@ -44,11 +44,11 @@ $layout-left_width__hover: 300px;
   }
 
   &-footer {
-    &.tw-control {
+    &.t-control {
       // padding-top: 5px;
     }
 
-    .tw-control {
+    .t-control {
       &-strip {
         position: absolute;
         top: 0;
@@ -81,12 +81,12 @@ $layout-left_width__hover: 300px;
       margin-right 0.5s ease-in-out;
   }
 
-  &.tw-border {
+  &.t-border {
     // $color: #d7dae2;
     $color: #eeeeee;
     // border: 1px solid $color;
 
-    & > .tw-layout {
+    & > .t-layout {
       &-header {
         border-bottom: 1px solid $color;
       }
@@ -105,8 +105,8 @@ $layout-left_width__hover: 300px;
     }
   }
 
-  &.tw-drag {
-    .tw-layout {
+  &.t-drag {
+    .t-layout {
       &-header,
       &-footer,
       &-left,
@@ -117,8 +117,8 @@ $layout-left_width__hover: 300px;
     }
   }
 
-  &.tw-overflow {
-    .tw-layout {
+  &.t-overflow {
+    .t-layout {
       &-header,
       &-footer,
       &-body,
@@ -130,7 +130,7 @@ $layout-left_width__hover: 300px;
   }
 }
 
-.tw-control {
+.t-control {
   &-strip {
     transform: translateY(-50%);
     transition: opacity 0.3s ease-in-out;

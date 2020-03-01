@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-layout">
+  <div class="t-layout">
     <router-link to="/backstage">后台页面</router-link>
   </div>
 </template>

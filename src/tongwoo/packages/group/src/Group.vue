@@ -1,6 +1,6 @@
 <!-- 组控件 -->
 <template>
-  <div class="tw-group el-button-group">
+  <div class="t-group el-button-group">
     <slot></slot>
   </div>
 </template>

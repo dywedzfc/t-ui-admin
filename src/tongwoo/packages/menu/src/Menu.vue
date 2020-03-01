@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-menu tw-scrollbar" :class="[typeClassName]" v-scrollbar>
+  <div class="t-menu t-scrollbar" :class="[typeClassName]" v-scrollbar>
     <slot></slot>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   computed: {
     typeClassName() {
       const type = this.type
-      if (type && type === 'bigIcon') return 'tw-icon-big'
+      if (type && type === 'bigIcon') return 't-icon-big'
       return ''
     }
   },
@@ -40,7 +40,7 @@ export default {
   //     })
   //   }
   //   return (
-  //     <div class={{ 'tw-menu': true }}>
+  //     <div class={{ 't-menu': true }}>
   //       {this.data.map(item =>
   //         hasChildren(item) ? menuGroupModel(item) : menuItemModel(item)
   //       )}

@@ -1,20 +1,20 @@
 <!-- 卡片式查询框 -->
 <template>
-  <div class="tw-panel__query" :style="queryStyle">
-    <t-group class="tw-panel__query-bar">
+  <div class="t-panel__query" :style="queryStyle">
+    <t-group class="t-panel__query-bar">
       <template v-if="$slots.query">
         <slot name="query"></slot>
       </template>
       <template v-else>
         <el-input
-          class="tw-panel__query-input"
+          class="t-panel__query-input"
           :placeholder="queryPlaceholder"
         ></el-input>
         <el-button :type="queryButtonType" icon="el-icon-search"></el-button>
       </template>
     </t-group>
-    <div class="tw-panel__body tw-scrollbar" v-scrollbar v-if="$slots.default">
-      <div class="tw-scrollbar__wrapper">
+    <div class="t-panel__body t-scrollbar" v-scrollbar v-if="$slots.default">
+      <div class="t-scrollbar__wrapper">
         <slot></slot>
       </div>
     </div>

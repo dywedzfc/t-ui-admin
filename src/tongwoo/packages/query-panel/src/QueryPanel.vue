@@ -1,8 +1,8 @@
 <!-- 查询面板 -->
 <template>
-  <div class="tw-query-panel" v-scrollbar>
+  <div class="t-query-panel" v-scrollbar>
     <t-query-bar
-      class="tw-query-box"
+      class="t-query-box"
       v-if="$slots.querybar"
       :model="model"
       :type="type"
@@ -10,10 +10,10 @@
     >
       <slot name="querybar"></slot>
     </t-query-bar>
-    <div class="tw-query-wrapper" v-if="$slots.default" ref="wrapper">
+    <div class="t-query-wrapper" v-if="$slots.default" ref="wrapper">
       <slot></slot>
     </div>
-    <div class="tw-query-footer" v-if="$slots.footer" ref="footer">
+    <div class="t-query-footer" v-if="$slots.footer" ref="footer">
       <slot name="footer"></slot>
     </div>
   </div>

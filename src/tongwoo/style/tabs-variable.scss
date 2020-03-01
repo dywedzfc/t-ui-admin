@@ -41,7 +41,7 @@
 @mixin el-tabs--border-card {
   .el-tab {
     &-pane {
-      .tw-map-panel {
+      .t-map-panel {
         position: absolute;
         top: 0;
         left: 0;
@@ -61,14 +61,14 @@
   & > .el-tabs__content {
     padding: 0;
   }
-  &.tw-full > .el-tabs__content {
+  &.t-full > .el-tabs__content {
     .el-tab-pane {
       padding: 0;
     }
   }
 }
 
-@mixin tw-tabs-panel {
+@mixin t-tabs-panel {
   .el-tabs {
     &__header {
       margin-bottom: 1px;

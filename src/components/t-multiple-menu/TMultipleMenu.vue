@@ -1,39 +1,50 @@
 <template>
-  <div class="tw-multiple-menu">
+  <div class="t-multiple-menu">
     <div
-      class="tw-multiple-menu-bar"
+      class="t-multiple-menu-bar"
       :class="{ hover: multipleMenuHover || hasTotalMenu }"
       @mouseenter.stop="handleMultipleMenuMouseenter"
       @mouseleave.stop="handleMultipleMenuMouseleave"
     >
-      <div class="tw-scrollbar" ref="totalMenuScrollbar" v-scrollbar>
+      <div class="t-scrollbar" ref="totalMenuScrollbar" v-scrollbar>
         <div
-          class="tw-multiple-menu-item tw-app-menu-item"
+          class="t-multiple-menu-item t-app-menu-item"
           @mouseenter.stop="handleMultipleMenuMouseenter"
           @click="handleMultipleMenuClick"
         >
-          <t-icon class="tw-icon" icon="icon-application" font-size="24px"></t-icon>
-          <span class="tw-title">所有服务</span>
-          <t-icon class="tw-suffix-icon" icon="icon-expansion-r" font-size="24px"></t-icon>
+          <t-icon
+            class="t-icon"
+            icon="icon-application"
+            font-size="24px"
+          ></t-icon>
+          <span class="t-title">所有服务</span>
+          <t-icon
+            class="t-suffix-icon"
+            icon="icon-expansion-r"
+            font-size="24px"
+          ></t-icon>
         </div>
         <div
-          class="tw-multiple-menu-item"
+          class="t-multiple-menu-item"
           :class="{ active: hasMultipleMenuActive(item) }"
           v-for="item in systemMenuList"
           :key="item.id"
           @mouseenter.stop="handleMultipleMenuMouseenter"
           @click="handleMultipleMenuItemClick(item)"
         >
-          <t-icon class="tw-icon" :icon="item.icon" font-size="24px"></t-icon>
-          <span class="tw-title" v-text="item.title"></span>
+          <t-icon class="t-icon" :icon="item.icon" font-size="24px"></t-icon>
+          <span class="t-title" v-text="item.title"></span>
         </div>
       </div>
     </div>
     <transition name="control-strip-fade">
-      <div class="tw-secondary-menu-bar" v-show="hasDisplaySecondaryMenu">
-        <div class="tw-secondary-menu-header" v-text="multipleMenuActive.title"></div>
+      <div class="t-secondary-menu-bar" v-show="hasDisplaySecondaryMenu">
+        <div
+          class="t-secondary-menu-header"
+          v-text="multipleMenuActive.title"
+        ></div>
         <t-menu
-          class="tw-secondary-menu-body"
+          class="t-secondary-menu-body"
           :data="secondaryMenuList[multipleMenuActive.id]"
           height="calc(100% - 50px)"
           :active="secondaryMenuActive.id"
@@ -41,7 +52,7 @@
       </div>
     </transition>
     <div
-      class="tw-menu-control-strip iconfont"
+      class="t-menu-control-strip iconfont"
       :class="[
         hasDisplaySecondaryMenu ? 'icon-collapse-left' : 'icon-collapse-right',
         { 'multiple-hover': multipleMenuHover || hasTotalMenu }
@@ -51,7 +62,7 @@
       @click="handleControlStripClick"
     ></div>
     <t-total-menu
-      class="tw-total-menu"
+      class="t-total-menu"
       :class="{ active: hasTotalMenu }"
       :system-menu="systemMenuList"
       :secondary-menu="secondaryMenuList"
@@ -64,7 +75,7 @@
 <script>
 import _ from 'underscore'
 import TIcon from '../TIcon'
-import TMenu from '../tw-menu/TMenu'
+import TMenu from '../t-menu/TMenu'
 import TTotalMenu from './TTotalMenu'
 
 /**
@@ -187,5 +198,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

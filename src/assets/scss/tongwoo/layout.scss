@@ -2,17 +2,17 @@ $layout-header_height: 50px;
 $layout-left_width: 300px;
 $layout-left_width__hover: 300px;
 
-.tw-layout {
+.t-layout {
   position: relative;
   height: 100%;
   &-header {
     height: $layout-header_height;
-    & + .tw-layout-left,
-    & ~ .tw-layout-left {
+    & + .t-layout-left,
+    & ~ .t-layout-left {
       top: $layout-header_height;
       height: calc(100% - #{$layout-header_height});
     }
-    & ~ .tw-layout-body {
+    & ~ .t-layout-body {
       height: calc(100% - #{$layout-header_height});
     }
   }
@@ -24,7 +24,7 @@ $layout-left_width__hover: 300px;
     height: 100%;
     box-sizing: border-box;
     transition: width 0.5s ease;
-    & + .tw-layout-body {
+    & + .t-layout-body {
       width: calc(100% - #{$layout-left_width});
       margin-left: $layout-left_width;
     }
@@ -32,7 +32,7 @@ $layout-left_width__hover: 300px;
     &.active {
       width: $layout-left_width__hover;
 
-      & + .tw-layout-body {
+      & + .t-layout-body {
         width: calc(100% - #{$layout-left_width__hover});
         margin-left: $layout-left_width__hover;
       }

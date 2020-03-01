@@ -1,14 +1,14 @@
 <!-- 面板框 -->
 <template>
   <el-card
-    class="tw-panel"
+    class="t-panel"
     :class="sizeClassName"
     :body-style="bodyStyleStatus"
     :shadow="shadowStatus"
   >
     <template slot="header" v-if="hasTitle">
-      <span class="tw-title">{{ title }}</span>
-      <div class="tw-toolbar" v-if="toolbar">
+      <span class="t-title">{{ title }}</span>
+      <div class="t-toolbar" v-if="toolbar">
         <slot name="toolbar"></slot>
       </div>
     </template>
@@ -59,8 +59,8 @@ export default {
       else return { padding: '20px' }
     },
     sizeClassName() {
-      if (this.size === 'mini') return 'tw-panel__mini'
-      if (this.size === 'small') return 'tw-panel__small'
+      if (this.size === 'mini') return 't-panel__mini'
+      if (this.size === 'small') return 't-panel__small'
       else return ''
     }
   }

@@ -1,13 +1,16 @@
 <template>
   <t-layout border header="50" left="200" right="600" footer="30">
     <template v-slot:header>
-      <div class="tw-title">后台管理系统</div>
+      <div class="t-header">
+        <div class="t-title">后台管理系统</div>
+      </div>
     </template>
     <template v-slot:left>
-      <t-multiple-menu
+      <!-- <t-multiple-menu
         :data="{systemMenu: getSystemMenuList, secondaryMenu: getSecondaryMenuList}"
         @display-state="handleSecondaryDisplayState"
-      ></t-multiple-menu>
+      ></t-multiple-menu> -->
+      <t-menu :data="getMenuList"></t-menu>
     </template>
     <template>
       <router-view></router-view>
@@ -16,8 +19,8 @@
 </template>
 
 <script>
-// import TMenu from 'components/tw-menu/TMenu'
-import TMultipleMenu from 'components/tw-multiple-menu/TMultipleMenu'
+import TMenu from 'components/t-menu/TMenu'
+// import TMultipleMenu from 'components/t-multiple-menu/TMultipleMenu'
 import {
   getMenuList,
   getSystemMenuList,
@@ -34,21 +37,33 @@ export default {
   },
   computed: {
     getMenuList,
-    getSystemMenuList,
-    getSecondaryMenuList
-  },
-  components: {
-    TMultipleMenu
+    getSystemMenuList
   },
   methods: {
+    getSecondaryMenuList,
     handleSecondaryDisplayState(state) {
       this.hasSecondaryMenu = state
     }
+  },
+  components: {
+    // TMultipleMenu,
+    TMenu
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.tw-layout {
+.t-layout {
+}
+.t-header {
+  height: 100%;
+  color: #ffffff;
+  background-color: #4381e6;
+
+  .t-title {
+    padding-left: 20px;
+    font-size: 24px;
+    line-height: 49px;
+  }
 }
 </style>

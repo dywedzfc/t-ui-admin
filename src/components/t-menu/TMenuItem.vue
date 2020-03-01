@@ -1,8 +1,8 @@
 <template>
-  <div class="tw-menu-item" :class="{ active: hasActive }">
-    <router-link tag="div" class="tw-menu-link" :to="data.href">
+  <div class="t-menu-item" :class="{ active: hasActive }">
+    <router-link tag="div" class="t-menu-link" :to="data.href">
       <t-icon :icon="data.icon"></t-icon>
-      <span class="tw-title" v-text="data.title"></span>
+      <span class="t-title" v-text="data.title"></span>
     </router-link>
   </div>
 </template>
@@ -33,10 +33,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import '../../assets/css/tw-menu-variable';
+// @import '../../assets/css/t-menu-variable';
 
-// .tw-icon {
-//   width: $tw-menu-totalWidth - 10px;
+// .t-icon {
+//   width: $t-menu-totalWidth - 10px;
 //   text-align: center;
 // }
 </style>

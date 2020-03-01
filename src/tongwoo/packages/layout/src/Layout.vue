@@ -1,17 +1,17 @@
 <!-- 边界布局 -->
 <template>
   <div
-    class="tw-layout"
+    class="t-layout"
     :class="{
-      'tw-drag': footerOption.mousedown,
-      'tw-border': border,
-      'tw-overflow': lockSize
+      't-drag': footerOption.mousedown,
+      't-border': border,
+      't-overflow': lockSize
     }"
     @mouseup="handleLayoutMouseup"
     @mousemove="handleLayoutMousemove"
   >
     <div
-      class="tw-layout-header"
+      class="t-layout-header"
       :class="headerClass"
       v-if="headerCenter"
       ref="header"
@@ -19,29 +19,29 @@
     >
       <slot name="header"></slot>
     </div>
-    <div class="tw-layout-left" v-if="$slots.left" :style="layoutLeftWidth">
+    <div class="t-layout-left" v-if="$slots.left" :style="layoutLeftWidth">
       <slot name="left"></slot>
-      <div class="tw-control-strip" v-if="leftStrip"></div>
+      <div class="t-control-strip" v-if="leftStrip"></div>
     </div>
-    <div class="tw-layout-body" v-if="$slots.default" :style="layoutBodyStyle">
+    <div class="t-layout-body" v-if="$slots.default" :style="layoutBodyStyle">
       <slot></slot>
     </div>
-    <div class="tw-layout-right" v-if="$slots.right" :style="layoutRightWidth">
+    <div class="t-layout-right" v-if="$slots.right" :style="layoutRightWidth">
       <slot name="right"></slot>
-      <div class="tw-control-strip" v-if="rightStrip"></div>
+      <div class="t-control-strip" v-if="rightStrip"></div>
     </div>
     <div
-      class="tw-layout-footer"
+      class="t-layout-footer"
       :class="{
-        'tw-control': footerStrip,
-        'tw-selected': footerOption.mousedown
+        't-control': footerStrip,
+        't-selected': footerOption.mousedown
       }"
       v-if="$slots.footer"
       :style="layoutFooterHeigth"
     >
       <slot name="footer"></slot>
       <div
-        class="tw-control-strip"
+        class="t-control-strip"
         v-if="footerStrip"
         @mousedown="handleFooterStripMousedown"
       ></div>
@@ -272,7 +272,7 @@ export default {
     },
     layoutSlotBody() {
       const bodyer = this.$slots.default
-      const bodyType = ['tw-layout', 'tw-tabs-panel']
+      const bodyType = ['t-layout', 't-tabs-panel']
       if (
         bodyer.length === 1 &&
         bodyType.indexOf(bodyer[0].elm.className) === 0
@@ -303,7 +303,7 @@ export default {
   render(h) {
     const header = (
       <div
-        class={['tw-layout-header', this.headerClass]}
+        class={['t-layout-header', this.headerClass]}
         style={this.layoutHeaderHeigth}
         ref="header"
       >
@@ -311,37 +311,37 @@ export default {
       </div>
     )
     const left = (
-      <div class={['tw-layout-left']} style={this.layoutLeftWidth}>
+      <div class={['t-layout-left']} style={this.layoutLeftWidth}>
         {this.$slots.left}
-        {this.leftStrip && <div class="tw-control-strip"></div>}
+        {this.leftStrip && <div class="t-control-strip"></div>}
       </div>
     )
     const right = (
-      <div class={['tw-layout-right']} style={this.layoutLeftWidth}>
+      <div class={['t-layout-right']} style={this.layoutLeftWidth}>
         {this.$slots.right}
-        {this.rightStrip && <div class="tw-control-strip"></div>}
+        {this.rightStrip && <div class="t-control-strip"></div>}
       </div>
     )
     const footer = (
       <div
         class={{
-          'tw-layout-footer': true,
-          'tw-control': this.footerStrip,
-          'tw-selected': this.footerOption.mousedown
+          't-layout-footer': true,
+          't-control': this.footerStrip,
+          't-selected': this.footerOption.mousedown
         }}
         style={this.layoutFooterHeigth}
       >
         {this.$slots.footer}
         {this.footerStrip && (
           <div
-            class="tw-control-strip"
+            class="t-control-strip"
             on-mousedown={this.handleFooterStripMousedown}
           ></div>
         )}
       </div>
     )
     const bodyer = (
-      <div class={['tw-layout-body']} style={layoutBodyStyle}>
+      <div class={['t-layout-body']} style={layoutBodyStyle}>
         {this.$slots.default}
       </div>
     )
@@ -349,9 +349,9 @@ export default {
     reutrn(
       <div
         class={{
-          'tw-layout': true,
-          'tw-border': this.border,
-          'tw-drag': this.footerOption.mousedown
+          't-layout': true,
+          't-border': this.border,
+          't-drag': this.footerOption.mousedown
         }}
         on-mouseup={this.handleLayoutMouseup}
         on-mousemove={this.handleLayoutMousemove}

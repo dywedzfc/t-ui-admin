@@ -1,9 +1,9 @@
 <!-- 表格+分页插件 -->
 <template>
-  <div class="tw-table-panel">
+  <div class="t-table-panel">
     <el-table
-      class="tw-table "
-      :class="{ 'tw-scrollbar': scrollbar }"
+      class="t-table "
+      :class="{ 't-scrollbar': scrollbar }"
       :data="filterTableList"
       :max-height="maxHeigh"
       :stripe="stripe"

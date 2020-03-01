@@ -1,9 +1,12 @@
 <!-- 选项卡 -->
 <template>
-  <div class="tw-tabs-panel" :class="{'tw-tabs-panel__toolbar': hasShowToolbar}">
+  <div
+    class="t-tabs-panel"
+    :class="{ 't-tabs-panel__toolbar': hasShowToolbar }"
+  >
     <transition name="fade" appear>
       <t-group
-        class="tw-tabs-toolbar"
+        class="t-tabs-toolbar"
         v-if="toolbar && hasHorizontal"
         v-show="hasShowToolbar"
         ref="toolbar"
@@ -12,7 +15,7 @@
       </t-group>
     </transition>
     <el-tabs
-      class="tw-tabs"
+      class="t-tabs"
       v-model="activeName"
       :type="tabTypeStatus"
       :closable="tabClosable"

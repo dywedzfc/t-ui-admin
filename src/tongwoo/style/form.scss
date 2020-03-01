@@ -1,11 +1,11 @@
-.tw-query {
+.t-query {
   $height: 54px;
   &-panel {
     position: relative;
     height: 100%;
     box-sizing: border-box;
 
-    // &.tw-auto {
+    // &.t-auto {
     // overflow: auto;
     // }
   }
@@ -37,7 +37,7 @@
   }
 }
 
-.tw-form {
+.t-form {
   margin-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;

@@ -1,6 +1,6 @@
 <!-- 图标控件 -->
 <template>
-  <i class="tw-icon" :class="iconClassName"></i>
+  <i class="t-icon" :class="iconClassName"></i>
 </template>
 
 <script>

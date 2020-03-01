@@ -44,37 +44,42 @@ export default new Router({
           component: () => import('./views/Home.vue')
         },
         {
-          path: '/zdfx/zjgz',
+          path: '/backstage/zjgz',
           name: 'helloworld',
           component: HelloWorld
         },
         {
-          path: '/zdfx/form',
-          name: 'form',
-          component: () => import('./views/backstage/form/VehicleInquiry.vue')
-        },
-        {
-          path: '/zdfx/cxmb',
+          path: '/backstage/cxmb/cxmb1',
           name: 'QueryPanelInfo',
           component: () => import('./views/backstage/form/QueryPanelInfo.vue')
         },
         {
-          path: '/zdfx/map',
+          path: '/backstage/cxmb/fycxmb',
+          name: 'fycxmb',
+          component: () => import('./views/backstage/form/VehicleInquiry.vue')
+        },
+        {
+          path: '/backstage/map',
           name: 'map',
           component: () => import('./views/backstage/map/map.vue')
         },
         {
-          path: '/zdfx/tabs/card',
+          path: '/backstage/imageDrag',
+          name: 'imageDrag',
+          component: () => import('./views/backstage/map/ImageDrag.vue')
+        },
+        {
+          path: '/backstage/tabs/card',
           name: 'mCardTabsap',
           component: () => import('./views/backstage/tabs/CardTabs.vue')
         },
         {
-          path: '/zdfx/tabs/card2',
+          path: '/backstage/tabs/card2',
           name: 'CardTabs2',
           component: () => import('./views/backstage/tabs/CardTabs2.vue')
         },
         {
-          path: '/zdfx/tabs/customize',
+          path: '/backstage/tabs/customize',
           name: 'CustomizeTabs',
           component: () => import('./views/backstage/tabs/CustomizeTabs.vue')
         },

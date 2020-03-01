@@ -1,16 +1,19 @@
 <template>
-  <div class="tw-menu-group">
+  <div class="t-menu-group">
     <div
-      class="tw-menu-title"
-      :class="{active: hasActiveMenuPanel, open: hasOpenMenuPanel}"
+      class="t-menu-title"
+      :class="{ active: hasActiveMenuPanel, open: hasOpenMenuPanel }"
       @click="handlerMenuTitleClick(data)"
     >
       <t-icon :icon="data.icon"></t-icon>
-      <span class="tw-title" v-text="data.title"></span>
-      <t-icon class="tw-suffix-icon" :icon="iconClassName('icon-expansion-d')"></t-icon>
+      <span class="t-title" v-text="data.title"></span>
+      <t-icon
+        class="t-suffix-icon"
+        :icon="iconClassName('icon-expansion-d')"
+      ></t-icon>
     </div>
     <transition name="menu-panel-fade">
-      <div class="tw-menu-panel" :class="{ open: hasOpenMenuPanel }">
+      <div class="t-menu-panel" :class="{ open: hasOpenMenuPanel }">
         <template v-for="item in data.children">
           <t-menu-group
             :key="item.id"
@@ -19,7 +22,12 @@
             @change-open="changeOpenPanel"
             v-if="item.children"
           ></t-menu-group>
-          <t-menu-item :key="item.id" :data="item" @click.native="handlerMenuItemClick" v-else></t-menu-item>
+          <t-menu-item
+            :key="item.id"
+            :data="item"
+            @click.native="handlerMenuItemClick"
+            v-else
+          ></t-menu-item>
         </template>
       </div>
     </transition>
@@ -101,5 +109,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

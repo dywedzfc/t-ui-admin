@@ -1,4 +1,4 @@
-.tw-map {
+.t-map {
   height: 100%;
   &-panel {
     position: relative;
@@ -33,13 +33,13 @@
       font-size: 18px;
       font-weight: bold;
       line-height: 20px;
-      + .tw-map-dialog-body {
+      + .t-map-dialog-body {
         padding-top: 0;
       }
     }
     &-body {
       padding: 10px 15px;
-      .tw-list {
+      .t-list {
         padding: 10px;
         font-size: 14px;
         &-item {

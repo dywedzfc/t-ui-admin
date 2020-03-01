@@ -1,10 +1,11 @@
-.tw-year-picker {
+.t-year-picker {
   display: inline-block;
   border: 1px solid #dcdfe6;
   border-radius: 4px;
   line-height: 1;
   font-size: 0;
   background-color: #ffffff;
+  cursor: pointer;
 
   &:hover {
     border-color: #c0c4cc;
@@ -26,11 +27,12 @@
       background-color: transparent;
     }
   }
-  .tw-date-picker {
+
+  .t-date-picker {
     margin-top: -1px;
     margin-bottom: -1px;
 
-    ~ .tw-date-picker {
+    ~ .t-date-picker {
       .el-input {
         &__inner {
           padding-left: 0;
@@ -46,6 +48,17 @@
       width: 120px;
       ~ .date-year {
         width: 100px;
+      }
+    }
+  }
+}
+
+.t-date-picker {
+  &.date-year {
+    .el-input {
+      &__inner {
+        padding-right: 10px;
+        cursor: pointer;
       }
     }
   }

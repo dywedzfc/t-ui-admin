@@ -1,5 +1,9 @@
 <template>
-  <i class="tw-icon" :class="icon_className" :style="{ fontSize: styleFontSize }"></i>
+  <i
+    class="t-icon"
+    :class="icon_className"
+    :style="{ fontSize: styleFontSize }"
+  ></i>
 </template>
 
 <script>
@@ -23,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-.tw-icon {
+.t-icon {
   display: inline-block;
 }
 </style>

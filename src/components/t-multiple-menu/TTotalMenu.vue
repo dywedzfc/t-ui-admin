@@ -1,59 +1,56 @@
 <template>
-  <div class="tw-total-menu-panel">
+  <div class="t-total-menu-panel">
     <t-icon
-      class="tw-total-menu-close"
+      class="t-total-menu-close"
       icon="icon-shut-down"
       font-size="14px"
       @click.native="handleTotalMenuCloseClick"
     ></t-icon>
-    <div class="tw-total-menu-query-bar">
+    <div class="t-total-menu-query-bar">
       <t-icon
-        class="tw-prefix-icon"
+        class="t-prefix-icon"
         icon="icon-search"
         font-size="18px"
       ></t-icon>
-      <input type="text" class="tw-total-menu-query-box" v-model="query" />
+      <input type="text" class="t-total-menu-query-box" v-model="query" />
       <t-icon
-        class="tw-suffix-icon"
+        class="t-suffix-icon"
         icon="icon-shut-down"
         font-size="12px"
         v-if="query.length > 0"
         @click.native="handleTotalMenuQueryClearClick"
       ></t-icon>
-      <div class="tw-total-menu-query-prompt" v-if="query.length > 0">
+      <div class="t-total-menu-query-prompt" v-if="query.length > 0">
         {{ totalMenuTextPromptBefore }}
         "
-        <span class="tw-total-menu-query-text" v-text="query"></span>
+        <span class="t-total-menu-query-text" v-text="query"></span>
         "
         {{ totalMenuTextPromptAfter }}
       </div>
     </div>
     <div
-      class="tw-total-menu-box tw-scrollbar"
+      class="t-total-menu-box t-scrollbar"
       :class="{ filter: query.length > 0 }"
       ref="totalMenuScrollbar"
       v-scrollbar
     >
-      <div class="tw-total-menu-group">
+      <div class="t-total-menu-group">
         <div
-          class="tw-total-menu-group-item"
+          class="t-total-menu-group-item"
           v-for="(item, index) in filterSystemMenuColumnOne"
-          :key="'tw-total-menu-group-1_' + index"
+          :key="'t-total-menu-group-1_' + index"
           :index="item.id"
         >
-          <div
-            class="tw-total-menu-group-item-header"
-            v-text="item.title"
-          ></div>
-          <ul class="tw-total-menu-group-item-body">
+          <div class="t-total-menu-group-item-header" v-text="item.title"></div>
+          <ul class="t-total-menu-group-item-body">
             <li
-              class="tw-total-menu-group-item-body-item"
+              class="t-total-menu-group-item-body-item"
               v-for="secondaryItem in filterSecondaryMenu(item.id)"
               :key="secondaryItem.id"
             >
               <router-link
                 tag="div"
-                class="tw-menu-link"
+                class="t-menu-link"
                 :to="secondaryItem.href || ''"
                 @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
                 >{{ secondaryItem.title }}</router-link
@@ -62,26 +59,23 @@
           </ul>
         </div>
       </div>
-      <div class="tw-total-menu-group">
+      <div class="t-total-menu-group">
         <div
-          class="tw-total-menu-group-item"
+          class="t-total-menu-group-item"
           v-for="(item, index) in filterSystemMenuColumnTwo"
-          :key="'tw-total-menu-group-2_' + index"
+          :key="'t-total-menu-group-2_' + index"
           :index="item.id"
         >
-          <div
-            class="tw-total-menu-group-item-header"
-            v-text="item.title"
-          ></div>
-          <ul class="tw-total-menu-group-item-body">
+          <div class="t-total-menu-group-item-header" v-text="item.title"></div>
+          <ul class="t-total-menu-group-item-body">
             <li
-              class="tw-total-menu-group-item-body-item"
+              class="t-total-menu-group-item-body-item"
               v-for="secondaryItem in filterSecondaryMenu(item.id)"
               :key="secondaryItem.id"
             >
               <router-link
                 tag="div"
-                class="tw-menu-link"
+                class="t-menu-link"
                 :to="secondaryItem.href || ''"
                 @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
                 >{{ secondaryItem.title }}</router-link
@@ -90,26 +84,23 @@
           </ul>
         </div>
       </div>
-      <div class="tw-total-menu-group">
+      <div class="t-total-menu-group">
         <div
-          class="tw-total-menu-group-item"
+          class="t-total-menu-group-item"
           v-for="(item, index) in filterSystemMenuColumnThree"
-          :key="'tw-total-menu-group-3_' + index"
+          :key="'t-total-menu-group-3_' + index"
           :index="item.id"
         >
-          <div
-            class="tw-total-menu-group-item-header"
-            v-text="item.title"
-          ></div>
-          <ul class="tw-total-menu-group-item-body">
+          <div class="t-total-menu-group-item-header" v-text="item.title"></div>
+          <ul class="t-total-menu-group-item-body">
             <li
-              class="tw-total-menu-group-item-body-item"
+              class="t-total-menu-group-item-body-item"
               v-for="secondaryItem in filterSecondaryMenu(item.id)"
               :key="secondaryItem.id"
             >
               <router-link
                 tag="div"
-                class="tw-menu-link"
+                class="t-menu-link"
                 :to="secondaryItem.href || ''"
                 @click.native="handleTotalMenuGroupItemClick(secondaryItem)"
                 >{{ secondaryItem.title }}</router-link
@@ -119,9 +110,9 @@
         </div>
       </div>
     </div>
-    <div class="tw-total-menu-multiple-bar">
+    <div class="t-total-menu-multiple-bar">
       <div
-        class="tw-total-menu-multiple-item"
+        class="t-total-menu-multiple-item"
         v-for="item in filterSystemMenu"
         :key="item.id"
         v-text="item.title"
@@ -212,7 +203,7 @@ export default {
       })
     },
     handleTotalSystemMenuClick(item) {
-      let jump = document.querySelectorAll('.tw-total-menu-group-item')
+      let jump = document.querySelectorAll('.t-total-menu-group-item')
       let total = _.filter(
         jump,
         _item => _item.getAttribute('index') === item.id

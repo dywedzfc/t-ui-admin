@@ -1,15 +1,18 @@
 <!-- 抽屉式面板 -->
 <template>
   <transition :name="transitionClassName">
-    <div class="tw-drawer-panel" :class="[directionClassName]" v-if="display">
-      <div class="tw-drawer-header">
-        <div class="tw-title" v-if="$slots.title">
+    <div class="t-drawer-panel" :class="[directionClassName]" v-if="display">
+      <div class="t-drawer-header">
+        <div class="t-title" v-if="$slots.title">
           <slot name="title"></slot>
         </div>
-        <div class="tw-title" v-else>{{title}}</div>
-        <div class="tw-btn-close el-icon-close" @click="handleDrawerCloseClick"></div>
+        <div class="t-title" v-else>{{ title }}</div>
+        <div
+          class="t-btn-close el-icon-close"
+          @click="handleDrawerCloseClick"
+        ></div>
       </div>
-      <div class="tw-drawer-body">
+      <div class="t-drawer-body">
         <slot></slot>
       </div>
     </div>
@@ -42,10 +45,10 @@ export default {
     /** 模块显示方向 */
     directionClassName() {
       const direction = this.direction
-      if (direction === 'top') return 'tw-drawer-top'
-      if (direction === 'bottom') return 'tw-drawer-bottom'
-      if (direction === 'left') return 'tw-drawer-left'
-      return 'tw-drawer-right'
+      if (direction === 'top') return 't-drawer-top'
+      if (direction === 'bottom') return 't-drawer-bottom'
+      if (direction === 'left') return 't-drawer-left'
+      return 't-drawer-right'
     },
     /** 动画运动方向 */
     transitionClassName() {

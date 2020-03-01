@@ -1,35 +1,76 @@
 const menuList = [
-  { id: 'wdsy', title: '首页', icon: 'icon-kefu', href: '/home' },
+  { id: 'zjgz', title: '主机故障', icon: 'icon-gzxx', href: '/backstage/zjgz' },
+  { id: 'whltj', title: '地图查询', icon: 'icon-tjxx', href: '/backstage/map' },
   {
-    id: 'pbgl',
-    title: '排班管理',
-    icon: 'icon-compose-type',
-    fullPath: '/pbgl',
+    id: 'tptz',
+    title: '图片拖拽框',
+    icon: 'icon-tjxx',
+    href: '/backstage/imageDrag'
+  },
+  {
+    id: 'cxmb',
+    title: '查询面板',
+    icon: 'icon-zdxx',
+    fullPath: '/backstage/cxmb',
     children: [
-      { id: 'pbcx', title: '排班查询', href: '/pbgl/pbcx' },
-      { id: 'bcsz', title: '班次设置', href: '/pbgl/bcsz' },
-      { id: 'mbsz', title: '模板设置', href: '/pbgl/mbsz' },
-      { id: 'znpb', title: '智能排班', href: '/pbgl/znpb' },
-      { id: 'qwpbdd', title: '勤务排班(大队)', href: '/pbgl/qwpb/dd' },
-      { id: 'qwpbzd', title: '勤务排班(中队)', href: '/pbgl/qwpb/zd' },
-      { id: 'pbtx', title: '排班提醒', href: '/pbgl/pbtx' }
+      {
+        id: 'cxmb1',
+        title: '查询面板',
+        icon: 'icon-zdxx',
+        href: '/backstage/cxmb/cxmb1'
+      },
+      {
+        id: 'fycxmb',
+        title: '后端分页查询面板',
+        icon: 'icon-zdxx',
+        href: '/backstage/cxmb/fycxmb'
+      }
     ]
   },
   {
-    id: 'tjgl',
-    title: '统计管理',
-    icon: 'icon-statistics',
-    fullPath: '/tjgl',
+    id: 'clgl',
+    title: '标签页',
+    icon: 'icon-manage',
+    fullPath: '/backstage/tabs',
     children: [
-      { id: 'cxtj', title: '查询统计', href: '/tjgl/cxtj' },
-      { id: 'qjtj', title: '请假统计', href: '/tjgl/qjtj' },
-      { id: 'txtj', title: '调休统计', href: '/tjgl/txtj' },
-      { id: 'hdtj', title: '活动统计', href: '/tjgl/hdtj' },
-      { id: 'nqtj', title: '内勤统计', href: '/tjgl/nqtj' },
-      { id: 'lmtj', title: '路面统计', href: '/tjgl/lmtj' },
-      { id: 'tqtj', title: '铁骑统计', href: '/tjgl/tqtj' },
-      { id: 'pbtj', title: '排班统计', href: '/tjgl/pbtj' }
+      {
+        id: 'lps',
+        title: '卡片式',
+        icon: 'icon-tjxx',
+        href: '/backstage/tabs/card'
+      },
+      {
+        id: 'lps2',
+        title: '卡片式2',
+        icon: 'icon-tjxx',
+        href: '/backstage/tabs/card2'
+      },
+      {
+        id: 'zdy',
+        title: '自定义标签页',
+        icon: 'icon-tjxx',
+        href: '/backstage/tabs/customize'
+      }
     ]
+  },
+  { id: 'spyc', title: '视频异常', icon: 'icon-ycxx', href: '/backstage/spyc' },
+  {
+    id: 'spyw',
+    title: '视频移位巡检',
+    icon: 'icon-xcxx',
+    href: '/backstage/spyw'
+  },
+  {
+    id: 'wxgdcx',
+    title: '维修工单',
+    icon: 'icon-wxxx',
+    href: '/backstage/wxgdcx'
+  },
+  {
+    id: 'zjgzlsjl',
+    title: '主机故障历史记录',
+    icon: 'icon-lsxx',
+    href: '/backstage/zjgzlsjl'
   }
 ]
 const systemMenuList = [
@@ -50,6 +91,12 @@ const secondaryMenuList = {
     { id: 'zdyc', title: '车辆查询', icon: 'icon-zdxx', href: '/zdfx/form' },
     { id: 'cxmb', title: '查询面板', icon: 'icon-zdxx', href: '/zdfx/cxmb' },
     { id: 'whltj', title: '地图查询', icon: 'icon-tjxx', href: '/zdfx/map' },
+    {
+      id: 'tptz',
+      title: '图片拖拽框',
+      icon: 'icon-tjxx',
+      href: '/zdfx/imageDrag'
+    },
     {
       id: 'clgl',
       title: '标签页',
@@ -454,6 +501,7 @@ export function getSystemMenuList() {
   return systemMenuList
 }
 
-export function getSecondaryMenuList() {
-  return secondaryMenuList
+export function getSecondaryMenuList(name) {
+  if (!name) return []
+  return secondaryMenuList[name]
 }

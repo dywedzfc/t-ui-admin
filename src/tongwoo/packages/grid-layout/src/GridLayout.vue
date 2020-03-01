@@ -1,6 +1,6 @@
 <!-- 网格布局 -->
 <template>
-  <div class="tw-grid-layout">
+  <div class="t-grid-layout">
     <template v-if="$slots.default">
       <slot></slot>
     </template>
