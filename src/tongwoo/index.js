@@ -4,6 +4,7 @@ import Icon from './packages/icon'
 import Menu from './packages/menu'
 import MenuGroup from './packages/menu-group'
 import MenuItem from './packages/menu-item'
+import MenuList from './packages/menu-list'
 import YearPicker from './packages/year-picker'
 import TablePage from './packages/table-page'
 import Tabs from './packages/tabs'
@@ -22,6 +23,7 @@ const components = [
   Menu,
   MenuGroup,
   MenuItem,
+  MenuList,
   YearPicker,
   TablePage,
   Tabs,
@@ -41,7 +43,7 @@ const install = function(Vue) {
 }
 
 export default {
-  version: '1.0.3',
+  version: '1.0.6',
   install,
   ...components
 }

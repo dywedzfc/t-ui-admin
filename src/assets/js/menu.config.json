@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "id": "home",
+      "name": "首页",
+      "icon": "icon-home",
+      "path": "/",
+      "component": "./views/Index.vue",
+      "children": []
+    },
+    {
+      "id": "backstage",
+      "name": "后台首页",
+      "icon": "icon-home",
+      "path": "/backstage",
+      "component": "./views/Index.vue",
+      "children": [
+        {
+          "id": "home",
+          "name": "Home",
+          "path": "/home",
+          "component": "./views/Home.vue"
+        },
+        {
+          "id": "zjgz",
+          "name": "主机故障",
+          "icon": "icon-gzxx",
+          "path": "/backstage/zjgz",
+          "component": ""
+        },
+        {
+          "id": "whltj",
+          "name": "地图查询",
+          "icon": "icon-tjxx",
+          "path": "/backstage/map",
+          "component": ""
+        },
+        {
+          "id": "tptz",
+          "name": "图片拖拽框",
+          "icon": "icon-tjxx",
+          "path": "/backstage/imageDrag",
+          "component": ""
+        },
+        {
+          "id": "cxmb",
+          "name": "查询面板",
+          "icon": "icon-zdxx",
+          "path": "/backstage/cxmb",
+          "component": ""
+        },
+        {
+          "id": "cxmb1",
+          "name": "查询面板",
+          "icon": "icon-zdxx",
+          "path": "/backstage/cxmb/cxmb1",
+          "component": ""
+        },
+        {
+          "id": "fycxmb",
+          "name": "后端分页查询面板",
+          "icon": "icon-zdxx",
+          "path": "/backstage/cxmb/fycxmb",
+          "component": ""
+        },
+        {
+          "id": "clgl",
+          "name": "标签页",
+          "icon": "icon-manage",
+          "path": "/backstage/tabs",
+          "component": ""
+        },
+        {
+          "id": "lps",
+          "name": "卡片式",
+          "icon": "icon-tjxx",
+          "path": "/backstage/tabs/card",
+          "component": ""
+        },
+        {
+          "id": "lps2",
+          "name": "卡片式2",
+          "icon": "icon-tjxx",
+          "path": "/backstage/tabs/card2",
+          "component": ""
+        },
+        {
+          "id": "zdy",
+          "name": "自定义标签页",
+          "icon": "icon-tjxx",
+          "path": "/backstage/tabs/customize",
+          "component": ""
+        }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,8 @@
         :data="{systemMenu: getSystemMenuList, secondaryMenu: getSecondaryMenuList}"
         @display-state="handleSecondaryDisplayState"
       ></t-multiple-menu> -->
-      <t-menu :data="getMenuList"></t-menu>
+      <!-- <t-menu :data="getMenuList"></t-menu> -->
+      <t-menu-list :data="getMenuList" />
     </template>
     <template>
       <router-view></router-view>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import TMenu from 'components/t-menu/TMenu'
+// import TMenu from 'components/t-menu/TMenu'
 // import TMultipleMenu from 'components/t-multiple-menu/TMultipleMenu'
 import {
   getMenuList,
@@ -47,7 +48,7 @@ export default {
   },
   components: {
     // TMultipleMenu,
-    TMenu
+    // TMenu
   }
 }
 </script>
