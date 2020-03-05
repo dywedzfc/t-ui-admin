@@ -159,7 +159,6 @@ export function getRouterList() {
     const childrenMenu = getChildrenList(menuList)
     item = resetRouterItem(item)
     item.children = filterRouterItem(mergeMenuItem(menuList, childrenMenu))
-    console.info('router:', item)
     return item
   })
 }

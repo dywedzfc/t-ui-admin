@@ -19,7 +19,7 @@ module.exports = {
         util: resolve('src/assets/js/util/index.js'),
         views: resolve('src/views'),
         mixins: resolve('src/mixins'),
-        tongwoo: resolve('src/tongwoo'),
+        TUI: resolve('src/t-ui'),
         components: resolve('src/components')
       }
     }

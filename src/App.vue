@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-@import 'tongwoo/style/index';
+@import 't-ui/style/index';
 
 html,
 body {
