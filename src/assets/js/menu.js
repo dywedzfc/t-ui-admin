@@ -1,507 +1,165 @@
-const menuList = [
-  { id: 'zjgz', title: '主机故障', icon: 'icon-gzxx', href: '/backstage/zjgz' },
-  { id: 'whltj', title: '地图查询', icon: 'icon-tjxx', href: '/backstage/map' },
-  {
-    id: 'tptz',
-    title: '图片拖拽框',
-    icon: 'icon-tjxx',
-    href: '/backstage/imageDrag'
-  },
-  {
-    id: 'cxmb',
-    title: '查询面板',
-    icon: 'icon-zdxx',
-    fullPath: '/backstage/cxmb',
-    children: [
-      {
-        id: 'cxmb1',
-        title: '查询面板',
-        icon: 'icon-zdxx',
-        href: '/backstage/cxmb/cxmb1'
-      },
-      {
-        id: 'fycxmb',
-        title: '后端分页查询面板',
-        icon: 'icon-zdxx',
-        href: '/backstage/cxmb/fycxmb'
-      }
-    ]
-  },
-  {
-    id: 'clgl',
-    title: '标签页',
-    icon: 'icon-manage',
-    fullPath: '/backstage/tabs',
-    children: [
-      {
-        id: 'lps',
-        title: '卡片式',
-        icon: 'icon-tjxx',
-        href: '/backstage/tabs/card'
-      },
-      {
-        id: 'lps2',
-        title: '卡片式2',
-        icon: 'icon-tjxx',
-        href: '/backstage/tabs/card2'
-      },
-      {
-        id: 'zdy',
-        title: '自定义标签页',
-        icon: 'icon-tjxx',
-        href: '/backstage/tabs/customize'
-      }
-    ]
-  },
-  { id: 'spyc', title: '视频异常', icon: 'icon-ycxx', href: '/backstage/spyc' },
-  {
-    id: 'spyw',
-    title: '视频移位巡检',
-    icon: 'icon-xcxx',
-    href: '/backstage/spyw'
-  },
-  {
-    id: 'wxgdcx',
-    title: '维修工单',
-    icon: 'icon-wxxx',
-    href: '/backstage/wxgdcx'
-  },
-  {
-    id: 'zjgzlsjl',
-    title: '主机故障历史记录',
-    icon: 'icon-lsxx',
-    href: '/backstage/zjgzlsjl'
+import _ from 'underscore'
+import { data as menu } from './menu.config.json'
+import { hasObject, clone } from 'util'
+
+/**
+ * 获取二、三级菜单列表
+ *
+ * @param {*} menu：菜单
+ * @returns 返回子菜单
+ */
+function childrenList(menu) {
+  return _.filter(menu, item => item.pid)
+}
+
+/**
+ * 获取子菜单的某一个属性列表
+ *
+ * @param {*} menu：菜单
+ * @param {*} attr：属性
+ * @returns
+ */
+function childrenIndexs(menu, attr) {
+  return _.pluck(menu, attr)
+}
+
+/**
+ * 循环生成树形菜单
+ *
+ * @param {*} menu：需要循环的菜单
+ * @param {*} children：子菜单 例[childrenList(menu)]
+ * @param {*} superior：上级项
+ * @returns
+ */
+function childrenCycleList(menu, children, superior) {
+  return _.map(menu, item => {
+    if (superior) item.path = `${superior.path}/${item.id}`
+    const index = childrenIndexs(children, 'pid').indexOf(item.id)
+    if (index !== -1) {
+      const currentMenu = _.filter(children, _item => _item.pid === item.id)
+      item.children = childrenCycleList(currentMenu, children, item)
+    }
+    if (item.value) item.path += item.value
+    return item
+  })
+}
+
+/**
+ * 对应菜单项
+ *
+ * @param {*} root：主菜单项
+ * @returns
+ */
+function resetMenuList(root) {
+  if (!root.children) return []
+  const menu = clone(root.children)
+  return childrenCycleList(menu, childrenList(menu), root)
+}
+
+/* ******************** 生成菜单结构 ******************** */
+
+/**
+ * 生成菜单列表
+ *
+ * @export
+ * @param {*} name：过滤主菜单
+ * @returns
+ */
+export function getMenuList(name) {
+  const menuRoot = _.filter(clone(menu), item => item.id === name)[0]
+  if (!hasObject(menuRoot)) return []
+  return _.filter(resetMenuList(menuRoot), item => !item.pid)
+}
+
+/* ******************** 生成 vue-router 结构 ******************** */
+
+/**
+ * 获取子菜单列表
+ *
+ * @param {*} menu：菜单
+ * @returns
+ */
+function getChildrenList(menu) {
+  const childrens = []
+  _.each(menu, item => {
+    item.children && childrens.push(...getChildrenItem(item.children))
+  })
+  return _.uniq(childrens)
+}
+
+/**
+ * 树形菜单转成菜单列表
+ *
+ * @param {*} menu：菜单
+ * @returns
+ */
+function getChildrenItem(menu) {
+  const childrens = []
+  _.each(menu, item => {
+    if (item.children) childrens.push(...getChildrenItem(item.children))
+    else childrens.push(item)
+  })
+  return childrens
+}
+
+/**
+ * 过滤没有component属性
+ *
+ * @param {*} menu：菜单
+ * @returns
+ */
+function filterRouterItem(menu) {
+  return _.filter(menu, item => item.component)
+}
+
+/**
+ * 合并菜单
+ *
+ * @param {*} menu:树形菜单
+ * @param {*} uniqMenu：子菜单列表
+ * @returns
+ */
+function mergeMenuItem(menu, uniqMenu) {
+  return _.map(menu, item => {
+    const menuItem = _.filter(uniqMenu, _item => {
+      return _item.id === item.id && _item.name === item.name
+    })
+    return resetRouterItem(menuItem.length > 0 ? menuItem[0] : item)
+  })
+}
+
+/**
+ * 转成vue-router结构
+ *
+ * @param {*} item
+ * @returns
+ */
+function resetRouterItem(item) {
+  const data = {}
+  data.path = item.path
+  if (item.name) data.name = item.name
+  if (item.meta) data.meta = item.meta
+  if (item.redirect) data.redirect = item.redirect
+  if (item.component) {
+    // data.component = resolve => require([`../../${item.component}`], resolve)
+    data.component = () => import(`../../${item.component}`)
   }
-]
-const systemMenuList = [
-  { id: 'zdfx', title: '终端分析系统', icon: 'icon-kefu' },
-  { id: 'qyhj', title: '企业函件管理', icon: 'icon-peoplelist', href: '' },
-  { id: 'gdxt', title: '工单管理系统', icon: 'icon-mail', href: '' },
-  { id: 'wxgl', title: '维修管理系统', icon: 'icon-label', href: '' },
-  { id: 'dldd', title: '运力调度管理', icon: 'icon-find', href: '' },
-  { id: 'fwpt', title: '服务平台管理', icon: 'icon-monitor', href: '' },
-  { id: 'hyyx', title: '行业运行情况', icon: 'icon-taxi', href: '' },
-  { id: 'sjdj', title: '运政数据接入', icon: 'icon-report', href: '' },
-  { id: 'zffw', title: '支付服务', icon: 'icon-form', href: '' },
-  { id: 'swxc', title: '导航屏升级', icon: 'icon-consultation', href: '' }
-]
-const secondaryMenuList = {
-  zdfx: [
-    { id: 'zjgz', title: '主机故障', icon: 'icon-gzxx', href: '/zdfx/zjgz' },
-    { id: 'zdyc', title: '车辆查询', icon: 'icon-zdxx', href: '/zdfx/form' },
-    { id: 'cxmb', title: '查询面板', icon: 'icon-zdxx', href: '/zdfx/cxmb' },
-    { id: 'whltj', title: '地图查询', icon: 'icon-tjxx', href: '/zdfx/map' },
-    {
-      id: 'tptz',
-      title: '图片拖拽框',
-      icon: 'icon-tjxx',
-      href: '/zdfx/imageDrag'
-    },
-    {
-      id: 'clgl',
-      title: '标签页',
-      icon: 'icon-manage',
-      fullPath: '/zdfx/tabs',
-      children: [
-        {
-          id: 'lps',
-          title: '卡片式',
-          icon: 'icon-tjxx',
-          href: '/zdfx/tabs/card'
-        },
-        {
-          id: 'lps2',
-          title: '卡片式2',
-          icon: 'icon-tjxx',
-          href: '/zdfx/tabs/card2'
-        },
-        {
-          id: 'zdy',
-          title: '自定义标签页',
-          icon: 'icon-tjxx',
-          href: '/zdfx/tabs/customize'
-        },
-        {
-          id: 'wsxclcx',
-          title: '未上线车辆查询',
-          icon: 'icon-cxxx',
-          href: '/zdfx/clgl/wsxclcx'
-        }
-      ]
-    },
-    { id: 'spyc', title: '视频异常', icon: 'icon-ycxx', href: '/zdfx/spyc' },
-    {
-      id: 'spyw',
-      title: '视频移位巡检',
-      icon: 'icon-xcxx',
-      href: '/zdfx/spyw'
-    },
-    {
-      id: 'wxgdcx',
-      title: '维修工单',
-      icon: 'icon-wxxx',
-      href: '/zdfx/wxgdcx'
-    },
-    {
-      id: 'zjgzlsjl',
-      title: '主机故障历史记录',
-      icon: 'icon-lsxx',
-      href: '/zdfx/zjgzlsjl'
-    }
-  ],
-  qyhj: [
-    { id: 'hjtj', title: '函件添加', icon: 'el-icon-plus', href: '/qyhj/hjtj' },
-    { id: 'hjfs', title: '函件发送', icon: 'icon-fsxx', href: '/qyhj/hjfs' },
-    { id: 'hjcx', title: '函件查询', icon: 'icon-cxxx', href: '/qyhj/hjcx' },
-    { id: 'hjsh', title: '函件审核', icon: 'icon-shxx', href: '/qyhj/hjsh' },
-    { id: 'hjfw', title: '函件服务', icon: 'icon-kefu', href: '/qyhj/hjfw' },
-    {
-      id: 'hjfwtj',
-      title: '函件服务统计',
-      icon: 'icon-tjxx',
-      href: '/qyhj/hjfwtj'
-    },
-    {
-      id: 'btclgl',
-      title: '报停车辆管理',
-      icon: 'icon-manage',
-      href: '/qyhj/btclgl'
-    },
-    {
-      id: 'btcltj',
-      title: '报停车辆统计',
-      icon: 'icon-tjxx',
-      href: '/qyhj/btcltj'
-    }
-  ],
-  gdxt: [
-    { id: 'gdpf', title: '工单派发', icon: 'icon-pfxx', href: '/gdxt/gdpf' },
-    { id: 'gdgl', title: '工单管理', icon: 'icon-manage', href: '/gdxt/gdgl' },
-    { id: 'gdtj', title: '工单统计', icon: 'icon-tjxx', href: '/gdxt/gdtj' }
-  ],
-  wxgl: [
-    {
-      id: 'wxzlbg',
-      title: '维修质量报告',
-      icon: 'icon-form',
-      href: '/wxgl/wxzlbg'
-    },
-    {
-      id: 'wxjlcx',
-      title: '维修记录查询',
-      icon: 'icon-cxxx',
-      href: '/wxgl/wxjlcx'
-    },
-    {
-      id: 'wxjltj',
-      title: '维修记录统计',
-      icon: 'icon-tjxx',
-      href: '/wxgl/wxjltj'
-    }
-  ],
-  dldd: [
-    {
-      id: 'dlddcx',
-      title: '动力调度查询',
-      icon: 'icon-cxxx',
-      href: '/dldd/dlddcx'
-    },
-    {
-      id: 'dlddtj',
-      title: '动力调度统计',
-      icon: 'icon-tjxx',
-      href: '/dldd/dlddtj'
-    }
-  ],
-  fwpt: [
-    {
-      id: 'qyfzxcx',
-      title: '企业分中心查询',
-      icon: 'icon-cxxx',
-      href: '/fwpt/qyfzxcx'
-    },
-    {
-      id: 'qyfzxtj',
-      title: '企业分中心统计',
-      icon: 'icon-tjxx',
-      href: '/fwpt/qyfzxtj'
-    },
-    {
-      id: 'scfzxcx',
-      title: '手持分中心查询',
-      icon: 'icon-cxxx',
-      href: '/fwpt/scfzxcx'
-    },
-    {
-      id: 'scfzxtj',
-      title: '手持分中心统计',
-      icon: 'icon-tjxx',
-      href: '/fwpt/scfzxtj'
-    },
-    {
-      id: 'wxglcx',
-      title: '维修管理查询',
-      icon: 'icon-cxxx',
-      href: '/fwpt/wxglcx'
-    },
-    {
-      id: 'wxgltj',
-      title: '维修管理统计',
-      icon: 'icon-tjxx',
-      href: '/fwpt/wxgltj'
-    },
-    {
-      id: 'wazcx',
-      title: '终端未安装查询',
-      icon: 'icon-cxxx',
-      href: '/fwpt/wazcx'
-    },
-    {
-      id: 'aztj',
-      title: '安装情况统计',
-      icon: 'icon-tjxx',
-      href: '/fwpt/aztj'
-    },
-    {
-      id: 'ydaz',
-      title: '月度安装分析',
-      icon: 'icon-fxxx',
-      href: '/fwpt/ydaz'
-    },
-    {
-      id: 'btcltj',
-      title: '报停车辆统计',
-      icon: 'icon-tjxx',
-      href: '/fwpt/btcltj'
-    },
-    {
-      id: 'spgl',
-      title: '审批管理',
-      icon: 'icon-manage',
-      fullPath: '/fwpt/spgl',
-      children: [
-        {
-          id: 'clzrsp',
-          title: '车辆转入审批',
-          icon: 'icon-shxx',
-          href: '/fwpt/spgl/clzrsp'
-        },
-        {
-          id: 'cpbgsp',
-          title: '车牌号变更审批',
-          icon: 'icon-shxx',
-          href: '/fwpt/spgl/cpbgsp'
-        },
-        {
-          id: 'cpbtsp',
-          title: '车辆报停审批',
-          icon: 'icon-shxx',
-          href: '/fwpt/spgl/cpbtsp'
-        }
-      ]
-    },
-    {
-      id: 'hcgl',
-      title: '回场管理',
-      icon: 'icon-manage',
-      fullPath: '/fwpt/hcgl',
-      children: [
-        {
-          id: 'hcclcx',
-          title: '回场车辆查询',
-          icon: 'icon-cxxx',
-          href: '/fwpt/hcgl/hcclcx'
-        },
-        {
-          id: 'hcbbtj',
-          title: '回场报表统计',
-          icon: 'icon-tjxx',
-          href: '/fwpt/hcgl/hcbbtj'
-        },
-        {
-          id: 'washcclcx',
-          title: '未按时回场车辆查询',
-          icon: 'icon-cxxx',
-          href: '/fwpt/hcgl/washcclcx'
-        },
-        {
-          id: 'hcgssz',
-          title: '回场公司设置',
-          icon: 'icon-wxxx',
-          href: '/fwpt/hcgl/hcgssz'
-        },
-        {
-          id: 'hcqysz',
-          title: '回场区域设置',
-          icon: 'icon-wxxx',
-          href: '/fwpt/hcgl/hcqysz'
-        }
-      ]
-    }
-  ],
-  hyyx: [
-    {
-      id: 'dcyyqk',
-      title: '单车营运情况',
-      icon: 'icon-qkxx',
-      href: '/hyyx/dcyyqk'
-    },
-    {
-      id: 'hyyyqk',
-      title: '行业营运情况',
-      icon: 'icon-qkxx',
-      href: '/hyyx/hyyyqk'
-    },
-    {
-      id: 'hypjyxqk',
-      title: '行业平均运行情况',
-      icon: 'icon-qkxx',
-      href: '/hyyx/hypjyxqk'
-    },
-    {
-      id: 'ztyyqs',
-      title: '总体营运趋势',
-      icon: 'icon-fxxx',
-      href: '/hyyx/ztyyqs'
-    },
-    {
-      id: 'qyclyyqk',
-      title: '企业车辆营运情况',
-      icon: 'icon-qkxx',
-      href: '/hyyx/qyclyyqk'
-    },
-    {
-      id: 'jsysrqk',
-      title: '驾驶员收入情况',
-      icon: 'icon-qkxx',
-      href: '/hyyx/jsysrqk'
-    },
-    {
-      id: 'clyxph',
-      title: '车辆运行排行',
-      icon: 'icon-phxx',
-      href: '/hyyx/clyxph'
-    },
-    {
-      id: 'ylxqrd',
-      title: '运力需求热点',
-      icon: 'icon-rdxx',
-      href: '/hyyx/ylxqrd'
-    },
-    {
-      id: 'dcrdod',
-      title: '打车热点OD分析',
-      icon: 'icon-fxxx',
-      fullPath: '/hyyx/dcrdod',
-      children: [
-        {
-          id: 'odyysj',
-          title: 'OD营运数据分析',
-          icon: 'icon-fxxx',
-          href: '/hyyx/dcrdod/odyysj'
-        },
-        {
-          id: 'odlxtj',
-          title: 'OD流向统计',
-          icon: 'icon-tjxx',
-          href: '/hyyx/dcrdod/odlxtj'
-        },
-        {
-          id: 'odlxt',
-          title: 'OD流向图',
-          icon: 'icon-kefu',
-          href: '/hyyx/dcrdod/odlxt'
-        }
-      ]
-    },
-    {
-      id: 'yjtfwz',
-      title: '夜间停放位置分析',
-      icon: 'icon-fxxx',
-      href: '/hyyx/yjtfwz'
-    },
-    {
-      id: 'jsywftj',
-      title: '驾驶员违法统计',
-      icon: 'icon-tjxx',
-      href: '/hyyx/jsywftj'
-    },
-    { id: 'tscx', title: '投诉查询', icon: 'icon-cxxx', href: '/hyyx/tscx' },
-    {
-      id: 'zpsj',
-      title: '抓拍数据',
-      icon: 'icon-sjxx',
-      fullPath: '/hyyx/zpsj',
-      children: [
-        {
-          id: 'zpsjcx',
-          title: '抓拍数据查询',
-          icon: 'icon-cxxx',
-          href: '/hyyx/zpsj/zpsjcx'
-        },
-        {
-          id: 'calltj',
-          title: '场站流量统计',
-          icon: 'icon-tjxx',
-          href: '/hyyx/zpsj/calltj'
-        },
-        {
-          id: 'rlltj',
-          title: '日流量统计',
-          icon: 'icon-tjxx',
-          href: '/hyyx/zpsj/rlltj'
-        },
-        {
-          id: 'fdlltj',
-          title: '分段流量统计',
-          icon: 'icon-tjxx',
-          href: '/hyyx/zpsj/fdlltj'
-        }
-      ]
-    }
-  ],
-  sjdj: [
-    { id: 'clxx', title: '车辆信息', icon: 'icon-taxi', href: '/sjdj/clxx' },
-    {
-      id: 'jsyxx',
-      title: '驾驶员信息',
-      icon: 'icon-user',
-      href: '/sjdj/jsyxx'
-    },
-    { id: 'gsxx', title: '公司信息', icon: 'icon-gsxx', href: '/sjdj/gsxx' },
-    { id: 'jbxx', title: '交班信息', icon: 'icon-jbxx', href: '/sjdj/jbxx' },
-    {
-      id: 'fwzlpt',
-      title: '服务质量平台',
-      icon: 'icon-kefu',
-      href: '/sjdj/fwzlpt'
-    }
-  ],
-  zffw: [
-    {
-      id: 'zfmxcx',
-      title: '支付明细查询',
-      icon: 'icon-cxxx',
-      href: '/zffw/zfmxcx'
-    },
-    {
-      id: 'zfzdtf',
-      title: '支付账单统计',
-      icon: 'icon-tjxx',
-      href: '/zffw/zfzdtf'
-    }
-  ]
+  return data
 }
 
-export function getMenuList() {
-  return menuList
-}
-
-export function getSystemMenuList() {
-  return systemMenuList
-}
-
-export function getSecondaryMenuList(name) {
-  if (!name) return []
-  return secondaryMenuList[name]
+/**
+ * 生成vue-router菜单
+ *
+ * @export
+ * @returns
+ */
+export function getRouterList() {
+  return _.map(clone(menu), item => {
+    const menuList = resetMenuList(item)
+    const childrenMenu = getChildrenList(menuList)
+    item = resetRouterItem(item)
+    item.children = filterRouterItem(mergeMenuItem(menuList, childrenMenu))
+    console.info('router:', item)
+    return item
+  })
 }

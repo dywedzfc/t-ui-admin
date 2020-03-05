@@ -11,51 +11,40 @@
         @display-state="handleSecondaryDisplayState"
       ></t-multiple-menu> -->
       <!-- <t-menu :data="getMenuList"></t-menu> -->
-      <t-menu-list :data="getMenuList" />
+      <t-menu-list :data="getMenuList('backstage')" />
     </template>
-    <template>
-      <router-view></router-view>
-    </template>
+    <router-view></router-view>
   </t-layout>
 </template>
 
 <script>
-// import TMenu from 'components/t-menu/TMenu'
-// import TMultipleMenu from 'components/t-multiple-menu/TMultipleMenu'
-import {
-  getMenuList,
-  getSystemMenuList,
-  getSecondaryMenuList
-} from 'assets/js/menu'
+import { getMenuList } from 'assets/js/menu'
+import { getCalendar } from 'util'
 
 export default {
   name: 'Index',
   data() {
     return {
       hasHoverLeftBar: false,
-      hasSecondaryMenu: false
+      hasSecondaryMenu: false,
+      data: this.getCalendar()
     }
   },
-  computed: {
-    getMenuList,
-    getSystemMenuList
-  },
+  computed: {},
   methods: {
-    getSecondaryMenuList,
+    getMenuList,
     handleSecondaryDisplayState(state) {
       this.hasSecondaryMenu = state
+    },
+    getCalendar() {
+      return getCalendar(new Date())
     }
   },
-  components: {
-    // TMultipleMenu,
-    // TMenu
-  }
+  components: {}
 }
 </script>
 
 <style lang="scss" scoped>
-.t-layout {
-}
 .t-header {
   height: 100%;
   color: #ffffff;

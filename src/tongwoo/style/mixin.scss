@@ -53,6 +53,24 @@
   box-shadow: 2px 2px 8px #888888;
 }
 
+@mixin border-color() {
+  &--primary {
+    border-color: #409eff;
+  }
+  &--success {
+    border-color: #85ce61;
+  }
+  &--info {
+    border-color: #dcdfe6;
+  }
+  &--warning {
+    border-color: #e6a23c;
+  }
+  &--danger {
+    border-color: #f56c6c;
+  }
+}
+
 @mixin list-radius($type: "") {
   &:first-child {
     @if ($type == "v") {

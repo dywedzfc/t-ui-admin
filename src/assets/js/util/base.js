@@ -1,5 +1,3 @@
-import moment from 'moment'
-
 const _toString = Object.prototype.toString
 
 export function hasObject(value) {
@@ -27,6 +25,28 @@ export function hasBoolean(value) {
 }
 
 /**
+ * 克隆数据
+ *
+ * @export
+ * @param {*} data：数据
+ * @returns
+ */
+export function clone(data) {
+  return JSON.parse(JSON.stringify(data))
+}
+
+/**
+ * 冻结数据
+ *
+ * @export
+ * @param {*} data
+ * @returns
+ */
+export function freezeData(data) {
+  return Object.freeze(Object.assign([], data))
+}
+
+/**
  * 定义图标类型名
  * @param icon
  * @returns {string|*}
@@ -38,17 +58,4 @@ export function iconClassName(icon) {
     else return icon
   }
   return ''
-}
-
-/**
- * 设置时间格式
- * 如果date值是空的不做处理
- *
- * @export
- * @param {*} date
- * @param {*} format
- * @returns
- */
-export function setDateTime(date, format) {
-  return (date && moment(date).format(format)) || ''
 }

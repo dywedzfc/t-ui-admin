@@ -16,6 +16,8 @@ module.exports = {
       alias: {
         api: resolve('src/api'),
         assets: resolve('src/assets'),
+        util: resolve('src/assets/js/util/index.js'),
+        views: resolve('src/views'),
         mixins: resolve('src/mixins'),
         tongwoo: resolve('src/tongwoo'),
         components: resolve('src/components')

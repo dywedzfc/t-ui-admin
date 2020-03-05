@@ -1,3 +1,5 @@
+@import "./variable";
+
 @mixin table-wrapper {
   &-wrapper {
     height: calc(100% - 48px);

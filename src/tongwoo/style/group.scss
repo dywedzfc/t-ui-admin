@@ -1,3 +1,5 @@
+@import "./mixin.scss";
+
 @mixin group-item {
   > .el-button {
     padding: 7px 11px;
@@ -36,6 +38,7 @@
     }
   }
 }
+
 @mixin form {
   .el-input,
   .el-select {

@@ -5,93 +5,98 @@
       "name": "首页",
       "icon": "icon-home",
       "path": "/",
-      "component": "./views/Index.vue",
-      "children": []
+      "component": "views/Index"
     },
     {
       "id": "backstage",
       "name": "后台首页",
       "icon": "icon-home",
       "path": "/backstage",
-      "component": "./views/Index.vue",
+      "component": "views/backstage/Index.vue",
+      "redirect": { "path": "/backstage/home", "name": "Home" },
       "children": [
         {
           "id": "home",
           "name": "Home",
-          "path": "/home",
-          "component": "./views/Home.vue"
+          "component": "views/Home.vue"
         },
         {
           "id": "zjgz",
           "name": "主机故障",
           "icon": "icon-gzxx",
-          "path": "/backstage/zjgz",
-          "component": ""
+          "component": "components/HelloWorld"
         },
         {
-          "id": "whltj",
+          "id": "map",
           "name": "地图查询",
           "icon": "icon-tjxx",
-          "path": "/backstage/map",
-          "component": ""
+          "component": "views/backstage/map/map"
         },
         {
-          "id": "tptz",
+          "id": "imageDrag",
           "name": "图片拖拽框",
           "icon": "icon-tjxx",
-          "path": "/backstage/imageDrag",
-          "component": ""
+          "component": "views/backstage/map/ImageDrag.vue"
         },
-        {
-          "id": "cxmb",
-          "name": "查询面板",
-          "icon": "icon-zdxx",
-          "path": "/backstage/cxmb",
-          "component": ""
-        },
+        { "id": "cxmb", "name": "查询面板", "icon": "icon-zdxx" },
         {
           "id": "cxmb1",
           "name": "查询面板",
           "icon": "icon-zdxx",
-          "path": "/backstage/cxmb/cxmb1",
-          "component": ""
+          "component": "views/backstage/form/QueryPanelInfo.vue",
+          "pid": "cxmb"
         },
         {
           "id": "fycxmb",
           "name": "后端分页查询面板",
           "icon": "icon-zdxx",
-          "path": "/backstage/cxmb/fycxmb",
-          "component": ""
+          "component": "views/backstage/form/VehicleInquiry.vue",
+          "pid": "cxmb"
         },
         {
-          "id": "clgl",
-          "name": "标签页",
-          "icon": "icon-manage",
-          "path": "/backstage/tabs",
-          "component": ""
+          "id": "ceshi",
+          "name": "测试",
+          "icon": "icon-zdxx",
+          "pid": "cxmb"
         },
         {
-          "id": "lps",
+          "id": "ceshi1",
+          "name": "测试1",
+          "icon": "icon-zdxx",
+          "component": "views/backstage/form/VehicleInquiry.vue",
+          "value": "/:id",
+          "pid": "ceshi"
+        },
+        { "id": "tabs", "name": "标签页", "icon": "icon-manage" },
+        {
+          "id": "card",
           "name": "卡片式",
           "icon": "icon-tjxx",
-          "path": "/backstage/tabs/card",
-          "component": ""
+          "component": "views/backstage/tabs/CardTabs.vue",
+          "pid": "tabs"
         },
         {
-          "id": "lps2",
+          "id": "card2",
           "name": "卡片式2",
           "icon": "icon-tjxx",
-          "path": "/backstage/tabs/card2",
-          "component": ""
+          "component": "views/backstage/tabs/CardTabs2.vue",
+          "pid": "tabs"
         },
         {
-          "id": "zdy",
+          "id": "customize",
           "name": "自定义标签页",
           "icon": "icon-tjxx",
-          "path": "/backstage/tabs/customize",
-          "component": ""
+          "component": "views/backstage/tabs/CustomizeTabs.vue",
+          "pid": "tabs"
         }
       ]
-    }
+    },
+    {
+      "id": "404",
+      "name": "NotFound",
+      "path": "/404",
+      "component": "views/NotFound"
+    },
+    { "path": "*", "redirect": { "path": "/404", "name": "NotFound" } }
   ]
 }
