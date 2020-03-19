@@ -198,10 +198,10 @@ export default {
       this.notice.display = !this.notice.display
     },
     loadImage(path) {
+      const panel = this.$refs.dragPanel
       if (path) {
         this.loading = true
         const image = Image.load(path)
-        const panel = this.$refs.dragPanel
         image.then(image => {
           const panelWidth = panel.offsetWidth
           let width = image.width
@@ -215,10 +215,12 @@ export default {
           this.image.height = height
           const drawWidth = panel.offsetWidth / 2 - width / 2
           const drawHeight = panel.offsetHeight / 2 - height / 2
+          this.canvasText.clearRect(0, 0, panel.offsetWidth, panel.offsetHeight)
           this.canvasText.drawImage(img, drawWidth, drawHeight, width, height)
           this.loading = false
         })
-      }
+      } else
+        this.canvasText.clearRect(0, 0, panel.offsetWidth, panel.offsetHeight)
     }
   },
   watch: {

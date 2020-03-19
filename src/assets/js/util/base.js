@@ -23,39 +23,3 @@ export function hasNumber(value) {
 export function hasBoolean(value) {
   return _toString.call(value) === '[object Boolean]'
 }
-
-/**
- * 克隆数据
- *
- * @export
- * @param {*} data：数据
- * @returns
- */
-export function clone(data) {
-  return JSON.parse(JSON.stringify(data))
-}
-
-/**
- * 冻结数据
- *
- * @export
- * @param {*} data
- * @returns
- */
-export function freezeData(data) {
-  return Object.freeze(Object.assign([], data))
-}
-
-/**
- * 定义图标类型名
- * @param icon
- * @returns {string|*}
- */
-export function iconClassName(icon) {
-  if (icon) {
-    if (icon.indexOf('el-icon-') === 0) return icon
-    else if (icon.indexOf('icon-') === 0) return `iconfont ${icon}`
-    else return icon
-  }
-  return ''
-}

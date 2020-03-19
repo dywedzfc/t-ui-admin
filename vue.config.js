@@ -22,6 +22,9 @@ module.exports = {
         TUI: resolve('src/t-ui'),
         components: resolve('src/components')
       }
+    },
+    externals: {
+      AMap: 'AMap'
     }
   }
 }

@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'map',
+  name: 'Map',
   data() {
     return {
       dialog: {
