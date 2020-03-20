@@ -24,6 +24,30 @@ export function freezeData(data) {
 }
 
 /**
+ * 首字母大写
+ *
+ * @export
+ * @param {*} value
+ * @returns
+ */
+export function initialCapital(value) {
+  const capital = value.toUpperCase()
+  return capital.substring(0, 1) + value.substring(1)
+}
+
+/**
+ * 转驼峰式
+ *
+ * @export
+ * @param {*} name
+ * @returns
+ */
+export function upperCamelCase(name) {
+  const nameList = name.split('-')
+  return _.map(nameList, item => initialCapital(item)).join('')
+}
+
+/**
  * 数据长度限制
  *
  * @export

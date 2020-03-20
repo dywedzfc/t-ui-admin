@@ -1,9 +1,8 @@
 const DEFAULT_AMP_CONFIG = {
-  key: null,
   v: '1.4.4',
   protocol: 'https',
   path: 'webapi.amap.com/maps',
-  // key: '',
+  key: '',
   plugin: [],
   callback: ''
 }
@@ -39,7 +38,6 @@ export default class AMapAPILoader {
     if (!this._config.uiVersion || window.AMapUI) return Promise.resolve()
     return new Promise((resolve, reject) => {
       const UIScript = document.createElement('script')
-      // const { protocol, key, uiVersion } = this._config
       const { uiVersion } = this._config
       const [versionMain, versionSub, versionDetail] = uiVersion.split('.')
       let src = `${this._config.protocol}://webapi.amap.com/ui/${versionMain}.${versionSub}/main-async.js`
