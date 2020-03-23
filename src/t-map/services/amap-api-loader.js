@@ -20,11 +20,12 @@ export default class AMapAPILoader {
   load() {
     if (this._window.AMap && this._window.AMap.Map) return this.loadUIAMap()
 
+    const scriptSrc = this._getScriptSrc()
     const script = this._document.createElement('script')
     script.type = 'text/javascript'
     script.async = true
     script.defer = true
-    script.src = this._getScriptSrc()
+    script.src = scriptSrc
 
     if (this._config.uiVersion) {
       this.loadUIAMap().then(() => {
@@ -32,7 +33,7 @@ export default class AMapAPILoader {
       })
     }
 
-    this._document.head.appendChild(script)
+    if (scriptSrc) this._document.head.appendChild(script)
   }
   loadUIAMap() {
     if (!this._config.uiVersion || window.AMapUI) return Promise.resolve()
@@ -56,6 +57,10 @@ export default class AMapAPILoader {
   _getScriptSrc() {
     const { protocol, path, v, key, plugin } = this._config
     const plugins = plugin.join(',')
-    return `${protocol}://${path}?v=${v}&key=${key}&plugin=${plugins}`
+    const url = `${protocol}://${path}?v=${v}&key=${key}&plugin=${plugins}`
+    const scripts = document.getElementsByTagName('script')
+    for (let i = 0; i < scripts.length; i++)
+      if (scripts[i].src === url) return ''
+    return url
   }
 }

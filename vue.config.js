@@ -19,7 +19,8 @@ module.exports = {
         util: resolve('src/assets/js/util/index.js'),
         views: resolve('src/views'),
         mixins: resolve('src/mixins'),
-        TUI: resolve('src/t-ui'),
+        't-amap': resolve('src/t-map/index.js'),
+        't-ui': resolve('src/t-ui'),
         components: resolve('src/components')
       }
     },

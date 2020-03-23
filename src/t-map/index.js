@@ -3,8 +3,16 @@ import { upperCamelCase } from 'util'
 // 初始化接口
 import { initAMapApiLoader } from './services/amap-api-instance'
 
-let components = []
-let VueAMap = {}
+// 导入组件
+import AMap from './components/AMap.vue'
+
+import AMapManager from './managers/amap-manager'
+
+let components = [AMap]
+let VueAMap = {
+  initAMapApiLoader,
+  AMapManager
+}
 
 VueAMap.install = Vue => {
   if (VueAMap.installed) return
@@ -27,5 +35,5 @@ if (typeof window !== 'undefined' && window.Vue) install(window.Vue)
 
 export default VueAMap
 
-export { initAMapApiLoader }
+export { AMapManager, initAMapApiLoader }
 export { lazyAMapApiLoaderInstance } from './services/amap-api-instance'

@@ -10,6 +10,7 @@
           </div>
         </div>
       </div>
+      <t-amap vid="map"></t-amap>
       <el-button type="text" @click="dialog.display = true"
         >点击打开 Dialog</el-button
       >
