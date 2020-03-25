@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
 import './plugins/scrollbar.js'
-// import { initAMapApiLoader } from 'TAMap'
 import TAMap from 't-amap'
 import TUI from 't-ui'
 

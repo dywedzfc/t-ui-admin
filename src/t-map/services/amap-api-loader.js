@@ -15,26 +15,41 @@ export default class AMapAPILoader {
     }
     this._document = document
     this._window = window
-    this._window = window
+    this._scriptLoaded = false
+    this._queueEvents = []
   }
+
   load() {
     if (this._window.AMap && this._window.AMap.Map) return this.loadUIAMap()
 
-    const scriptSrc = this._getScriptSrc()
+    if (this._scriptLoadingPromise) return this._scriptLoadingPromise
+
     const script = this._document.createElement('script')
     script.type = 'text/javascript'
     script.async = true
     script.defer = true
-    script.src = scriptSrc
+    script.src = this._getScriptSrc()
 
-    if (this._config.uiVersion) {
-      this.loadUIAMap().then(() => {
-        window.initAMapUI()
-      })
-    }
+    const UIPromise = this._config.uiVersion ? this.loadUIAMap() : null
 
-    if (scriptSrc) this._document.head.appendChild(script)
+    this._scriptLoadingPromise = new Promise((resolve, reject) => {
+      this._window['amapInitComponent'] = () => {
+        if (UIPromise) {
+          UIPromise.then(() => {
+            window.initAMapUI()
+            setTimeout(resolve)
+          })
+        } else return resolve()
+      }
+      script.onerror = error => reject(error)
+      this._document.head.appendChild(script)
+    })
+
+    console.info('load-ss1:', this._scriptLoadingPromise)
+
+    return this._scriptLoadingPromise
   }
+
   loadUIAMap() {
     if (!this._config.uiVersion || window.AMapUI) return Promise.resolve()
     return new Promise((resolve, reject) => {
@@ -54,6 +69,7 @@ export default class AMapAPILoader {
       UIScript.onerror = () => reject()
     })
   }
+
   _getScriptSrc() {
     const { protocol, path, v, key, plugin } = this._config
     const plugins = plugin.join(',')

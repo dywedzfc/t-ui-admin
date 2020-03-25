@@ -1,7 +1,7 @@
 <template>
   <div class="t-template-wrapper">
     <div class="t-map-panel">
-      <div class="t-map-dialog">
+      <!-- <div class="t-map-dialog">
         <div class="t-map-dialog-header">地图弹框</div>
         <div class="t-map-dialog-body">
           <div class="t-list">
@@ -9,9 +9,15 @@
             <div class="t-list-item">123</div>
           </div>
         </div>
-      </div>
-      <t-amap vid="map"></t-amap>
-      <el-button type="text" @click="dialog.display = true"
+      </div> -->
+      <t-amap
+        vid="map"
+        zoom="16"
+        viewMode="3D"
+        :rotateEnable="true"
+        :center="[117.000923, 36.675807]"
+      ></t-amap>
+      <!-- <el-button type="text" @click="dialog.display = true"
         >点击打开 Dialog</el-button
       >
 
@@ -29,7 +35,7 @@
             >确 定</el-button
           >
         </span>
-      </el-dialog>
+      </el-dialog> -->
     </div>
   </div>
 </template>
