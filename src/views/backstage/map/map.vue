@@ -16,6 +16,7 @@
         viewMode="3D"
         :rotateEnable="true"
         :center="[117.000923, 36.675807]"
+        ref="map"
       ></t-amap>
       <!-- <el-button type="text" @click="dialog.display = true"
         >点击打开 Dialog</el-button
@@ -50,6 +51,13 @@ export default {
         title: ''
       }
     }
+  },
+  mounted() {
+    console.info('MAP:', this.$refs['map'].$amap)
+    setTimeout(() => {
+      const amap = this.$refs['map'].$amap
+      console.info('MAP:', amap.getSize())
+    }, 1000)
   },
   methods: {
     handleDialogClose() {}

@@ -181,13 +181,6 @@ export default {
      * PC端默认true，手机端默认false。
      */
     'buildingAnimation',
-    // showIndoorMap: { type: Boolean, default: true },
-    // resizeEnable: { type: Boolean, default: false },
-    // dragEnable: { type: Boolean, default: true },
-    // keyboardEnable: { type: Boolean, default: true },
-    // doubleClickZoom: { type: Boolean, default: true },
-    // zoomEnable: { type: Boolean, default: true },
-    // rotateEnable: { type: Boolean, default: false },
     'amapManager'
   ],
   beforeCreate() {
@@ -203,7 +196,6 @@ export default {
   },
   methods: {
     createMap() {
-      // console.info('aaaa--t:', this._loadPromise)
       this._loadPromise.then(() => {
         let mapElement = this.$el.querySelector('.t-map')
         const elementID = this.vid
@@ -215,7 +207,6 @@ export default {
       const props = this.convertProps()
       this.$amap = this.$amapComponent = new AMap.Map(elementID, props)
       if (this.amapManager) this.amapManager.setMap(this.$amap)
-      console.info('initMap:', props)
     }
   }
 }
