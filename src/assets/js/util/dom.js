@@ -65,3 +65,55 @@ export function formatTemplateHeight(elements) {
   else height = parseInt(elements.offsetHeight)
   return `calc(100% - ${height}px - 20px)`
 }
+
+/**
+ * 从文本中获取img标签
+ *
+ * @export
+ * @param {*} content
+ * @returns
+ */
+export function getImageTag(content) {
+  const imageReg = /<img.*?(?:>|\/>)/gi
+  return content.match(imageReg)
+}
+
+/**
+ * 从文本中获取src路径
+ *
+ * @export
+ * @param {*} content
+ * @returns
+ */
+export function getSrcPath(content) {
+  const srcReg = /src=['"]?([^'"]*)['"]?/i
+  return content.match(srcReg)
+}
+
+/**
+ * 富文本长度限制
+ *
+ * @export
+ * @param {*} content
+ * @param {*} totalLength：文本总长度
+ * @returns
+ */
+export function richTextLengthLimit(content, totalLength) {
+  if (!content) throw new TypeError('richTextLengthLimit content：值为空')
+  const splitText = ']-*-[' // 分割文本
+  const interimContent = content.replace(/<[^>]+>/gi, splitText) // 获取文本内容
+  let contentLength = 0 // 累计文本长度
+  const interimList = _.map(interimContent.split(splitText), item => {
+    const oldLenght = contentLength
+    contentLength += item.length
+    if (contentLength > totalLength && oldLenght <= totalLength) {
+      const outLength = contentLength - totalLength
+      return item.substring(0, item.length - outLength) + '...'
+    } else if (oldLenght > totalLength) return ''
+    else return item
+  })
+  return _.map(
+    _.filter(interimList, item => item),
+    item => `<p>${item}</p>`
+  ).join('')
+}

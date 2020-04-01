@@ -18,7 +18,7 @@ export default {
           this.__contextReady.call(this, this.convertProps())
       })
     this.$amap = this.$amap || this.$parent.$amap
-    // if (this.$amap) this.register()
+    if (this.$amap) this.register()
     // else
     //   this.$on(CONSTANTS.AMAP_READY_EVENT, map => {
     //     this.$amap = map
@@ -80,6 +80,32 @@ export default {
         if (convertFn) return convertFn(sourceData)
         return sourceData
       }
+    },
+    registerEvents() {},
+    setPropWatchers() {},
+    registerToManager() {},
+    initProps() {
+      const props = ['editable', 'visible']
+
+      props.forEach(propStr => {
+        if (this[propStr] !== undefined) {
+          const handleFun = this.getHandlerFun(propStr)
+          if (handleFun) {
+            const _this = this.$amapComponent
+            handleFun(_this, this.convertSignalProp(propStr, this[propStr]))
+          }
+        }
+      })
+    },
+    register() {
+      const props = this.convertProps()
+      const res = this.__initComponent && this.__initComponent(props)
+      console.info('register:', res && res.then)
+      if (res && res.then) res.then(instance => this.registerRest(instance))
+      else this.registerRest(res)
+    },
+    registerRest(instance) {
+      if (!this.$amapComponent && instance) this.$amapComponent = instance
     }
   }
 }

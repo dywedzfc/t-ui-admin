@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import AMap from 'AMap'
+// import AMap from 'AMap'
 import registerMixin from '../mixins/register-component'
 import { lazyAMapApiLoaderInstance } from '../services/amap-api-instance'
 import { resetTimer } from 'util'

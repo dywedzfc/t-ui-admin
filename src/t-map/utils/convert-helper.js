@@ -1,4 +1,4 @@
-import AMap from 'AMap'
+// import AMap from 'AMap'
 
 export function toPixel(arr) {
   return new AMap.Pixel(arr[0], arr[1])

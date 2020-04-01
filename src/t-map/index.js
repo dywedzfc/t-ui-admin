@@ -5,10 +5,11 @@ import { initAMapApiLoader } from './services/amap-api-instance'
 
 // 导入组件
 import AMap from './components/AMap.vue'
+import AMapMarker from './components/AMapMarker.vue'
 
 import AMapManager from './managers/amap-manager'
 
-let components = [AMap]
+let components = [AMap, AMapMarker]
 let VueAMap = {
   initAMapApiLoader,
   AMapManager

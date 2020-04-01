@@ -17,7 +17,9 @@
         :rotateEnable="true"
         :center="[117.000923, 36.675807]"
         ref="map"
-      ></t-amap>
+      >
+        <t-amap-marker vid="amapMarker1" :position="position"></t-amap-marker>
+      </t-amap>
       <!-- <el-button type="text" @click="dialog.display = true"
         >点击打开 Dialog</el-button
       >
@@ -46,6 +48,24 @@ export default {
   name: 'Map',
   data() {
     return {
+      position: [117.000923, 36.675807],
+      markers: [
+        {
+          position: [117.000923, 36.675807],
+          events: {
+            click: () => {
+              alert('click marker')
+            },
+            dragend: e => {
+              console.log('---event---: dragend')
+              this.markers[0].position = [e.lnglat.lng, e.lnglat.lat]
+            }
+          },
+          visible: true,
+          draggable: false,
+          template: '<span>1</span>'
+        }
+      ],
       dialog: {
         display: false,
         title: ''
@@ -55,8 +75,8 @@ export default {
   mounted() {
     console.info('MAP:', this.$refs['map'].$amap)
     setTimeout(() => {
-      const amap = this.$refs['map'].$amap
-      console.info('MAP:', amap.getSize())
+      // const amap = this.$refs['map'].$amap
+      // console.info('MAP:', amap.getSize())
     }, 1000)
   },
   methods: {

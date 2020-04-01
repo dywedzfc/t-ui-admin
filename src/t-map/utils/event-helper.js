@@ -1,4 +1,4 @@
-import AMap from 'AMap'
+// import AMap from 'AMap'
 let eventHelper
 
 class EventHelper {
