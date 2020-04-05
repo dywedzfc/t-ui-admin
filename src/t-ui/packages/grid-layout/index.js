@@ -1,7 +1,7 @@
-import TWGridLayout from './src/GridLayout.vue'
+import TGridLayout from './src/GridLayout.vue'
 
-TWGridLayout.install = function(Vue) {
-  Vue.component(TWGridLayout.name, TWGridLayout)
+TGridLayout.install = function (Vue) {
+  Vue.component(TGridLayout.name, TGridLayout)
 }
 
-export default TWGridLayout
+export default TGridLayout

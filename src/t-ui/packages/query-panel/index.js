@@ -1,7 +1,7 @@
-import TWQueryPanel from './src/QueryPanel.vue'
+import TQueryPanel from './src/QueryPanel.vue'
 
-TWQueryPanel.install = function(Vue) {
-  Vue.component(TWQueryPanel.name, TWQueryPanel)
+TQueryPanel.install = function (Vue) {
+  Vue.component(TQueryPanel.name, TQueryPanel)
 }
 
-export default TWQueryPanel
+export default TQueryPanel

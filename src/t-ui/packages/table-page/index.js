@@ -1,7 +1,7 @@
-import TWTablePage from './src/TablePage.vue'
+import TTablePage from './src/TablePage.vue'
 
-TWTablePage.install = function(Vue) {
-  Vue.component(TWTablePage.name, TWTablePage)
+TTablePage.install = function (Vue) {
+  Vue.component(TTablePage.name, TTablePage)
 }
 
-export default TWTablePage
+export default TTablePage

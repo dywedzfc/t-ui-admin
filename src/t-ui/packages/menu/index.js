@@ -1,7 +1,7 @@
-import TWMenu from './src/Menu.vue'
+import TMenu from './src/Menu.vue'
 
-TWMenu.install = function(Vue) {
-  Vue.component(TWMenu.name, TWMenu)
+TMenu.install = function (Vue) {
+  Vue.component(TMenu.name, TMenu)
 }
 
-export default TWMenu
+export default TMenu

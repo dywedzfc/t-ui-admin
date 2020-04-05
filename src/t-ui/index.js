@@ -13,6 +13,7 @@ import CardQuery from './packages/card-query'
 import QueryPanel from './packages/query-panel'
 import QueryBar from './packages/query-bar'
 import DragPicture from './packages/drag-picture'
+import Dialog from './packages/dialog'
 import Group from './packages/group'
 import Drawer from './packages/drawer'
 
@@ -32,12 +33,13 @@ const components = [
   QueryPanel,
   QueryBar,
   DragPicture,
+  Dialog,
   Group,
-  Drawer
+  Drawer,
 ]
 
-const install = function(Vue) {
-  components.forEach(component => {
+const install = function (Vue) {
+  components.forEach((component) => {
     Vue.component(component.name, component)
   })
 }
@@ -45,5 +47,5 @@ const install = function(Vue) {
 export default {
   version: '1.0.6',
   install,
-  ...components
+  ...components,
 }

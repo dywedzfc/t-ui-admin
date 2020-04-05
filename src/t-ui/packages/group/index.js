@@ -1,7 +1,7 @@
-import TWGroup from './src/Group.vue'
+import TGroup from './src/Group.vue'
 
-TWGroup.install = function(Vue) {
-  Vue.component(TWGroup.name, TWGroup)
+TGroup.install = function (Vue) {
+  Vue.component(TGroup.name, TGroup)
 }
 
-export default TWGroup
+export default TGroup

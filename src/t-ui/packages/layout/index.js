@@ -1,7 +1,7 @@
-import TWLayout from './src/Layout.vue'
+import TLayout from './src/Layout.vue'
 
-TWLayout.install = function(Vue) {
-  Vue.component(TWLayout.name, TWLayout)
+TLayout.install = function (Vue) {
+  Vue.component(TLayout.name, TLayout)
 }
 
-export default TWLayout
+export default TLayout

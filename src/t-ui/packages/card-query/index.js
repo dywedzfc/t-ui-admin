@@ -1,7 +1,7 @@
-import TWCardQuery from './src/CardQuery.vue'
+import TCardQuery from './src/CardQuery.vue'
 
-TWCardQuery.install = function(Vue) {
-  Vue.component(TWCardQuery.name, TWCardQuery)
+TCardQuery.install = function (Vue) {
+  Vue.component(TCardQuery.name, TCardQuery)
 }
 
-export default TWCardQuery
+export default TCardQuery

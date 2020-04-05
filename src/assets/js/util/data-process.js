@@ -44,7 +44,7 @@ export function initialCapital(value) {
  */
 export function upperCamelCase(name) {
   const nameList = name.split('-')
-  return _.map(nameList, item => initialCapital(item)).join('')
+  return _.map(nameList, (item) => initialCapital(item)).join('')
 }
 
 /**
@@ -66,18 +66,12 @@ export function listLengthLimit(data, length = 5) {
  * 前端分页
  *
  * @export
- * @param {*} {
- *   data = [],
- *   pageSize = 10,
- *   currentPage = 1
- * }
+ * @param {*} [data=[]]
+ * @param {number} [pageSize=10]
+ * @param {number} [currentPage=1]
  * @returns
  */
-export function filterFrontEndPage({
-  data = [],
-  pageSize = 10,
-  currentPage = 1
-} = {}) {
+export function filterFrontEndPage(data = [], pageSize = 10, currentPage = 1) {
   const currentPageIndex = currentPage - 1
   const startPageItem = currentPageIndex * pageSize
   const endPageItem = currentPage * pageSize

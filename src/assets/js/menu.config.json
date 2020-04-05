@@ -53,6 +53,14 @@
           "component": "views/backstage/form/VehicleInquiry.vue",
           "pid": "cxmb"
         },
+        { "id": "dhk", "name": "对话框", "icon": "icon-zdxx" },
+        {
+          "id": "dhk1",
+          "name": "对话框",
+          "icon": "icon-zdxx",
+          "component": "views/backstage/dialog/Dialog.vue",
+          "pid": "dhk"
+        },
         {
           "id": "ceshi",
           "name": "测试",

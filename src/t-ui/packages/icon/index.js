@@ -1,7 +1,7 @@
-import TWIcon from './src/icon.vue'
+import TIcon from './src/icon.vue'
 
-TWIcon.install = function(Vue) {
-  Vue.component(TWIcon.name, TWIcon)
+TIcon.install = function (Vue) {
+  Vue.component(TIcon.name, TIcon)
 }
 
-export default TWIcon
+export default TIcon

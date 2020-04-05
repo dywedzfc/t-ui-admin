@@ -1,7 +1,7 @@
-import TWQueryBar from './src/QueryBar.vue'
+import TQueryBar from './src/QueryBar.vue'
 
-TWQueryBar.install = function(Vue) {
-  Vue.component(TWQueryBar.name, TWQueryBar)
+TQueryBar.install = function (Vue) {
+  Vue.component(TQueryBar.name, TQueryBar)
 }
 
-export default TWQueryBar
+export default TQueryBar

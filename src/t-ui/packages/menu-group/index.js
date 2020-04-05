@@ -1,7 +1,7 @@
-import TWMenuGroup from '../menu/src/MenuGroup.vue'
+import TMenuGroup from '../menu/src/MenuGroup.vue'
 
-TWMenuGroup.install = function(Vue) {
-  Vue.component(TWMenuGroup.name, TWMenuGroup)
+TMenuGroup.install = function (Vue) {
+  Vue.component(TMenuGroup.name, TMenuGroup)
 }
 
-export default TWMenuGroup
+export default TMenuGroup

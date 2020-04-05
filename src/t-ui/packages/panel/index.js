@@ -1,7 +1,7 @@
-import TWPanel from './src/Panel.vue'
+import TPanel from './src/Panel.vue'
 
-TWPanel.install = function(Vue) {
-  Vue.component(TWPanel.name, TWPanel)
+TPanel.install = function (Vue) {
+  Vue.component(TPanel.name, TPanel)
 }
 
-export default TWPanel
+export default TPanel

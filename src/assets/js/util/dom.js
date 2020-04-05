@@ -16,6 +16,8 @@ export function hasClass(el, cls) {
 
 /**
  * 定义图标类型名
+ *
+ * @export
  * @param icon
  * @returns {string|*}
  */
@@ -26,6 +28,33 @@ export function iconClassName(icon) {
     else return icon
   }
   return ''
+}
+
+/**
+ * 样式的值转数字类型
+ *
+ * @export
+ * @param {*} value
+ * @returns
+ */
+export function styleValueToInt(value) {
+  if (value == null) throw new TypeError(`styleValueToInt value：值为空`)
+  const resetNumber = value.match(/^[0-9]+/)
+  if (!resetNumber || !resetNumber[0])
+    throw new TypeError(`styleValueToInt value：类型不符合；当前的值:${value}`)
+  return parseInt(value.match(/^[0-9]+/)[0])
+}
+
+/**
+ * 获取样式的单位
+ *
+ * @export
+ * @param {*} value
+ * @returns
+ */
+export function getStyleValueUnit(value) {
+  if (value == null) throw new TypeError(`getStyleValueUnit value：值为空`)
+  return value.match(/px|em|rem|pt|pc|ex|mm|cm|in|%$/)[0]
 }
 
 /**
@@ -55,7 +84,7 @@ export function formatTemplateHeight(elements) {
   let height = 0
   if (!(elements instanceof Array) && !elements.offsetHeight) return ''
   if (elements instanceof Array)
-    _.each(elements, item => {
+    _.each(elements, (item) => {
       try {
         height += parseInt(item.offsetHeight)
       } catch (e) {
@@ -103,7 +132,7 @@ export function richTextLengthLimit(content, totalLength) {
   const splitText = ']-*-[' // 分割文本
   const interimContent = content.replace(/<[^>]+>/gi, splitText) // 获取文本内容
   let contentLength = 0 // 累计文本长度
-  const interimList = _.map(interimContent.split(splitText), item => {
+  const interimList = _.map(interimContent.split(splitText), (item) => {
     const oldLenght = contentLength
     contentLength += item.length
     if (contentLength > totalLength && oldLenght <= totalLength) {
@@ -113,7 +142,7 @@ export function richTextLengthLimit(content, totalLength) {
     else return item
   })
   return _.map(
-    _.filter(interimList, item => item),
-    item => `<p>${item}</p>`
+    _.filter(interimList, (item) => item),
+    (item) => `<p>${item}</p>`
   ).join('')
 }

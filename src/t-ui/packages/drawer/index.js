@@ -1,7 +1,7 @@
-import TWDrawer from './src/Drawer.vue'
+import TDrawer from './src/Drawer.vue'
 
-TWDrawer.install = function(Vue) {
-  Vue.component(TWDrawer.name, TWDrawer)
+TDrawer.install = function (Vue) {
+  Vue.component(TDrawer.name, TDrawer)
 }
 
-export default TWDrawer
+export default TDrawer

@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { hasNumber } from 'assets/js/util'
+import { hasNumber, styleValueToInt } from 'assets/js/util'
 export default {
   name: 'TLayout',
   data() {
@@ -169,7 +169,7 @@ export default {
     layoutFooterHeigth() {
       const style = {}
       const height = this.layoutPanelSize('footer')
-      const intFooter = this.styleValueToInt(height)
+      const intFooter = styleValueToInt(height)
       const offset = this.footerOption.offset
       if (this.$slots.footer)
         style.height = offset !== 0 ? intFooter + offset + 'px' : height
@@ -198,7 +198,7 @@ export default {
         if (this.footerOption.mousedown) {
           if (this.footerOption.offset !== 0) {
             const footer = this.layoutPanelSize('footer')
-            const intFooter = this.styleValueToInt(footer)
+            const intFooter = styleValueToInt(footer)
             this.layoutSize.footer = intFooter + this.footerOption.offset + 'px'
           }
           this.footerOption.offset = 0
@@ -222,7 +222,7 @@ export default {
       let header = this.layoutPanelSize('header')
       if (this.headerAuto) header = `${this.headerHeight}px`
       const footer = this.layoutPanelSize('footer')
-      const intFooter = this.styleValueToInt(footer)
+      const intFooter = styleValueToInt(footer)
       const offset = this.footerOption.offset
       const footerStrip = offset !== 0 ? intFooter + offset + 'px' : footer
       if (this.$slots.header && this.$slots.footer)
@@ -236,8 +236,8 @@ export default {
     layoutBodyWidth(style = {}) {
       const left = this.layoutPanelSize('left')
       const right = this.layoutPanelSize('right')
-      const intLeft = this.styleValueToInt(left)
-      const intRight = this.styleValueToInt(right)
+      const intLeft = styleValueToInt(left)
+      const intRight = styleValueToInt(right)
       if (this.$slots.left && this.$slots.right) {
         if (intLeft > 0) style.marginLeft = left
         if (intRight > 0) style.marginRight = right
@@ -257,8 +257,8 @@ export default {
       let header = this.layoutPanelSize('header')
       if (this.headerAuto) header = `${this.headerHeight}px`
       const footer = this.layoutPanelSize('footer')
-      const intHeader = this.styleValueToInt(header)
-      const intFooter = this.styleValueToInt(footer)
+      const intHeader = styleValueToInt(header)
+      const intFooter = styleValueToInt(footer)
       const offset = this.footerOption.offset
       const footerStrip = offset !== 0 ? intFooter + offset + 'px' : footer
       const flag = intHeader > 0 || intFooter > 0
@@ -286,18 +286,6 @@ export default {
       if (regNumber.test(value)) return `${value}px`
       if (regString.test(value)) return value
       return ''
-    },
-    /** 样式的值转数字类型 */
-    styleValueToInt(value) {
-      return parseInt(value && value.match(/^[0-9]+/)[0])
-    },
-    /** 获取样式的单位 */
-    getStyleValueUnit(value) {
-      return value && value.match(/px|em|rem|%$/)[0]
-    },
-    /** 克隆数据 */
-    cloneData(data) {
-      return JSON.parse(JSON.stringify(data))
     }
   },
   render(h) {

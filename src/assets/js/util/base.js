@@ -61,8 +61,8 @@ export function serviceAddress(vue) {
  * @param {*} value
  * @returns
  */
-export function toInt(value) {
-  return new Number(value)
+export function toNumber(value) {
+  return Number(value) || 0
 }
 
 /**
@@ -110,6 +110,6 @@ export function decimalPlaces(value, length = 2, hasFixed = false) {
   if (hasFixed) value.toFixed(length)
   else {
     const percentReg = new RegExp(`^\\d+(?:\\.\\d{0,${length}})?`)
-    return toInt(value.toString().match(percentReg))
+    return toNumber(value.toString().match(percentReg))
   }
 }
