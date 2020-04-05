@@ -36,13 +36,13 @@ export default {
     this.unwatchFns = []
   },
   methods: {
-    // getHandlerHun(prop) {
-    //   if (this.handlers && this.handlers[prop]) return this.handlers[prop]
-    //   return (
-    //     this.$amapComponent[`set${upperCamelCase(prop)}`] ||
-    //     this.$amapComponent.setOptions
-    //   )
-    // },
+    getHandlerFun(prop) {
+      if (this.handlers && this.handlers[prop]) return this.handlers[prop]
+      return (
+        this.$amapComponent[`set${upperCamelCase(prop)}`] ||
+        this.$amapComponent.setOptions
+      )
+    },
     convertProps() {
       const props = {}
       if (this.$amap) props.map = this.$amap

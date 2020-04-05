@@ -76,7 +76,7 @@ export function toInt(value) {
  * @returns
  */
 export function toPercent(total, value, length = 2, hasFixed = false) {
-  if (!total) throw new TypeError('toPercent total：值为空')
+  if (total == null) throw new TypeError('toPercent total：值为空')
   if (value == null) throw new TypeError('toPercent value：值为空')
   if (!hasNumber(total)) throw new TypeError('toPercent total：不是int类型')
   if (!hasNumber(value)) throw new TypeError('toPercent value：不是int类型')

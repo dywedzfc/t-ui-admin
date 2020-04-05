@@ -128,7 +128,15 @@ export default {
   data() {
     return {
       $tagName: TAG,
-      tmpVM: null
+      tmpVM: null,
+      handlers: {
+        zIndex(index) {
+          this.setzIndex(index)
+        },
+        visible(flag) {
+          flag === false ? this.hide() : this.show()
+        }
+      }
     }
   },
   created() {
