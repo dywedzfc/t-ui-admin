@@ -1,5 +1,5 @@
 {
-  "name": "@ipeak/t-ui",
+  "name": "@ipeak/t-ui-admin",
   "version": "0.1.2",
   "private": false,
   "main": "./src/t-ui",
